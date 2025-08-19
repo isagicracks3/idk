@@ -11,7 +11,7 @@ from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 API_TOKEN = "8061815204:AAHwJ4YP4kmxG4s7U4Z6YsvrJRqX2U7DUyM"
 
 bot = telebot.TeleBot(API_TOKEN)
-
+admins = [8009385011] 
 
 DATA_FILE = "data.json"
 
@@ -114,7 +114,7 @@ def start(message):
 
 
 
-
+admins = [8009385011] 
 
 @bot.message_handler(func=lambda message: message.text.lower().startswith('.redeem') or message.text.lower().startswith('/redeem'))
 def respond_to_vbv(message):
