@@ -248,7 +248,35 @@ def start(message):
 
     threading.Thread(target=my_function).start()
     
-    
+@bot.message_handler(func=lambda message: message.text.lower().strip() in ['/res all', '.res all'])
+def show_all_data(message):
+    try:
+        if not os.path.exists("data.json"):
+            bot.reply_to(message, "<b>❗ data.json file not found.</b>", parse_mode="HTML")
+            return
+
+        with open("data.json", "r") as file:
+            json_data = json.load(file)
+
+        if not json_data:
+            bot.reply_to(message, "<b>ℹ️ No data available in data.json.</b>", parse_mode="HTML")
+            return
+
+        msg = "<b>📂 All User Data:</b>\n"
+
+        for uid, info in json_data.items():
+            # Avoid printing keys (if they are keys not users)
+            if not isinstance(info, dict):
+                continue
+            plan = info.get("plan", "free")
+            timer = info.get("timer", "N/A")
+            msg += f"\n🆔 <code>{uid}</code>\n📦 Plan: <b>{plan}</b>\n⏳ Expires: <b>{timer}</b>\n"
+
+        bot.reply_to(message, msg, parse_mode="HTML")
+
+    except Exception as e:
+        print("ERROR in /res all:", e)
+        bot.reply_to(message, "<b>❗ Failed to load all data.</b>", parse_mode="HTML")    
     
 print("Bot is running...")
 bot.infinity_polling()    
