@@ -2076,19 +2076,6 @@ def process_cards(message, message_id, cards, user_id):
 
                 if any(x in result.lower() for x in ["funds", "invalid postal", "avs", "added", "duplicate", "approved", "purchase"]):
                     approved += 1
-                    msg = f'''<b>Approved ✅
-
-𝗖𝗮𝗿𝗱: <code>{cc}</code>
-𝐆𝐚𝐭𝐞𝐰𝐚𝐲: STRIPE AUTH PLAY
-𝐑𝐞𝐬𝗽𝗼𝗻𝐬𝗲: {result}
-
-𝗜𝗻𝗳𝗼: <code>{cc[:6]} - {card_type} - {brand} - {level}</code>
-𝐈𝐬𝐬𝐮𝐞𝐫: {bank}
-𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
-
-𝗧𝗶𝗺𝗲: {execution_time:.2f} seconds
-</b>'''
-                sent_msg = bot.send_message(message.chat.id, msg, parse_mode="HTML")
                 elif any(x in result.lower() for x in ["3d_required", "otp", "action_required", "3d", "risk"]):
                     otp_cards += 1
                     log_bin_activity(bin_number, "risk")
