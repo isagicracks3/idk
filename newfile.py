@@ -2068,7 +2068,7 @@ def process_cards(message, message_id, cards, user_id):
                 for checker in CHECKERS:
                     start_time = time.time()
                 try:
-                    checker = random.choice(CHECKERS)
+                    
                     result = str(checker(cc))
                 except:
                     result = "Error"
