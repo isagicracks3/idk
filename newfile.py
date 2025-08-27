@@ -141,22 +141,23 @@ def send_command_list(message):
 
 🔍 <b>Check Tools:</b>
 • <code>/chk</code> – B3 Auth Checker  
-• <code>/cchk</code> – mass Auth Checker  
+• <code>/cchk</code> – Mass Auth Checker  
+• <code>/b3txt</code> – Mass txt Auth Checker  
+
 • <code>/au</code> – Stripe Auth  
-• <code>/mass</code> – Mass stripe 
-• <code>/ustxt</code> – Mass Stripe File   
-• <code>/sh</code> – Shopify charge $0.98 
+• <code>/mass</code> – Mass Stripe  
+• <code>/ustxt</code> – Mass Stripe File  
+
+• <code>/sh</code> – Shopify charge $0.98  
+• <code>/msh</code> – Mass charge Checker  
 
 ⚙️ <b>Generators:</b>
 • <code>/gen</code> – Generator  
- 
+
 💳 <b>BIN Tools:</b>
-• <code>/fl</code> – Filter CC
+• <code>/fl</code> – Filter CC  
 • <code>/bin</code> – Lookhub BIN  
 • <code>/mbin</code> – More BIN Tools  
-
-🏠 <b>Address Tools:</b>
-• <code>/fake</code> – Fake Address Generator  
 
 🆔 <b>User Tools:</b>
 • <code>/id</code> – Show Your Telegram ID  
