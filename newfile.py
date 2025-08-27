@@ -2123,7 +2123,7 @@ def process_cards(message, message_id, cards, user_id):
                 parse_mode="HTML"
             )
 
-            time.sleep(4)
+            time.sleep(0.5)
             checked_cards.add(cc)
 
         elapsed = time.time() - start_all
