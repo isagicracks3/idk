@@ -143,11 +143,9 @@ def send_command_list(message):
 • <code>/chk</code> – B3 Auth Checker  
 • <code>/cchk</code> – Mass Auth Checker  
 • <code>/b3txt</code> – Mass txt Auth Checker  
-
 • <code>/au</code> – Stripe Auth  
 • <code>/mass</code> – Mass Stripe  
 • <code>/ustxt</code> – Mass Stripe File  
-
 • <code>/sh</code> – Shopify charge $0.98  
 • <code>/msh</code> – Mass charge Checker  
 
@@ -2067,19 +2065,42 @@ def process_cards(message, message_id, cards, user_id):
             if is_blacklisted(bin_number):
                 result = "Blacklisted BIN Found"
             else:
-                start_time = time.time()
+                for checker in CHECKERS:
+                    start_time = time.time()
                 try:
                     checker = random.choice(CHECKERS)
                     result = str(checker(cc))
                 except:
                     result = "Error"
                 execution_time = time.time() - start_time
+                bin_info = get_bin_info_from_csv(cc[:6]) or {}
+                brand = bin_info.get('brand', 'Unknown')
+                card_type = bin_info.get('type', 'Unknown')
+                country = bin_info.get('country', 'Unknown')
+                country_flag = bin_info.get('flag', '🏳️')
+                bank = bin_info.get('bank', 'Unknown')
+                level = bin_info.get('level', 'Unknown')
 
                 if any(x in result.lower() for x in ["funds", "invalid postal", "avs", "added", "duplicate", "approved", "purchase"]):
                     approved += 1
+                    msg = f'''<b>Approved ✅
+
+𝗖𝗮𝗿𝗱: <code>{cc}</code>
+𝐆𝐚𝐭𝐞𝐰𝐚𝐲: Braintree auth play ♻️ 
+𝐑𝐞𝐬𝗽𝗼𝗻𝐬𝗲: {result}
+
+𝗜𝗻𝗳𝗼: <code>{cc[:6]} - {card_type} - {brand} - {level}</code>
+𝐈𝐬𝐬𝐮𝐞𝐫: {bank}
+𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
+
+𝗧𝗶𝗺𝗲: {execution_time:.2f} seconds
+</b>'''
+                    bot.send_message(message.chat.id, msg, parse_mode="HTML")
+
                 elif any(x in result.lower() for x in ["3d_required", "otp", "action_required", "3d", "risk"]):
                     otp_cards += 1
                     log_bin_activity(bin_number, "risk")
+
                 else:
                     declined += 1
                     log_bin_activity(bin_number, "decline")
