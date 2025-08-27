@@ -307,10 +307,10 @@ def Gele(ccx):
 
 # Result print karna
     if match:
-        print(match.group(1).strip())
+        #print(match.group(1).strip())
         return match.group(1).strip()
     else:
-        print("1000:Approved")
+        #print("1000:Approved")
         return "1000:Approved"                            
 
                                                     
