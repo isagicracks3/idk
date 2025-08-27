@@ -26,23 +26,21 @@ def Gele(ccx):
     '_ga': 'GA1.1.1552341977.1748783838',
     'et_bloom_optin_optin_1_c4644da967_imp': 'true',
     'mailchimp_landing_site': 'https%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F',
-    'etBloomCookie_optin_1': 'true',
     'mailchimp_user_previous_email': 'remeki5997%40aravites.com',
     'mailchimp_user_email': 'remeki5997%40aravites.com',
     'cookie_notice_accepted': 'false',
+    'etBloomCookie_optin_1': 'true',
+    '_gcl_au': '1.1.1073672641.1748783837.2041287102.1756204873.1756204882',
+    'wordpress_logged_in_e51f0ec750d984778eada43421443aa3': 'remeki5997%7C1757414483%7CoBi90QfnxRXkJ7z2sYoZ0zNXvlNdXBmLLP4XDNxqwYg%7C8ab881e3e8012e4acc920fe6be474f1988cd05ff255511d077d7b63d2da9f544',
+    'wp_woocommerce_session_e51f0ec750d984778eada43421443aa3': '26199%7C1756377683%7C1756291283%7C%24generic%24rzTUQ2rRZBBeB8aWSc4JLRJZP3aUyySrdn0o9aSZ',
+    '_ga_7FLK339XP5': 'GS2.1.s1756204854$o12$g1$t1756204886$j28$l0$h0',
     'sbjs_migrations': '1418474375998%3D1',
-    'sbjs_current_add': 'fd%3D2025-08-10%2003%3A55%3A10%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3D%28none%29',
-    'sbjs_first_add': 'fd%3D2025-08-10%2003%3A55%3A10%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3D%28none%29',
+    'sbjs_current_add': 'fd%3D2025-08-27%2013%3A26%3A18%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fpayment-methods%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F',
+    'sbjs_first_add': 'fd%3D2025-08-27%2013%3A26%3A18%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fpayment-methods%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F',
     'sbjs_current': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
     'sbjs_first': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
     'sbjs_udata': 'vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F137.0.0.0%20Mobile%20Safari%2F537.36',
-    'mailchimp.cart.current_email': 'remeki5997@aravites.com',
-    '_gcl_au': '1.1.1073672641.1748783837.519822914.1754799949.1754799971',
-    'PHPSESSID': '3236329c231060d3d7e8303acb9e9726',
-    'wordpress_logged_in_e51f0ec750d984778eada43421443aa3': koi,
-    'wp_woocommerce_session_e51f0ec750d984778eada43421443aa3': '26199%7C1754972772%7C1754886372%7C%24generic%242k7hD1rDvSNnjGgeNJfMLsfCqf1i7oj2_a3Tj-vL',
-    '_ga_7FLK339XP5': 'GS2.1.s1754799911$o10$g1$t1754800003$j60$l0$h0',
-    'sbjs_session': 'pgs%3D5%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fpayment-methods%2F',
+    'sbjs_session': 'pgs%3D7%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fpayment-methods%2F',
 }
 
     headers = {
@@ -98,25 +96,25 @@ def Gele(ccx):
         print("Add nonce not found.")
 
     cookies = {
-    'wordpress_sec_e51f0ec750d984778eada43421443aa3': 'remeki5997%7C1756009572%7C1jpLbJGOsHfrLobM7PgngnQyHyepG6Tx65Ttzas0FHe%7C69a214521568510c44922ebd3cbed1db48979c478481255c64820fa49f265b8e',
+    'wordpress_sec_e51f0ec750d984778eada43421443aa3': 'remeki5997%7C1757414483%7CoBi90QfnxRXkJ7z2sYoZ0zNXvlNdXBmLLP4XDNxqwYg%7Cad5b77c3f1a10a9ce572b545922a931898eb846e3dc0c5828f394c0ae9035ab9',
     '_ga': 'GA1.1.1552341977.1748783838',
     'et_bloom_optin_optin_1_c4644da967_imp': 'true',
     'mailchimp_landing_site': 'https%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F',
-    'etBloomCookie_optin_1': 'true',
     'mailchimp_user_previous_email': 'remeki5997%40aravites.com',
     'mailchimp_user_email': 'remeki5997%40aravites.com',
     'cookie_notice_accepted': 'false',
-    '_gcl_au': '1.1.1073672641.1748783837.519822914.1754799949.1754799971',
-    'wordpress_logged_in_e51f0ec750d984778eada43421443aa3': koi,
-    'wp_woocommerce_session_e51f0ec750d984778eada43421443aa3': '26199%7C1754972772%7C1754886372%7C%24generic%242k7hD1rDvSNnjGgeNJfMLsfCqf1i7oj2_a3Tj-vL',
-    '_ga_7FLK339XP5': 'GS2.1.s1754799911$o10$g1$t1754800003$j60$l0$h0',
+    'etBloomCookie_optin_1': 'true',
+    '_gcl_au': '1.1.1073672641.1748783837.2041287102.1756204873.1756204882',
+    'wordpress_logged_in_e51f0ec750d984778eada43421443aa3': 'remeki5997%7C1757414483%7CoBi90QfnxRXkJ7z2sYoZ0zNXvlNdXBmLLP4XDNxqwYg%7C8ab881e3e8012e4acc920fe6be474f1988cd05ff255511d077d7b63d2da9f544',
+    'wp_woocommerce_session_e51f0ec750d984778eada43421443aa3': '26199%7C1756377683%7C1756291283%7C%24generic%24rzTUQ2rRZBBeB8aWSc4JLRJZP3aUyySrdn0o9aSZ',
+    '_ga_7FLK339XP5': 'GS2.1.s1756204854$o12$g1$t1756204886$j28$l0$h0',
     'sbjs_migrations': '1418474375998%3D1',
-    'sbjs_current_add': 'fd%3D2025-08-10%2004%3A34%3A57%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F',
-    'sbjs_first_add': 'fd%3D2025-08-10%2004%3A34%3A57%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F',
+    'sbjs_current_add': 'fd%3D2025-08-27%2013%3A26%3A18%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fpayment-methods%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F',
+    'sbjs_first_add': 'fd%3D2025-08-27%2013%3A26%3A18%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fpayment-methods%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F',
     'sbjs_current': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
     'sbjs_first': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
     'sbjs_udata': 'vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F137.0.0.0%20Mobile%20Safari%2F537.36',
-    'sbjs_session': 'pgs%3D3%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F',
+    'sbjs_session': 'pgs%3D8%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F',
 }
 
     headers = {
@@ -232,23 +230,21 @@ def Gele(ccx):
     '_ga': 'GA1.1.1552341977.1748783838',
     'et_bloom_optin_optin_1_c4644da967_imp': 'true',
     'mailchimp_landing_site': 'https%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F',
-    'etBloomCookie_optin_1': 'true',
     'mailchimp_user_previous_email': 'remeki5997%40aravites.com',
     'mailchimp_user_email': 'remeki5997%40aravites.com',
     'cookie_notice_accepted': 'false',
+    'etBloomCookie_optin_1': 'true',
+    '_gcl_au': '1.1.1073672641.1748783837.2041287102.1756204873.1756204882',
+    'wordpress_logged_in_e51f0ec750d984778eada43421443aa3': 'remeki5997%7C1757414483%7CoBi90QfnxRXkJ7z2sYoZ0zNXvlNdXBmLLP4XDNxqwYg%7C8ab881e3e8012e4acc920fe6be474f1988cd05ff255511d077d7b63d2da9f544',
+    'wp_woocommerce_session_e51f0ec750d984778eada43421443aa3': '26199%7C1756377683%7C1756291283%7C%24generic%24rzTUQ2rRZBBeB8aWSc4JLRJZP3aUyySrdn0o9aSZ',
+    '_ga_7FLK339XP5': 'GS2.1.s1756204854$o12$g1$t1756204886$j28$l0$h0',
     'sbjs_migrations': '1418474375998%3D1',
-    'sbjs_current_add': 'fd%3D2025-08-10%2003%3A55%3A10%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3D%28none%29',
-    'sbjs_first_add': 'fd%3D2025-08-10%2003%3A55%3A10%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3D%28none%29',
+    'sbjs_current_add': 'fd%3D2025-08-27%2013%3A15%3A44%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3D%28none%29',
+    'sbjs_first_add': 'fd%3D2025-08-27%2013%3A15%3A44%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3D%28none%29',
     'sbjs_current': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
     'sbjs_first': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
     'sbjs_udata': 'vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F137.0.0.0%20Mobile%20Safari%2F537.36',
-    'mailchimp.cart.current_email': 'remeki5997@aravites.com',
-    '_gcl_au': '1.1.1073672641.1748783837.519822914.1754799949.1754799971',
-    'PHPSESSID': '3236329c231060d3d7e8303acb9e9726',
-    'wordpress_logged_in_e51f0ec750d984778eada43421443aa3': koi,
-    'wp_woocommerce_session_e51f0ec750d984778eada43421443aa3': '26199%7C1754972772%7C1754886372%7C%24generic%242k7hD1rDvSNnjGgeNJfMLsfCqf1i7oj2_a3Tj-vL',
-    '_ga_7FLK339XP5': 'GS2.1.s1754799911$o10$g1$t1754800003$j60$l0$h0',
-    'sbjs_session': 'pgs%3D7%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F',
+    'sbjs_session': 'pgs%3D1%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F',
 }
 
     headers = {
@@ -307,12 +303,13 @@ def Gele(ccx):
 
 # Result print karna
     if match:
-        #print(match.group(1).strip())
+        print(match.group(1).strip())
+        print(" part 2")
         return match.group(1).strip()
     else:
-        #print("1000:Approved")
+        print(response.text)
         return "1000:Approved"                            
 
-                                                    
+print(Gele("4258810718226890|02|2027|653"))                                                            
                                                                                                         
-                                                                                                                                                                                                         
+                                                                                                                                                                
