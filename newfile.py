@@ -9,31 +9,9 @@ import json
 import os
 import asyncio
 
+#======== Api Import @OnlyXFanbot ==≠==
 
 
-
-#============ Api Import ==≠=====≠==
-
-from reg import reg
-#from gate import Tele # chk and cchk
-
-from Shopify import vbv # sh 
-
-#from gatet import Tele # dummy checker
-
-
-from ppc import ppc # au and mass
-from stripe import st  # txt mass stripe
-
-
-
-from gatet import Gele
-from gatat import Fele
-from gate import Tele
-
-
-
-# Replace this with your bot @OnlyXFanbot
 API_TOKEN = "8061815204:AAHwJ4YP4kmxG4s7U4Z6YsvrJRqX2U7DUyM"
 
 bot = telebot.TeleBot(API_TOKEN)
@@ -46,7 +24,27 @@ REPORT_CHANNEL_ID = -1001903160469
 REQUIRED_CHANNEL = -1002311823274 
 
 
-# --- /start command ---
+
+
+#============ Api Import ==≠=====≠==
+
+from reg import reg
+from gate import Tele   #===|
+from gatet import Fele   #====|  Mutiple 
+from gatat import Gele #===|
+from stripe import st 
+from Shopify import vbv
+from ppc import ppc
+
+
+# chk = Tele
+# b3txt = multiple
+# cchk = 
+# au = ppc
+# mass = 
+# ustxt = st
+# sh = vbv
+# msh = vbv
 
 
 
@@ -190,7 +188,6 @@ Plan: <b>{plan}</b>
 System: 0.1 auth"""
     
     bot.reply_to(message, id_info, parse_mode='HTML')
-
 
 
 
@@ -381,7 +378,6 @@ def handle_gen(message):
 
         bot.send_document(message.chat.id, open(filename, 'rb'), caption=caption, parse_mode="HTML")
         os.remove(filename)  # Clean up file after sending
-
 import telebot
 import csv
 import pycountry
@@ -613,123 +609,6 @@ def cmd_mbin(message):
         bot.reply_to(message, f"⚠️ Error: {e}")
 
 
-
-@bot.message_handler(func=lambda message: message.text.lower().startswith('.vbv') or message.text.lower().startswith('/vbv'))
-def respond_to_vbv(message):
-    gate = '3D Lookup'
-    
-    chat_id = message.chat.id
-    user_id = str(message.from_user.id)
-    plan = get_user_plan(user_id)
-
-    if plan == 'FREE':
-        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: OTP Lookhub File base Tools ♻️
-
-✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
-ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
-
-✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
-✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
-        return
-    # Cooldown check
-    if user_id in command_usage:
-        current_time = datetime.now()
-        time_diff = (current_time - command_usage[user_id]['last_time']).seconds
-        if time_diff < 15:
-            bot.reply_to(message, f"<b>Try again after {15 - time_diff} seconds.</b>", parse_mode="HTML")
-            return
-    else:
-        command_usage[user_id] = {'last_time': datetime.now()}
-
-    # Card check message
-    ko = bot.reply_to(message, "𝘾𝙝𝙚𝙘𝙠𝙞𝙣𝙜 𝙔𝙤𝙪𝙧 𝘾𝙖𝙧𝙙𝙨...⌛").message_id
-
-    try:
-        cc = message.reply_to_message.text if message.reply_to_message else message.text
-        cc = str(reg(cc))
-    except:
-        cc = 'None'
-
-    if cc == 'None':
-        bot.edit_message_text(
-            chat_id=chat_id,
-            message_id=ko,
-            text="""<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: 3DS ʟᴏᴏᴋᴜᴘ ♻️
-
-ᴍᴇssᴀɢᴇ: ɴᴏ ᴄᴄ ғᴏᴜɴᴅ ɪɴ ʏᴏᴜʀ ɪɴᴘᴜᴛ ❌
-
-ᴜsᴀɢᴇ: /vbv ᴄᴄ|ᴍᴇs|ᴀɴᴏ|ᴄᴠᴠ;</b>""",
-            parse_mode="HTML"
-        )
-        return
-
-    start_time = time.time()
-    bin_number = cc[:6]
-
-    # Get BIN response from vbvbin.txt
-    try:
-        with open("vbvbin.txt", "r") as file:
-            bin_response = "Lookup Card Error"
-            for line in file:
-                if line.startswith(bin_number):
-                    bin_response = line.strip().split('|')[2]  # Assuming the response is in the 3rd column
-                    break
-    except FileNotFoundError:
-        bot.edit_message_text(chat_id=chat_id, message_id=ko, text="<b>Error: vbvbin.txt file not found!</b>", parse_mode="HTML")
-        return
-
-    # Fetch card details from antipublic.cc
-    bin_info = get_bin_info_from_csv(cc[:6])
-    if bin_info:
-        brand = bin_info.get('brand', 'Unknown')
-        card_type = bin_info.get('type', 'Unknown')
-        country = get_country_name(bin_info.get('country', 'Unknown'), 'Unknown')
-        country_flag = bin_info.get('flag', 'Unknown')
-        bank = bin_info.get('bank', 'Unknown')
-        level = bin_info.get('level', 'Unknown')
-    else:
-        brand = card_type = country = country_flag = bank = level = 'Unknown'
-
-    end_time = time.time()
-    execution_time = end_time - start_time
-
-    # Messages for success and failure
-    msg_passed = f'''<b>𝗣𝗔𝗦𝗦𝗘𝗗 ✅
-    
-𝗖𝗮𝗿𝗱: <code>{cc}</code>
-𝐆𝐚𝐭𝐞𝐰𝐚𝐲: {gate}
-𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: {bin_response}
-
-𝗜𝗻𝗳𝗼: <code>{cc[:6]} - {card_type} - {brand} - {level}</code>
-𝐈𝐬𝐬𝐮𝐞𝐫: {bank}
-𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
-
-𝗧𝗶𝗺𝗲: {execution_time:.2f} 𝐬𝐞𝐜𝐨𝐧𝐝𝐬
-</b>'''
-
-    msg_rejected = f'''<b>𝗥𝗘𝗝𝗘𝗖𝗧𝗘𝗗 ❌
-    
-𝗖𝗮𝗿𝗱: <code>{cc}</code>
-𝐆𝐚𝐭𝐞𝐰𝐚𝐲: {gate}
-𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: {bin_response}
-
-𝗜𝗻𝗳𝗼: <code>{cc[:6]} - {card_type} - {brand} - {level}</code>
-𝐈𝐬𝐬𝐮𝐞𝐫: {bank}
-𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
-
-𝗧𝗶𝗺𝗲: {execution_time:.2f} 𝐬𝐞𝐜𝐨𝐧𝐝𝐬
-</b>'''
-
-    # Decide which message to send
-    if 'Successful' in bin_response:
-        bot.edit_message_text(chat_id=chat_id, message_id=ko, text=msg_passed, parse_mode="HTML")
-    else:
-        bot.edit_message_text(chat_id=chat_id, message_id=ko, text=msg_rejected, parse_mode="HTML")
-
-
-
-
-
 from datetime import datetime
 import threading
 import json
@@ -747,7 +626,7 @@ command_usage = {}
 CSV_FILE = 'bins_all.csv'
 
 
-# ===================== BLACKLIST SYSTEM =====================
+# ======== BLACKLIST SYSTEM ==========
 
 BLACKLIST_FILE = "blacklist.txt"
 blacklisted_bins = {}
@@ -809,7 +688,7 @@ def track_risk(bin_num):
 # Load saved blacklist at startup
 load_blacklist()
 
-# ===================== BIN INFO =====================
+# =========== BIN INFO ==============
 
 def expand_bank_name(bank_name):
     words = bank_name.split()
@@ -1083,167 +962,109 @@ def process_au_command(message, processing_msg_id, cc):
         bot.edit_message_text(chat_id=message.chat.id, message_id=processing_msg_id, text=msgd, parse_mode="HTML")
 
 
+from telebot import TeleBot
+from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+import csv, re, time, threading, asyncio, os, json, random
+from datetime import datetime, timedelta
+GATE_FUNCTIONS = [Tele, Fele, Gele]  # Add these globally or at top of file if not already
 
-from datetime import datetime
-import threading
-import time
-import requests
-import json
-import os
-from collections import defaultdict, deque
-import datetime as dt
-
-
-# Rate limit tracking
-cchk_last_used = {}
-mass_last_used = {}
-
-# ===================== BLACKLIST SYSTEM =====================
-BLACKLIST_FILE = "blacklist.txt"
-blacklisted_bins = {}
-decline_tracker = defaultdict(lambda: deque())
-risk_tracker = defaultdict(int)
+# --- BIN Blacklist System ---
+BLACKLIST_FILE = 'blacklistmass.txt'
+BIN_LOGS = {}  # {bin: {"declines": [], "risks": []}}
 
 def load_blacklist():
-    global blacklisted_bins
     if os.path.exists(BLACKLIST_FILE):
-        with open(BLACKLIST_FILE, "r") as f:
-            for line in f:
-                parts = line.strip().split("|")
-                if len(parts) == 2:
-                    bin_num, timestamp = parts
-                    blacklisted_bins[bin_num] = float(timestamp)
+        with open(BLACKLIST_FILE, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    return {}
 
-def save_blacklist():
-    with open(BLACKLIST_FILE, "w") as f:
-        for bin_num, timestamp in blacklisted_bins.items():
-            f.write(f"{bin_num}|{timestamp}\n")
+def save_blacklist(data):
+    with open(BLACKLIST_FILE, 'w', encoding='utf-8') as f:
+        json.dump(data, f, indent=4)
 
-def add_to_blacklist(bin_num):
-    expire_time = time.time() + 48 * 3600  # 48 hrs
-    blacklisted_bins[bin_num] = expire_time
-    save_blacklist()
+BLACKLIST = load_blacklist()
 
-def is_blacklisted(bin_num):
-    if bin_num in blacklisted_bins:
-        if time.time() < blacklisted_bins[bin_num]:
+def is_blacklisted(bin_number):
+    if bin_number in BLACKLIST:
+        expire_time = datetime.fromisoformat(BLACKLIST[bin_number])
+        if datetime.now() < expire_time:
             return True
         else:
-            del blacklisted_bins[bin_num]  # expired
-            save_blacklist()
-            return False
+            BLACKLIST.pop(bin_number, None)
+            save_blacklist(BLACKLIST)
     return False
 
-def track_decline(bin_num):
-    now = dt.datetime.now()
-    dq = decline_tracker[bin_num]
-    dq.append(now)
-    while dq and (now - dq[0]).seconds > 1200:  # last 20 mins
-        dq.popleft()
-    if len(dq) >= 14:
-        add_to_blacklist(bin_num)
+def add_to_blacklist(bin_number):
+    expire_time = datetime.now() + timedelta(hours=48)
+    BLACKLIST[bin_number] = expire_time.isoformat()
+    save_blacklist(BLACKLIST)
 
-def track_risk(bin_num):
-    risk_tracker[bin_num] += 1
-    if risk_tracker[bin_num] >= 4:
-        add_to_blacklist(bin_num)
-        risk_tracker[bin_num] = 0
+def log_bin_activity(bin_number, result_type):
+    now = datetime.now()
+    if bin_number not in BIN_LOGS:
+        BIN_LOGS[bin_number] = {"declines": [], "risks": []}
 
-# load blacklist on startup
-load_blacklist()
-# ============================================================
+    if result_type == "decline":
+        BIN_LOGS[bin_number]["declines"].append(now)
+    elif result_type == "risk":
+        BIN_LOGS[bin_number]["risks"].append(now)
+
+    # Remove logs older than 20 minutes
+    BIN_LOGS[bin_number]["declines"] = [t for t in BIN_LOGS[bin_number]["declines"] if now - t <= timedelta(minutes=20)]
+    BIN_LOGS[bin_number]["risks"] = [t for t in BIN_LOGS[bin_number]["risks"] if now - t <= timedelta(minutes=20)]
+
+    # Auto-blacklist if thresholds reached
+    if len(BIN_LOGS[bin_number]["declines"]) >= 14 or len(BIN_LOGS[bin_number]["risks"]) >= 4:
+        add_to_blacklist(bin_number)
 
 
-# --- Validate CC ---
-def validate_cc(cc_line):
-    try:
-        cc_valid = reg(cc_line)
-        return cc_valid if cc_valid != "None" else None
-    except:
+# --- Load BIN Info from CSV ---
+CSV_FILE = 'bins_all.csv'
+
+def expand_bank_name(bank_name):
+    words = bank_name.split()
+    expanded_words = [BANK_NAME_FIXES.get(word, word) for word in words]  # Assuming BANK_NAME_FIXES is defined
+    return " ".join(expanded_words)
+
+def get_bin_info_from_csv(fbin):
+    if not os.path.exists(CSV_FILE):
         return None
-
-# --- BIN Info ---
-def get_card_info(cc):
+    
     try:
-        data = requests.get(f"https://bins.antipublic.cc/bins/{cc[:6]}").json()
-        brand = data.get("brand", "Unknown")
-        card_type = data.get("type", "Unknown")
-        country = data.get("country_name", "Unknown")
-        country_flag = data.get("country_flag", "🏳️")
-        bank = data.get("bank", "Unknown")
-    except:
-        brand = card_type = country = country_flag = bank = "Unknown"
-    return brand, card_type, country, country_flag, bank
+        with open(CSV_FILE, mode='r', encoding='utf-8') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                if row[0] == fbin:
+                    return {
+                        "bin": row[0],
+                        "country": row[1],
+                        "flag": row[2],
+                        "brand": row[3],
+                        "type": row[4],
+                        "level": row[5],
+                        "bank": expand_bank_name(row[6])
+                    }
+    except Exception as e:
+        print(f"Error reading CSV: {e}")
+        return None
+    return None
 
-# ===============================
-#    . C C H K    C O M M A N D
-# ===============================
-def process_card_cchk(cc):
-    brand, card_type, country, flag, bank = get_card_info(cc)
+def is_valid_cc_format(line):
+    pattern = r'^\d{15,16}\|\d{2}\|\d{2,4}\|\d{3}$'
+    return bool(re.match(pattern, line.strip()))
 
-    # --- Blacklist check ---
-    bin_num = cc[:6]
-    if is_blacklisted(bin_num):
-        return f"❌ Message Sorry But This Bin({bin_num}) is on my blacklist!\n"
+active_checks = {}
+stopuser = {}
 
-
-    try:
-        result = str(Tele(cc))
-    except:
-        result = "Error"
-
-    # --- Track risk ---
-    if "risk_threshold" in result.lower():
-        track_risk(bin_num)
-
-    status = "𝐀𝐩𝐩𝐫𝐨𝐯𝐞𝐝 ✅" if any(i in result.lower() for i in ["approved", "funds", "added", "purchase", "duplicate", " avs"]) else "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌"
-
-    # --- Track decline if failed ---
-    if status == "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌":
-        track_decline(bin_num)
-
-    return f"Card↯ <code>{cc}</code>\nStatus - {status}\nResult -⤿ {result} ⤾\n"
-
-def process_cchk_command(message, processing_msg):
-    user_id = message.from_user.id
-    text = message.reply_to_message.text if message.reply_to_message else message.text[5:]
-    cards = [validate_cc(i.strip()) for i in text.strip().split('\n') if i.strip()]
-    cards = [c for c in cards if c][:14]
-
-    if not cards:
-        bot.edit_message_text(
-    "ɢᴀᴛᴇ ɴᴀᴍᴇ: Mass Braintree ᴀᴜᴛʜ ♻️\n\n"
-    "ᴍᴇssᴀɢᴇ: ɴᴏ ᴄᴄ ғᴏᴜɴᴅ ᴏʀ ɪɴᴄᴏʀʀᴇᴄᴛ ғᴏʀᴍᴀᴛ ❌\n\n"
-    "ᴜsᴀɢᴇ: /cchk ᴄᴄ|ᴍᴇs|ᴀɴᴏ|ᴄᴠᴠ",
-    chat_id=message.chat.id,
-    message_id=processing_msg.message_id
-)
-        return  # no rate limit applied here
-
-    current_time = time.time()
-    if user_id in cchk_last_used and (current_time - cchk_last_used[user_id]) < 80:
-        wait = int(80 - (current_time - cchk_last_used[user_id]))
-        bot.edit_message_text(f"⏳ Please wait {wait}s before using .cchk again.", chat_id=message.chat.id, message_id=processing_msg.message_id)
-        return
-
-    cchk_last_used[user_id] = current_time
-
-    result = ["↯ Braintree ᴀᴜᴛʜ ♻️\n"]
-    start = time.time()
-    for cc in cards:
-        result.append(process_card_cchk(cc))
-    elapsed = time.time() - start
-    result.append(f"- 𝗧𝗶𝗺𝗲 - {elapsed:.2f}s")
-
-    bot.edit_message_text("\n".join(result), chat_id=message.chat.id, message_id=processing_msg.message_id, parse_mode="HTML")
-
-@bot.message_handler(func=lambda m: m.text.lower().startswith(('.cchk', '/cchk')))
-def respond_to_cchk(message):
+# --- Main Handler ---
+@bot.message_handler(commands=['b3txt'])
+@bot.message_handler(regexp=r'^\.b3txt')
+def ustxt_cmd(message):
     user_id = message.from_user.id
     plan = get_user_plan(user_id)
 
     if plan == 'FREE':
-        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Mass Braintree ᴀᴜᴛʜ ♻️
+        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Braintree auth charge 0.01$ ♻️
 
 ✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
 ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
@@ -1252,64 +1073,23 @@ def respond_to_cchk(message):
 ✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
         return
 
-    msg = bot.reply_to(message, "- 𝐆𝐚𝐭𝐞𝐰𝐚𝐲 -  Braintree ᴀᴜᴛʜ ♻️\n- 𝐒𝐭𝐚𝐭𝐮𝐬 - Processing...⌛️", parse_mode="HTML")
-    threading.Thread(target=process_cchk_command, args=(message, msg)).start()
-
-
-
-# ===============================
-#    . M A S S    C O M M A N D
-# ===============================
-def process_card_mass(cc):
-    brand, card_type, country, flag, bank = get_card_info(cc)
-    try:
-        result = str(asyncio.run(ppc(cc)))
-    except:
-        result = "Error"
-
-    status = "𝐀𝐩𝐩𝐫𝐨𝐯𝐞𝐝 ✅" if any(i in result.lower() for i in ["approved", "funds", "added", "purchase", "duplicate", " avs"]) else "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌"
-    return f"Card↯ <code>{cc}</code>\nStatus - {status}\nResult -⤿ {result} ⤾\n"
-
-def process_mass_command(message, processing_msg):
-    user_id = message.from_user.id
-    text = message.reply_to_message.text if message.reply_to_message else message.text[5:]
-    cards = [validate_cc(i.strip()) for i in text.strip().split('\n') if i.strip()]
-    cards = [c for c in cards if c][:14]
-
-    if not cards:
-        bot.edit_message_text(
-    "ɢᴀᴛᴇ ɴᴀᴍᴇ: Mass stripe ᴀᴜᴛʜ ♻️\n\n"
-    "ᴍᴇssᴀɢᴇ: ɴᴏ ᴄᴄ ғᴏᴜɴᴅ ᴏʀ ɪɴᴄᴏʀʀᴇᴄᴛ ғᴏʀᴍᴀᴛ ❌\n\n"
-    "ᴜsᴀɢᴇ: /mass ᴄᴄ|ᴍᴇs|ᴀɴᴏ|ᴄᴠᴠ",
-    chat_id=message.chat.id,
-    message_id=processing_msg.message_id
-)
-        return  # no rate limit applied here
-
-    current_time = time.time()
-    if user_id in mass_last_used and (current_time - mass_last_used[user_id]) < 80:
-        wait = int(80 - (current_time - mass_last_used[user_id]))
-        bot.edit_message_text(f"⏳ Please wait {wait}s before using .mass again.", chat_id=message.chat.id, message_id=processing_msg.message_id)
+    if not (message.reply_to_message and message.reply_to_message.document):
+        bot.reply_to(message,
+            "ɢᴀᴛᴇ ɴᴀᴍᴇ: sᴛʀɪᴘᴇ ᴀᴜᴛʜ ♻️\n\n"
+            "ᴍᴇssᴀɢᴇ: ɴᴏ ᴄᴄ ғᴏᴜɴᴅ ᴏʀ ɪɴᴄᴏʀʀᴇᴄᴛ ғᴏʀᴍᴀᴛ ❌\n\n"
+            "ᴜsᴀɢᴇ: /b3txt [ reply to fileLimited 1K ]"
+        )
         return
 
-    mass_last_used[user_id] = current_time
+    handle_ustxt_command(message)
 
-    result = ["↯ Stripe ᴀᴜᴛʜ ♻️\n"]
-    start = time.time()
-    for cc in cards:
-        result.append(process_card_mass(cc))
-    elapsed = time.time() - start
-    result.append(f"- 𝗧𝗶𝗺𝗲 - {elapsed:.2f}s")
 
-    bot.edit_message_text("\n".join(result), chat_id=message.chat.id, message_id=processing_msg.message_id, parse_mode="HTML")
-
-@bot.message_handler(func=lambda m: m.text.lower().startswith(('.mass', '/mass')))
-def respond_to_mass(message):
-    user_id = message.from_user.id
+def handle_ustxt_command(message):
+    user_id = str(message.from_user.id)
     plan = get_user_plan(user_id)
 
     if plan == 'FREE':
-        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: mass stripe ᴀᴜᴛʜ ♻️
+        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Braintree auth charge 0.01$ ♻️
 
 ✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
 ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
@@ -1317,8 +1097,600 @@ def respond_to_mass(message):
 ✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
 ✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
         return
-    msg = bot.reply_to(message, "- 𝐆𝐚𝐭𝐞𝐰𝐚𝐲 -  Stripe ᴀᴜᴛʜ ♻️\n- 𝐒𝐭𝐚𝐭𝐮𝐬 - Processing...⌛️", parse_mode="HTML")
-    threading.Thread(target=process_mass_command, args=(message, msg)).start()
+
+    if active_checks.get(user_id, 0) >= 2:
+        bot.reply_to(message, "⚠️ You already have 2 active checks running. Please wait for one to finish.")
+        return
+
+    try:
+        file_info = bot.get_file(message.reply_to_message.document.file_id)
+        downloaded_file = bot.download_file(file_info.file_path)
+        input_text = downloaded_file.decode('utf-8', errors='ignore')
+
+        cards = []
+        for cc in input_text.split('\n'):
+            try:
+                x = re.findall(r'\d+', cc)
+                if len(x) >= 4:
+                    ccn, mm, yy, cvv = x[0], x[1], x[2], x[3]
+                    if mm.startswith('2'): mm, yy = yy, mm
+                    if len(mm) >= 3: mm, yy, cvv = yy, cvv, mm
+                    if len(yy) == 4: yy = yy[-2:]
+                    formatted = f"{ccn}|{mm}|{yy}|{cvv}"
+                    if is_valid_cc_format(formatted):
+                        cards.append(formatted)
+            except:
+                continue
+
+        cards = cards[:10000]
+        if not cards:
+            bot.reply_to(message,
+                "ɢᴀᴛᴇ ɴᴀᴍᴇ: sᴛʀɪᴘᴇ ᴀᴜᴛʜ ♻️\n\n"
+                "ᴍᴇssᴀɢᴇ: ɴᴏ ᴄᴄ ғᴏᴜɴᴅ ᴏʀ ɪɴᴄᴏʀʀᴇᴄᴛ ғᴏʀᴍᴀᴛ ❌\n\n"
+                "ᴜsᴀɢᴇ: /b3txt [ reply to file Limited 10K ]"
+            )
+            return
+
+        active_checks[user_id] = active_checks.get(user_id, 0) + 1
+        msg = bot.reply_to(message, f"𝘾𝙝𝙚𝙘𝙠𝙞𝙣𝙜 𝙔𝙤𝙪𝙧 {len(cards)}  𝘾𝙖𝙧𝙙𝙨...⌛", parse_mode="HTML")
+
+        stop_key = f"{user_id}_{msg.message_id}"
+        stopuser[stop_key] = {'status': 'start'}
+
+        threading.Thread(target=process_cards, args=(message, msg.message_id, cards, user_id)).start()
+
+    except Exception:
+        bot.reply_to(message, "⚠️ Unable to read the file.", parse_mode="HTML")
+
+
+
+
+def process_cards(message, message_id, cards, user_id):
+    approved = 0
+    declined = 0
+    otp_cards = 0
+    total = len(cards)
+    checked_cards = set()
+    start_all = time.time()
+    gate_index = 0
+    try:
+        for cc in cards:
+            if stopuser.get(user_id, {}).get('status') == 'stop':
+                elapsed = time.time() - start_all
+                elapsed_formatted = time.strftime("%H:%M:%S", time.gmtime(elapsed))
+                bot.edit_message_text(
+                    chat_id=message.chat.id,
+                    message_id=message_id,
+                    text=f"𝐆𝐚𝐭𝐞𝐰𝐚𝐲 - Braintree auth play ♻️\n\n"
+                         f"- 𝐓𝐨𝐭𝐚𝐥 Found 𝐈𝐧𝐩𝐮𝐭 -  {total}\n"
+                         f"𝐓𝐨𝐭𝐚𝐥 𝐂𝐡𝐞𝐜𝐤𝐞𝐝 - {len(checked_cards)}\n"
+                         f"• 𝘼𝙋𝙋𝙍𝙊𝙑𝙀𝘿 ✅ ➜ {approved}\n"
+                         f"• 𝘿𝙀𝘾𝙇𝙄𝙉𝙀𝘿 ❌ ➜{declined}\n"
+                         f"• 𝙍𝙄𝙎𝙆 🏴‍☠️ ➜{otp_cards}\n"
+                         f"Time: {elapsed_formatted}\n"
+                         f"𝙎𝙏𝘼𝙏𝙐𝙎 ➜ Stop 🔴 All ✅\n",
+                    parse_mode="HTML"        
+                )
+                return  
+                
+
+            cc = cc.strip()
+            if not cc or cc in checked_cards:
+                continue
+
+            bin_number = cc[:6]
+
+            if is_blacklisted(bin_number):
+                result = "Blacklisted BIN Found"
+            else:
+                
+                start_time = time.time()
+                try:
+                    current_gate = GATE_FUNCTIONS[gate_index % len(GATE_FUNCTIONS)]
+                    
+                    result = str(current_gate(cc))
+                except:
+                    result = "Error"
+                execution_time = time.time() - start_time
+                bin_info = get_bin_info_from_csv(cc[:6]) or {}
+                brand = bin_info.get('brand', 'Unknown')
+                card_type = bin_info.get('type', 'Unknown')
+                country = bin_info.get('country', 'Unknown')
+                country_flag = bin_info.get('flag', '🏳️')
+                bank = bin_info.get('bank', 'Unknown')
+                level = bin_info.get('level', 'Unknown')
+
+                if any(x in result.lower() for x in ["funds", "invalid postal", "avs", "added", "duplicate", "approved", "purchase"]):
+                    approved += 1
+                    msg = f'''<b>Approved ✅
+
+𝗖𝗮𝗿𝗱: <code>{cc}</code>
+𝐆𝐚𝐭𝐞𝐰𝐚𝐲: Braintree auth play ♻️ 
+𝐑𝐞𝐬𝗽𝗼𝗻𝐬𝗲: {result}
+
+𝗜𝗻𝗳𝗼: <code>{cc[:6]} - {card_type} - {brand} - {level}</code>
+𝐈𝐬𝐬𝐮𝐞𝐫: {bank}
+𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
+
+𝗧𝗶𝗺𝗲: {execution_time:.2f} seconds
+</b>'''
+                    bot.send_message(message.chat.id, msg, parse_mode="HTML")
+
+                elif any(x in result.lower() for x in ["3d_required", "otp", "action_required", "3d", "risk"]):
+                    otp_cards += 1
+                    log_bin_activity(bin_number, "risk")
+                else:
+                    declined += 1
+                    log_bin_activity(bin_number, "decline")
+            gate_index += 1                      
+ 
+            keyboard = InlineKeyboardMarkup(row_width=1)
+            keyboard.add(
+                InlineKeyboardButton(f"𝙎𝙏𝘼𝙏𝙐𝙎 ➜  {result}", callback_data="noop"),
+                InlineKeyboardButton(f"𝘼𝙋𝙋𝙍𝙊𝙑𝙀𝘿 ✅ ➜{approved}", callback_data="noop"),
+                InlineKeyboardButton(f"𝘿𝙀𝘾𝙇𝙄𝙉𝙀𝘿 💀 ➜{declined}", callback_data="noop"),
+                InlineKeyboardButton(f"𝙍𝙄𝙎𝙆  🏴‍☠️  ➜{otp_cards}", callback_data="noop"),
+                InlineKeyboardButton(f"Total ♻ ➜ {len(checked_cards)}/{total}", callback_data="noop"),
+                InlineKeyboardButton("Stop", callback_data=f"stop_{user_id}")
+            )
+
+            bot.edit_message_text(
+                chat_id=message.chat.id,
+                message_id=message_id,
+                text=f"Checking Card <code>{cc}</code>\nGate ➜ <b>Braintree auth play </b>",
+                reply_markup=keyboard,
+                parse_mode="HTML"
+            )
+
+            time.sleep(4)
+            checked_cards.add(cc)
+
+        elapsed = time.time() - start_all
+        elapsed_formatted = time.strftime("%H:%M:%S", time.gmtime(elapsed))
+        bot.edit_message_text(
+            chat_id=message.chat.id,
+            message_id=message_id,
+            text=f"𝐆𝐚𝐭𝐞𝐰𝐚𝐲 - Braintree auth play ♻️\n\n"
+                 f"- 𝐓𝐨𝐭𝐚𝐥 𝐂𝐂 𝐈𝐧𝐩𝐮𝐭 -  {total}\n"
+                 f"• 𝘼𝙋𝙋𝙍𝙊𝙑𝙀𝘿 ✅ ➜   {approved}\n"
+                 f"• 𝘿𝙀𝘾𝙇𝙄𝙉𝙀𝘿 ❌ ➜  {declined}\n"
+                 f"• 𝙍𝙄𝙎𝙆 🏴‍☠️ ➜  {otp_cards}\n"
+                 f"Time: {elapsed_formatted}\n"
+                 f"𝐒𝐭𝐚𝐭𝐮𝐬 - Checked All ✅\n",
+            parse_mode="HTML"
+        )
+
+    except Exception as e:
+        bot.send_message(message.chat.id, f"⚠️ Error: {e}")
+    finally:
+        active_checks[user_id] = max(0, active_checks.get(user_id, 1) - 1)
+        stopuser.pop(user_id, None)
+
+
+@bot.callback_query_handler(func=lambda call: call.data.startswith('stop_'))
+def handle_stop(call):
+    user_id = call.data.split('_')[1]
+    if call.from_user.id == int(user_id):
+        stopuser[user_id] = {'status': 'stop'}
+        bot.answer_callback_query(call.id, "Stopping your check...")
+    else:
+        bot.answer_callback_query(call.id, "❌ You can't stop someone else's check.")
+
+
+
+# ========== /stxt Fully Independent ==========
+active_checks_stxt = {}
+stopuser_stxt = {}
+CHECKERS_STXT = [st]  # Random checkers for /stxt
+
+# --- /stxt Command Handler ---
+@bot.message_handler(commands=['stxt'])
+@bot.message_handler(regexp=r'^\.stxt')
+def stxt_cmd(message):
+    user_id = message.from_user.id
+    plan = get_user_plan(user_id)
+
+    if plan == 'FREE':
+        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: stripe auth v1 ♻️
+
+✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
+ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
+
+✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
+✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
+        return
+
+    if not (message.reply_to_message and message.reply_to_message.document):
+        bot.reply_to(message,
+            "ɢᴀᴛᴇ ɴᴀᴍᴇ: sᴛʀɪᴘᴇ ᴀᴜᴛʜ ♻️\n\n"
+            "ᴍᴇssᴀɢᴇ: ɴᴏ ᴄᴄ ғᴏᴜɴᴅ ᴏʀ ɪɴᴄᴏʀʀᴇᴄᴛ ғᴏʀᴍᴀᴛ ❌\n\n"
+            "ᴜsᴀɢᴇ: /stxt [ reply to fileLimited 1K ]"
+        )
+        return
+
+    handle_stxt_command(message)
+
+
+def handle_stxt_command(message):
+    user_id = str(message.from_user.id)
+    plan = get_user_plan(user_id)
+
+    if plan == 'FREE':
+        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: stripe auth v1 ♻️
+
+✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
+ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
+
+✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
+✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
+        return
+
+    if active_checks_stxt.get(user_id, 0) >= 2:
+        bot.reply_to(message, "⚠️ You already have 2 active /stxt checks running.")
+        return
+
+    try:
+        file_info = bot.get_file(message.reply_to_message.document.file_id)
+        downloaded_file = bot.download_file(file_info.file_path)
+        input_text = downloaded_file.decode('utf-8', errors='ignore')
+
+        cards = []
+        for cc in input_text.split('\n'):
+            try:
+                x = re.findall(r'\d+', cc)
+                if len(x) >= 4:
+                    ccn, mm, yy, cvv = x[0], x[1], x[2], x[3]
+                    if mm.startswith('2'): mm, yy = yy, mm
+                    if len(mm) >= 3: mm, yy, cvv = yy, cvv, mm
+                    if len(yy) == 4: yy = yy[-2:]
+                    formatted = f"{ccn}|{mm}|{yy}|{cvv}"
+                    if is_valid_cc_format(formatted):
+                        cards.append(formatted)
+            except:
+                continue
+
+        cards = cards[:10000]
+
+        if not cards:
+            bot.reply_to(message, "⚠️ Unable to read the file.")
+            return
+
+        active_checks_stxt[user_id] = active_checks_stxt.get(user_id, 0) + 1
+
+        msg = bot.reply_to(message, f"𝘾𝙝𝙚𝙘𝙠𝙞𝙣𝙜 𝙔𝙤𝙪𝙧 {len(cards)}  𝘾𝙖𝙧𝙙𝙨...⌛", parse_mode="HTML")
+
+        stop_key = f"{user_id}_{msg.message_id}"
+        stopuser_stxt[stop_key] = {'status': 'start'}
+
+        threading.Thread(target=process_cards_stxt, args=(message, msg.message_id, cards, user_id)).start()
+
+    except Exception:
+        bot.reply_to(message, "⚠️ Unable to read the file.")
+
+
+def process_cards_stxt(message, message_id, cards, user_id):
+    approved, declined, otp_cards = 0, 0, 0
+    total = len(cards)
+    checked_cards = set()
+    start_all = time.time()
+
+    try:
+        for cc in cards:
+            if stopuser_stxt.get(user_id, {}).get('status') == 'stop':
+                elapsed = time.time() - start_all
+                elapsed_formatted = time.strftime("%H:%M:%S", time.gmtime(elapsed))
+                bot.edit_message_text(
+                    chat_id=message.chat.id,
+                    message_id=message_id,
+                    text=f"𝐆𝐚𝐭𝐞𝐰𝐚𝐲 - stripe auth play ♻️\n\n"
+                         f"- 𝐓𝐨𝐭𝐚𝐥 Found 𝐈𝐧𝐩𝐮𝐭 -  {total}\n"
+                         f"𝐓𝐨𝐭𝐚𝐥 𝐂𝐡𝐞𝐜𝐤𝐞𝐝 - {len(checked_cards)}\n"
+                         f"• 𝘼𝙋𝙋𝙍𝙊𝙑𝙀𝘿 ✅ ➜ {approved}\n"
+                         f"• 𝘿𝙀𝘾𝙇𝙄𝙉𝙀𝘿 ❌ ➜{declined}\n"
+                         f"• 3D Card 🏴‍☠️ ➜{otp_cards}\n"
+                         f"Time: {elapsed_formatted}\n"
+                         f"𝙎𝙏𝘼𝙏𝙐𝙎 ➜ Stop 🔴 All ✅\n",
+                    parse_mode="HTML"        
+                )
+                return
+
+            cc = cc.strip()
+            if not cc or cc in checked_cards:
+                continue
+
+            start_time = time.time()
+            try:
+                checker = random.choice(CHECKERS_STXT)
+                result = str(checker(cc))
+            except Exception:
+                result = "Error"
+            execution_time = time.time() - start_time
+
+            bin_info = get_bin_info_from_csv(cc[:6]) or {}
+            brand = bin_info.get('brand', 'Unknown')
+            card_type = bin_info.get('type', 'Unknown')
+            country = bin_info.get('country', 'Unknown')
+            country_flag = bin_info.get('flag', '🏳️')
+            bank = bin_info.get('bank', 'Unknown')
+            level = bin_info.get('level', 'Unknown')
+
+            if any(x in result.lower() for x in ["funds", "invalid postal", "avs", "added", "duplicate", "approved", "purchase"]):
+                approved += 1
+                msg = f'''<b>Approved ✅
+
+𝗖𝗮𝗿𝗱: <code>{cc}</code>
+𝐆𝐚𝐭𝐞𝐰𝐚𝐲: /stxt Gateway
+𝐑𝐞𝐬𝗽𝗼𝗻𝐬𝗲: {result}
+
+𝗜𝗻𝗳𝗼: <code>{cc[:6]} - {card_type} - {brand} - {level}</code>
+𝐈𝐬𝐬𝐮𝐞𝐫: {bank}
+𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
+
+𝗧𝗶𝗺𝗲: {execution_time:.2f} seconds
+</b>'''
+                bot.send_message(message.chat.id, msg, parse_mode="HTML")
+
+            elif any(x in result.lower() for x in ["3d_required", "otp", "action_required","3d","risk"]):
+                otp_cards += 1
+            else:
+                declined += 1
+
+            keyboard = InlineKeyboardMarkup(row_width=1)
+            keyboard.add(
+                InlineKeyboardButton(f"Status ➜ {result}", callback_data="noop"),
+                InlineKeyboardButton(f"Approved ✅ ➜ {approved}", callback_data="noop"),
+                InlineKeyboardButton(f"Declined ❌ ➜ {declined}", callback_data="noop"),
+                InlineKeyboardButton(f"3D Card 🏴‍☠️ ➜ {otp_cards}", callback_data="noop"),
+                InlineKeyboardButton(f"Total ♻ ➜ {len(checked_cards)}/{total}", callback_data="noop"),
+                InlineKeyboardButton("Stop", callback_data=f"stopstxt_{user_id}")
+            )
+
+            bot.edit_message_text(
+                chat_id=message.chat.id,
+                message_id=message_id,
+                text=f"Checking Card <code>{cc}</code>\nGate ➜ <b>stripe auth play </b>",
+                reply_markup=keyboard,
+                parse_mode="HTML"
+            )
+
+            time.sleep(4)
+            checked_cards.add(cc)
+
+        elapsed = time.time() - start_all
+        elapsed_formatted = time.strftime("%H:%M:%S", time.gmtime(elapsed))
+
+        bot.edit_message_text(
+            chat_id=message.chat.id,
+            message_id=message_id,
+            text=f"𝐆𝐚𝐭𝐞𝐰𝐚𝐲 - stripe auth play ♻️\n\n"
+                 f"- 𝐓𝐨𝐭𝐚𝐥 𝐂𝐂 𝐈𝐧𝐩𝐮𝐭 -  {total}\n"
+                 f"• 𝘼𝙋𝙋𝙍𝙊𝙑𝙀𝘿 ✅ ➜   {approved}\n"
+                 f"• 𝘿𝙀𝘾𝙇𝙄𝙉𝙀𝘿 ❌ ➜  {declined}\n"
+                 f"• 3D Card 🏴‍☠️ ➜  {otp_cards}\n"
+                 f"Time: {elapsed_formatted}\n"
+                 f"𝐒𝐭𝐚𝐭𝐮𝐬 - Checked All ✅\n",
+                 
+            parse_mode="HTML"
+        )        
+
+    finally:
+        active_checks_stxt[user_id] = max(0, active_checks_stxt.get(user_id, 1) - 1)
+        stopuser_stxt.pop(user_id, None)
+
+
+@bot.callback_query_handler(func=lambda call: call.data.startswith('stopstxt_'))
+def stop_stxt(call):
+    user_id = call.data.split('_')[1]
+    if call.from_user.id == int(user_id):
+        if user_id not in stopuser_stxt:
+            stopuser_stxt[user_id] = {}
+        stopuser_stxt[user_id]['status'] = 'stop'
+        bot.answer_callback_query(call.id, "Stopping your check...")
+    else:
+        bot.answer_callback_query(call.id, "❌ You can't stop someone else's  check.")
+
+owners = ['5995041264', '7198795016','']  # Add your admin user IDs as strings
+
+@bot.message_handler(commands=['nikal'])
+def remove_user_plan(message):
+    if str(message.from_user.id) not in owners:
+        bot.reply_to(message, "⛔ You are not authorized to use this command.", parse_mode="HTML")
+        return
+
+    try:
+        parts = message.text.split()
+        if len(parts) != 2:
+            bot.reply_to(message, "<b>❗ Usage: /remove [USER_ID]</b>", parse_mode="HTML")
+            return
+
+        user_id = parts[1]
+
+        with open('data.json', 'r') as file:
+            data = json.load(file)
+
+        if user_id not in data:
+            bot.reply_to(message, "<b>❌ User ID not found.</b>", parse_mode="HTML")
+            return
+
+        del data[user_id]
+
+        with open('data.json', 'w') as file:
+            json.dump(data, file, ensure_ascii=False, indent=4)
+
+        bot.reply_to(message, f"<b>✅ Removed user {user_id} successfully.</b>", parse_mode="HTML")
+
+    except Exception as e:
+        print("Remove error:", e)
+        bot.reply_to(message, "<b>❗ Error while removing user.</b>", parse_mode="HTML")
+        
+        
+@bot.message_handler(commands=['user_vip'])
+def list_vip_users(message):
+    if str(message.from_user.id) not in owners:
+        bot.reply_to(message, "⛔ You are not authorized to use this command.", parse_mode="HTML")
+        return
+
+    try:
+        with open('data.json', 'r') as file:
+            data = json.load(file)
+
+        vip_users = []
+        for user_id, info in data.items():
+            if isinstance(info, dict):
+                plan = info.get('plan', 'free')
+                if plan.lower() != 'free':
+                    expires = info.get('timer', 'N/A')
+                    vip_users.append(f"👤 <code>{user_id}</code> - Plan: <b>{plan}</b>, Expires: <i>{expires}</i>")
+
+        if not vip_users:
+            bot.reply_to(message, "<b>📭 No VIP users found.</b>", parse_mode="HTML")
+            return
+
+        msg = "<b>💎 VIP Users:</b>\n\n" + "\n".join(vip_users)
+        bot.reply_to(message, msg, parse_mode="HTML")
+
+    except Exception as e:
+        print("VIP list error:", e)
+        bot.reply_to(message, "<b>❗ Failed to get VIP user list.</b>", parse_mode="HTML")            
+    
+    
+    
+    
+import json, threading, random, string
+from datetime import datetime, timedelta
+
+admins = [5995041264] 
+
+# --- Redeem Command ---
+@bot.message_handler(func=lambda message: message.text.lower().startswith('.redeem') or message.text.lower().startswith('/redeem'))
+def respond_to_vbv(message):
+    def my_function():
+        try:
+            parts = message.text.split(' ')
+            if len(parts) < 2:
+                bot.reply_to(message, "<b>❗ Please provide a key: /redeem [KEY]</b>", parse_mode="HTML")
+                return
+
+            key = parts[1]
+
+            with open('data.json', 'r') as file:
+                json_data = json.load(file)
+
+            if key not in json_data:
+                bot.reply_to(message, "<b>❗ Invalid or already redeemed key.</b>", parse_mode="HTML")
+                return
+
+            key_data = json_data[key]
+            plan = key_data['plan']
+            key_time_str = key_data['time']
+            key_expiry = datetime.strptime(key_time_str, "%Y-%m-%d %H:%M")
+
+            user_id_str = str(message.from_user.id)
+            now = datetime.now()
+
+            # Get current user data or initialize
+            user_data = json_data.get(user_id_str, {"plan": "free", "timer": None})
+
+            # Parse existing VIP time if exists
+            existing_timer_str = user_data.get('timer')
+            try:
+                if existing_timer_str and isinstance(existing_timer_str, str) and existing_timer_str.lower() != 'none':
+                    existing_timer = datetime.strptime(existing_timer_str, "%Y-%m-%d %H:%M")
+                    if existing_timer > now:
+                        # Add remaining VIP time to new expiry
+                        key_expiry += (existing_timer - now)
+            except Exception as e:
+                print("Timer parse error:", e)
+
+            # Update user to VIP
+            json_data[user_id_str] = {
+                "plan": plan,
+                "timer": key_expiry.strftime("%Y-%m-%d %H:%M")
+            }
+
+            # Remove used key
+            del json_data[key]
+
+            # Save changes
+            with open('data.json', 'w') as file:
+                json.dump(json_data, file, ensure_ascii=False, indent=4)
+
+            # Send success to user
+            msg = f'''<b>✅ Key Redeemed Successfully!  
+Plan: {plan}  
+Expires: {key_expiry.strftime("%Y-%m-%d %H:%M")}</b>'''
+            bot.reply_to(message, msg, parse_mode="HTML")
+
+            # Notify admin(s)
+            username = f"@{message.from_user.username}" if message.from_user.username else "No Username"
+            admin_msg = f'''🚀 <b>Key Redeemed</b>  
+User: {username} (ID: {message.from_user.id})  
+Plan: {plan}  
+Expires: {key_expiry.strftime("%Y-%m-%d %H:%M")}'''
+
+            for admin_id in admins:
+                try:
+                    bot.send_message(admin_id, admin_msg, parse_mode="HTML")
+                except Exception as e:
+                    print(f"Failed to send admin message to {admin_id}: {e}")
+
+        except Exception as e:
+            print('ERROR:', e)
+            bot.reply_to(message, '<b>❗ An error occurred while redeeming the key.</b>', parse_mode="HTML")
+
+    threading.Thread(target=my_function).start()
+
+
+# --- Key Generation Command ---
+@bot.message_handler(commands=["code"])
+def start(message):
+    def my_function():
+        try:
+            if message.from_user.id not in admins:
+                bot.reply_to(message, "<b>❗ You are not authorized to generate keys.</b>", parse_mode="HTML")
+                return
+
+            parts = message.text.split(' ')
+            if len(parts) < 2:
+                bot.reply_to(message, "<b>❗ Please provide duration in hours. Example: /code 10</b>", parse_mode="HTML")
+                return
+
+            hours = float(parts[1])
+            now = datetime.now()
+            expire_time = now + timedelta(hours=hours)
+            expire_time_str = expire_time.strftime("%Y-%m-%d %H:%M")
+
+            plan = "VIP"
+            characters = string.ascii_uppercase + string.digits
+            key = 'MassCʜᴇᴄᴋᴇʀ-' + '-'.join(''.join(random.choices(characters, k=4)) for _ in range(3))
+
+            # Load existing data
+            with open('data.json', 'r') as f:
+                data = json.load(f)
+
+            # Add new key
+            data[key] = {
+                "plan": plan,
+                "time": expire_time_str
+            }
+
+            # Save
+            with open('data.json', 'w') as f:
+                json.dump(data, f, ensure_ascii=False, indent=4)
+
+            msg = f'''<b>╠═══════════════════════════╣  
+𝗡𝗘𝗪 𝗞𝗘𝗬 𝗖𝗥𝗘𝗔𝗧𝗘𝗗 🚀  
+
+𝗣𝗟𝗔𝗡 ➜  {plan}  
+𝗘𝗫𝗣𝗜𝗥𝗘𝗦 𝗜𝗡 ➜  {expire_time_str}  
+𝗞𝗘𝗬 ➜  <code>{key}</code>  
+𝗨𝗦𝗘 /redeem [𝗞𝗘𝗬]  
+╠════════════════════════════╣</b>'''
+            bot.reply_to(message, msg, parse_mode="HTML")
+
+        except Exception as e:
+            print('ERROR:', e)
+            bot.reply_to(message, f'<b>❗ An error occurred: {e}</b>', parse_mode="HTML")
 
 import threading
 import json
@@ -1568,810 +1940,6 @@ def respond_to_cmds(message):
 
 
  
-# ===============================
-#   . M S H   C O M M A N D
-# ===============================
-msh_last_used = {}
-
-def process_card_msh(cc):
-    brand, card_type, country, flag, bank = get_card_info(cc)
-    try:
-        result = str(vbv(cc))  # Replace with actual VBV function
-    except:
-        result = "Error"
-
-    status = "𝐀𝐩𝐩𝐫𝐨𝐯𝐞𝐝 ✅" if any(i in result.lower() for i in ["approved", "funds", "charged", "0.98", "success", "paid"]) else "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌"
-    return f"Card↯ <code>{cc}</code>\nStatus - {status}\nResult -⤿ {result} ⤾\n"
-
-def process_msh_command(message, processing_msg):
-    user_id = message.from_user.id
-    text = message.reply_to_message.text if message.reply_to_message else message.text[5:]
-    cards = [validate_cc(i.strip()) for i in text.strip().split('\n') if i.strip()]
-    cards = [c for c in cards if c][:14]
-
-    # 🛑 No valid cards
-    if not cards:
-        bot.edit_message_text("⚠️ <b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Shopify charge $0.98 ♻️\n\nᴍᴇssᴀɢᴇ: ɴᴏ ᴄᴄ ғᴏᴜɴᴅ ɪɴ ʏᴏᴜʀ ɪɴᴘᴜᴛ ᴏʀ ɪɴᴄᴏʀʀᴇᴄᴛ ғᴏʀᴍᴀᴛ ❌\n\nᴜsᴀɢᴇ: /msh ᴄᴄ|ᴍᴍ|ʏʏ|ᴄᴠᴠ</b>",
-                                 chat_id=message.chat.id,
-                                 message_id=processing_msg.message_id,
-                                 parse_mode="HTML")
-        return
-
-    # ✅ Apply rate limit only when valid cards found
-    current_time = time.time()
-    if user_id in msh_last_used and (current_time - msh_last_used[user_id]) < 80:
-        wait = int(80 - (current_time - msh_last_used[user_id]))
-        bot.edit_message_text(f"⏳ Please wait {wait}s before using /msh again.",
-                              chat_id=message.chat.id,
-                              message_id=processing_msg.message_id)
-        return
-
-    msh_last_used[user_id] = current_time
-
-    result = ["↯ Shopify 𝐂𝐇𝐀𝐑𝐆𝐄 $0.98 ♻️\n"]
-    start = time.time()
-    for cc in cards:
-        result.append(process_card_msh(cc))
-    elapsed = time.time() - start
-    result.append(f"- 𝗧𝗶𝗺𝗲 - {elapsed:.2f}s")
-
-    bot.edit_message_text("\n".join(result),
-                          chat_id=message.chat.id,
-                          message_id=processing_msg.message_id,
-                          parse_mode="HTML")
-
-@bot.message_handler(func=lambda m: m.text.lower().startswith(('.kmsh', '/kmsh')))
-def respond_to_msh(message):
-    user_id = message.from_user.id
-    plan = get_user_plan(user_id)
-
-    if plan == 'FREE':
-        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Braintree ᴀᴜᴛʜ ♻️
-
-✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
-ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
-
-✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
-✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
-        return
-
-    msg = bot.reply_to(message, "- 𝐆𝐚𝐭𝐞𝐰𝐚𝐲 - Shopify 𝐂𝐇𝐀𝐑𝐆𝐄 ♻️\n- 𝐒𝐭𝐚𝐭𝐮𝐬 - Processing...⌛️", parse_mode="HTML")
-    threading.Thread(target=process_msh_command, args=(message, msg)).start()
-    
-    
-    
-owners = ['5995041264', '7198795016']  # Add your admin user IDs as strings
-
-@bot.message_handler(commands=['nikal'])
-def remove_user_plan(message):
-    if str(message.from_user.id) not in owners:
-        bot.reply_to(message, "⛔ You are not authorized to use this command.", parse_mode="HTML")
-        return
-
-    try:
-        parts = message.text.split()
-        if len(parts) != 2:
-            bot.reply_to(message, "<b>❗ Usage: /remove [USER_ID]</b>", parse_mode="HTML")
-            return
-
-        user_id = parts[1]
-
-        with open('data.json', 'r') as file:
-            data = json.load(file)
-
-        if user_id not in data:
-            bot.reply_to(message, "<b>❌ User ID not found.</b>", parse_mode="HTML")
-            return
-
-        del data[user_id]
-
-        with open('data.json', 'w') as file:
-            json.dump(data, file, ensure_ascii=False, indent=4)
-
-        bot.reply_to(message, f"<b>✅ Removed user {user_id} successfully.</b>", parse_mode="HTML")
-
-    except Exception as e:
-        print("Remove error:", e)
-        bot.reply_to(message, "<b>❗ Error while removing user.</b>", parse_mode="HTML")
-        
-        
-@bot.message_handler(commands=['user_vip'])
-def list_vip_users(message):
-    if str(message.from_user.id) not in owners:
-        bot.reply_to(message, "⛔ You are not authorized to use this command.", parse_mode="HTML")
-        return
-
-    try:
-        with open('data.json', 'r') as file:
-            data = json.load(file)
-
-        vip_users = []
-        for user_id, info in data.items():
-            if isinstance(info, dict):
-                plan = info.get('plan', 'free')
-                if plan.lower() != 'free':
-                    expires = info.get('timer', 'N/A')
-                    vip_users.append(f"👤 <code>{user_id}</code> - Plan: <b>{plan}</b>, Expires: <i>{expires}</i>")
-
-        if not vip_users:
-            bot.reply_to(message, "<b>📭 No VIP users found.</b>", parse_mode="HTML")
-            return
-
-        msg = "<b>💎 VIP Users:</b>\n\n" + "\n".join(vip_users)
-        bot.reply_to(message, msg, parse_mode="HTML")
-
-    except Exception as e:
-        print("VIP list error:", e)
-        bot.reply_to(message, "<b>❗ Failed to get VIP user list.</b>", parse_mode="HTML")            
-    
-    
-    
-    
-import json, threading, random, string
-from datetime import datetime, timedelta
-
-admins = [8009385011] 
-
-# --- Redeem Command ---
-@bot.message_handler(func=lambda message: message.text.lower().startswith('.redeem') or message.text.lower().startswith('/redeem'))
-def respond_to_vbv(message):
-    def my_function():
-        try:
-            parts = message.text.split(' ')
-            if len(parts) < 2:
-                bot.reply_to(message, "<b>❗ Please provide a key: /redeem [KEY]</b>", parse_mode="HTML")
-                return
-
-            key = parts[1]
-
-            with open('data.json', 'r') as file:
-                json_data = json.load(file)
-
-            if key not in json_data:
-                bot.reply_to(message, "<b>❗ Invalid or already redeemed key.</b>", parse_mode="HTML")
-                return
-
-            key_data = json_data[key]
-            plan = key_data['plan']
-            key_time_str = key_data['time']
-            key_expiry = datetime.strptime(key_time_str, "%Y-%m-%d %H:%M")
-
-            user_id_str = str(message.from_user.id)
-            now = datetime.now()
-
-            # Get current user data or initialize
-            user_data = json_data.get(user_id_str, {"plan": "free", "timer": None})
-
-            # Parse existing VIP time if exists
-            existing_timer_str = user_data.get('timer')
-            try:
-                if existing_timer_str and isinstance(existing_timer_str, str) and existing_timer_str.lower() != 'none':
-                    existing_timer = datetime.strptime(existing_timer_str, "%Y-%m-%d %H:%M")
-                    if existing_timer > now:
-                        # Add remaining VIP time to new expiry
-                        key_expiry += (existing_timer - now)
-            except Exception as e:
-                print("Timer parse error:", e)
-
-            # Update user to VIP
-            json_data[user_id_str] = {
-                "plan": plan,
-                "timer": key_expiry.strftime("%Y-%m-%d %H:%M")
-            }
-
-            # Remove used key
-            del json_data[key]
-
-            # Save changes
-            with open('data.json', 'w') as file:
-                json.dump(json_data, file, ensure_ascii=False, indent=4)
-
-            # Send success to user
-            msg = f'''<b>✅ Key Redeemed Successfully!  
-Plan: {plan}  
-Expires: {key_expiry.strftime("%Y-%m-%d %H:%M")}</b>'''
-            bot.reply_to(message, msg, parse_mode="HTML")
-
-            # Notify admin(s)
-            username = f"@{message.from_user.username}" if message.from_user.username else "No Username"
-            admin_msg = f'''🚀 <b>Key Redeemed</b>  
-User: {username} (ID: {message.from_user.id})  
-Plan: {plan}  
-Expires: {key_expiry.strftime("%Y-%m-%d %H:%M")}'''
-
-            for admin_id in admins:
-                try:
-                    bot.send_message(admin_id, admin_msg, parse_mode="HTML")
-                except Exception as e:
-                    print(f"Failed to send admin message to {admin_id}: {e}")
-
-        except Exception as e:
-            print('ERROR:', e)
-            bot.reply_to(message, '<b>❗ An error occurred while redeeming the key.</b>', parse_mode="HTML")
-
-    threading.Thread(target=my_function).start()
-
-
-# --- Key Generation Command ---
-@bot.message_handler(commands=["code"])
-def start(message):
-    def my_function():
-        try:
-            if message.from_user.id not in admins:
-                bot.reply_to(message, "<b>❗ You are not authorized to generate keys.</b>", parse_mode="HTML")
-                return
-
-            parts = message.text.split(' ')
-            if len(parts) < 2:
-                bot.reply_to(message, "<b>❗ Please provide duration in hours. Example: /code 10</b>", parse_mode="HTML")
-                return
-
-            hours = float(parts[1])
-            now = datetime.now()
-            expire_time = now + timedelta(hours=hours)
-            expire_time_str = expire_time.strftime("%Y-%m-%d %H:%M")
-
-            plan = "VIP"
-            characters = string.ascii_uppercase + string.digits
-            key = 'MassCʜᴇᴄᴋᴇʀ-' + '-'.join(''.join(random.choices(characters, k=4)) for _ in range(3))
-
-            # Load existing data
-            with open('data.json', 'r') as f:
-                data = json.load(f)
-
-            # Add new key
-            data[key] = {
-                "plan": plan,
-                "time": expire_time_str
-            }
-
-            # Save
-            with open('data.json', 'w') as f:
-                json.dump(data, f, ensure_ascii=False, indent=4)
-
-            msg = f'''<b>╠═══════════════════════════╣  
-𝗡𝗘𝗪 𝗞𝗘𝗬 𝗖𝗥𝗘𝗔𝗧𝗘𝗗 🚀  
-
-𝗣𝗟𝗔𝗡 ➜  {plan}  
-𝗘𝗫𝗣𝗜𝗥𝗘𝗦 𝗜𝗡 ➜  {expire_time_str}  
-𝗞𝗘𝗬 ➜  <code>{key}</code>  
-𝗨𝗦𝗘 /redeem [𝗞𝗘𝗬]  
-╠════════════════════════════╣</b>'''
-            bot.reply_to(message, msg, parse_mode="HTML")
-
-        except Exception as e:
-            print('ERROR:', e)
-            bot.reply_to(message, f'<b>❗ An error occurred: {e}</b>', parse_mode="HTML")
-
-    threading.Thread(target=my_function).start()
-from telebot import TeleBot
-from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
-import csv, re, time, threading, asyncio, os, json, random
-from datetime import datetime, timedelta
-
-
-# --- BIN Blacklist System ---
-BLACKLIST_FILE = 'blacklistmass.txt'
-BIN_LOGS = {}  # {bin: {"declines": [], "risks": []}}
-
-def load_blacklist():
-    if os.path.exists(BLACKLIST_FILE):
-        with open(BLACKLIST_FILE, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    return {}
-
-def save_blacklist(data):
-    with open(BLACKLIST_FILE, 'w', encoding='utf-8') as f:
-        json.dump(data, f, indent=4)
-
-BLACKLIST = load_blacklist()
-
-def is_blacklisted(bin_number):
-    if bin_number in BLACKLIST:
-        expire_time = datetime.fromisoformat(BLACKLIST[bin_number])
-        if datetime.now() < expire_time:
-            return True
-        else:
-            BLACKLIST.pop(bin_number, None)
-            save_blacklist(BLACKLIST)
-    return False
-
-def add_to_blacklist(bin_number):
-    expire_time = datetime.now() + timedelta(hours=48)
-    BLACKLIST[bin_number] = expire_time.isoformat()
-    save_blacklist(BLACKLIST)
-
-def log_bin_activity(bin_number, result_type):
-    now = datetime.now()
-    if bin_number not in BIN_LOGS:
-        BIN_LOGS[bin_number] = {"declines": [], "risks": []}
-
-    if result_type == "decline":
-        BIN_LOGS[bin_number]["declines"].append(now)
-    elif result_type == "risk":
-        BIN_LOGS[bin_number]["risks"].append(now)
-
-    # Remove logs older than 20 minutes
-    BIN_LOGS[bin_number]["declines"] = [t for t in BIN_LOGS[bin_number]["declines"] if now - t <= timedelta(minutes=20)]
-    BIN_LOGS[bin_number]["risks"] = [t for t in BIN_LOGS[bin_number]["risks"] if now - t <= timedelta(minutes=20)]
-
-    # Auto-blacklist if thresholds reached
-    if len(BIN_LOGS[bin_number]["declines"]) >= 14 or len(BIN_LOGS[bin_number]["risks"]) >= 4:
-        add_to_blacklist(bin_number)
-
-
-# --- Load BIN Info from CSV ---
-CSV_FILE = 'bins_all.csv'
-
-def expand_bank_name(bank_name):
-    words = bank_name.split()
-    expanded_words = [BANK_NAME_FIXES.get(word, word) for word in words]  # Assuming BANK_NAME_FIXES is defined
-    return " ".join(expanded_words)
-
-def get_bin_info_from_csv(fbin):
-    if not os.path.exists(CSV_FILE):
-        return None
-    
-    try:
-        with open(CSV_FILE, mode='r', encoding='utf-8') as file:
-            reader = csv.reader(file)
-            for row in reader:
-                if row[0] == fbin:
-                    return {
-                        "bin": row[0],
-                        "country": row[1],
-                        "flag": row[2],
-                        "brand": row[3],
-                        "type": row[4],
-                        "level": row[5],
-                        "bank": expand_bank_name(row[6])
-                    }
-    except Exception as e:
-        print(f"Error reading CSV: {e}")
-        return None
-    return None
-
-def is_valid_cc_format(line):
-    pattern = r'^\d{15,16}\|\d{2}\|\d{2,4}\|\d{3}$'
-    return bool(re.match(pattern, line.strip()))
-
-active_checks = {}
-stopuser = {}
-
-# --- Main Handler ---
-@bot.message_handler(commands=['b3txt'])
-@bot.message_handler(regexp=r'^\.b3txt')
-def ustxt_cmd(message):
-    user_id = message.from_user.id
-    plan = get_user_plan(user_id)
-
-    if plan == 'FREE':
-        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Braintree auth charge 0.01$ ♻️
-
-✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
-ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
-
-✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
-✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
-        return
-
-    if not (message.reply_to_message and message.reply_to_message.document):
-        bot.reply_to(message,
-            "ɢᴀᴛᴇ ɴᴀᴍᴇ: sᴛʀɪᴘᴇ ᴀᴜᴛʜ ♻️\n\n"
-            "ᴍᴇssᴀɢᴇ: ɴᴏ ᴄᴄ ғᴏᴜɴᴅ ᴏʀ ɪɴᴄᴏʀʀᴇᴄᴛ ғᴏʀᴍᴀᴛ ❌\n\n"
-            "ᴜsᴀɢᴇ: /b3txt [ reply to fileLimited 1K ]"
-        )
-        return
-
-    handle_ustxt_command(message)
-
-
-def handle_ustxt_command(message):
-    user_id = str(message.from_user.id)
-    plan = get_user_plan(user_id)
-
-    if plan == 'FREE':
-        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Braintree auth charge 0.01$ ♻️
-
-✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
-ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
-
-✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
-✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
-        return
-
-    if active_checks.get(user_id, 0) >= 2:
-        bot.reply_to(message, "⚠️ You already have 2 active checks running. Please wait for one to finish.")
-        return
-
-    try:
-        file_info = bot.get_file(message.reply_to_message.document.file_id)
-        downloaded_file = bot.download_file(file_info.file_path)
-        input_text = downloaded_file.decode('utf-8', errors='ignore')
-
-        cards = []
-        for cc in input_text.split('\n'):
-            try:
-                x = re.findall(r'\d+', cc)
-                if len(x) >= 4:
-                    ccn, mm, yy, cvv = x[0], x[1], x[2], x[3]
-                    if mm.startswith('2'): mm, yy = yy, mm
-                    if len(mm) >= 3: mm, yy, cvv = yy, cvv, mm
-                    if len(yy) == 4: yy = yy[-2:]
-                    formatted = f"{ccn}|{mm}|{yy}|{cvv}"
-                    if is_valid_cc_format(formatted):
-                        cards.append(formatted)
-            except:
-                continue
-
-        cards = cards[:10000]
-        if not cards:
-            bot.reply_to(message,
-                "ɢᴀᴛᴇ ɴᴀᴍᴇ: sᴛʀɪᴘᴇ ᴀᴜᴛʜ ♻️\n\n"
-                "ᴍᴇssᴀɢᴇ: ɴᴏ ᴄᴄ ғᴏᴜɴᴅ ᴏʀ ɪɴᴄᴏʀʀᴇᴄᴛ ғᴏʀᴍᴀᴛ ❌\n\n"
-                "ᴜsᴀɢᴇ: /b3txt [ reply to file Limited 10K ]"
-            )
-            return
-
-        active_checks[user_id] = active_checks.get(user_id, 0) + 1
-        msg = bot.reply_to(message, f"𝘾𝙝𝙚𝙘𝙠𝙞𝙣𝙜 𝙔𝙤𝙪𝙧 {len(cards)}  𝘾𝙖𝙧𝙙𝙨...⌛", parse_mode="HTML")
-
-        stop_key = f"{user_id}_{msg.message_id}"
-        stopuser[stop_key] = {'status': 'start'}
-
-        threading.Thread(target=process_cards, args=(message, msg.message_id, cards, user_id)).start()
-
-    except Exception:
-        bot.reply_to(message, "⚠️ Unable to read the file.", parse_mode="HTML")
-
-
-CHECKERS = [Tele, Fele, Gele]
-
-def process_cards(message, message_id, cards, user_id):
-    approved = 0
-    declined = 0
-    otp_cards = 0
-    total = len(cards)
-    checked_cards = set()
-    start_all = time.time()
-
-    try:
-        for cc in cards:
-            if stopuser.get(user_id, {}).get('status') == 'stop':
-                elapsed = time.time() - start_all
-                elapsed_formatted = time.strftime("%H:%M:%S", time.gmtime(elapsed))
-                bot.edit_message_text(
-                    chat_id=message.chat.id,
-                    message_id=message_id,
-                    text=f"𝐆𝐚𝐭𝐞𝐰𝐚𝐲 - Braintree auth play ♻️\n\n"
-                         f"- 𝐓𝐨𝐭𝐚𝐥 Found 𝐈𝐧𝐩𝐮𝐭 -  {total}\n"
-                         f"𝐓𝐨𝐭𝐚𝐥 𝐂𝐡𝐞𝐜𝐤𝐞𝐝 - {len(checked_cards)}\n"
-                         f"• 𝘼𝙋𝙋𝙍𝙊𝙑𝙀𝘿 ✅ ➜ {approved}\n"
-                         f"• 𝘿𝙀𝘾𝙇𝙄𝙉𝙀𝘿 ❌ ➜{declined}\n"
-                         f"• 𝙍𝙄𝙎𝙆 🏴‍☠️ ➜{otp_cards}\n"
-                         f"Time: {elapsed_formatted}\n"
-                         f"𝙎𝙏𝘼𝙏𝙐𝙎 ➜ Stop 🔴 All ✅\n",
-                    parse_mode="HTML"        
-                )
-                return  
-                
-
-            cc = cc.strip()
-            if not cc or cc in checked_cards:
-                continue
-
-            bin_number = cc[:6]
-
-            if is_blacklisted(bin_number):
-                result = "Blacklisted BIN Found"
-            else:
-                for checker in CHECKERS:
-                    start_time = time.time()
-                try:
-                    
-                    result = str(checker(cc))
-                except:
-                    result = "Error"
-                execution_time = time.time() - start_time
-                bin_info = get_bin_info_from_csv(cc[:6]) or {}
-                brand = bin_info.get('brand', 'Unknown')
-                card_type = bin_info.get('type', 'Unknown')
-                country = bin_info.get('country', 'Unknown')
-                country_flag = bin_info.get('flag', '🏳️')
-                bank = bin_info.get('bank', 'Unknown')
-                level = bin_info.get('level', 'Unknown')
-
-                if any(x in result.lower() for x in ["funds", "invalid postal", "avs", "added", "duplicate", "approved", "purchase"]):
-                    approved += 1
-                    msg = f'''<b>Approved ✅
-
-𝗖𝗮𝗿𝗱: <code>{cc}</code>
-𝐆𝐚𝐭𝐞𝐰𝐚𝐲: Braintree auth play ♻️ 
-𝐑𝐞𝐬𝗽𝗼𝗻𝐬𝗲: {result}
-
-𝗜𝗻𝗳𝗼: <code>{cc[:6]} - {card_type} - {brand} - {level}</code>
-𝐈𝐬𝐬𝐮𝐞𝐫: {bank}
-𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
-
-𝗧𝗶𝗺𝗲: {execution_time:.2f} seconds
-</b>'''
-                    bot.send_message(message.chat.id, msg, parse_mode="HTML")
-
-                elif any(x in result.lower() for x in ["3d_required", "otp", "action_required", "3d", "risk"]):
-                    otp_cards += 1
-                    log_bin_activity(bin_number, "risk")
-
-                else:
-                    declined += 1
-                    log_bin_activity(bin_number, "decline")
-
-            keyboard = InlineKeyboardMarkup(row_width=1)
-            keyboard.add(
-                InlineKeyboardButton(f"𝙎𝙏𝘼𝙏𝙐𝙎 ➜  {result}", callback_data="noop"),
-                InlineKeyboardButton(f"𝘼𝙋𝙋𝙍𝙊𝙑𝙀𝘿 ✅ ➜{approved}", callback_data="noop"),
-                InlineKeyboardButton(f"𝘿𝙀𝘾𝙇𝙄𝙉𝙀𝘿 💀 ➜{declined}", callback_data="noop"),
-                InlineKeyboardButton(f"𝙍𝙄𝙎𝙆  🏴‍☠️  ➜{otp_cards}", callback_data="noop"),
-                InlineKeyboardButton(f"Total ♻ ➜ {len(checked_cards)}/{total}", callback_data="noop"),
-                InlineKeyboardButton("Stop", callback_data=f"stop_{user_id}")
-            )
-
-            bot.edit_message_text(
-                chat_id=message.chat.id,
-                message_id=message_id,
-                text=f"Checking Card <code>{cc}</code>\nGate ➜ <b>Braintree auth play </b>",
-                reply_markup=keyboard,
-                parse_mode="HTML"
-            )
-
-            time.sleep(0.5)
-            checked_cards.add(cc)
-
-        elapsed = time.time() - start_all
-        elapsed_formatted = time.strftime("%H:%M:%S", time.gmtime(elapsed))
-        bot.edit_message_text(
-            chat_id=message.chat.id,
-            message_id=message_id,
-            text=f"𝐆𝐚𝐭𝐞𝐰𝐚𝐲 - Braintree auth play ♻️\n\n"
-                 f"- 𝐓𝐨𝐭𝐚𝐥 𝐂𝐂 𝐈𝐧𝐩𝐮𝐭 -  {total}\n"
-                 f"• 𝘼𝙋𝙋𝙍𝙊𝙑𝙀𝘿 ✅ ➜   {approved}\n"
-                 f"• 𝘿𝙀𝘾𝙇𝙄𝙉𝙀𝘿 ❌ ➜  {declined}\n"
-                 f"• 𝙍𝙄𝙎𝙆 🏴‍☠️ ➜  {otp_cards}\n"
-                 f"Time: {elapsed_formatted}\n"
-                 f"𝐒𝐭𝐚𝐭𝐮𝐬 - Checked All ✅\n",
-            parse_mode="HTML"
-        )
-
-    except Exception as e:
-        bot.send_message(message.chat.id, f"⚠️ Error: {e}")
-    finally:
-        active_checks[user_id] = max(0, active_checks.get(user_id, 1) - 1)
-        stopuser.pop(user_id, None)
-
-
-@bot.callback_query_handler(func=lambda call: call.data.startswith('stop_'))
-def handle_stop(call):
-    user_id = call.data.split('_')[1]
-    if call.from_user.id == int(user_id):
-        stopuser[user_id] = {'status': 'stop'}
-        bot.answer_callback_query(call.id, "Stopping your check...")
-    else:
-        bot.answer_callback_query(call.id, "❌ You can't stop someone else's check.")
-
-
-
-# ========== /stxt Fully Independent ==========
-active_checks_stxt = {}
-stopuser_stxt = {}
-CHECKERS_STXT = [st]  # Random checkers for /stxt
-
-# --- /stxt Command Handler ---
-@bot.message_handler(commands=['stxt'])
-@bot.message_handler(regexp=r'^\.stxt')
-def stxt_cmd(message):
-    user_id = message.from_user.id
-    plan = get_user_plan(user_id)
-
-    if plan == 'FREE':
-        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: stripe auth v1 ♻️
-
-✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
-ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
-
-✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
-✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
-        return
-
-    if not (message.reply_to_message and message.reply_to_message.document):
-        bot.reply_to(message,
-            "ɢᴀᴛᴇ ɴᴀᴍᴇ: sᴛʀɪᴘᴇ ᴀᴜᴛʜ ♻️\n\n"
-            "ᴍᴇssᴀɢᴇ: ɴᴏ ᴄᴄ ғᴏᴜɴᴅ ᴏʀ ɪɴᴄᴏʀʀᴇᴄᴛ ғᴏʀᴍᴀᴛ ❌\n\n"
-            "ᴜsᴀɢᴇ: /stxt [ reply to fileLimited 1K ]"
-        )
-        return
-
-    handle_stxt_command(message)
-
-
-def handle_stxt_command(message):
-    user_id = str(message.from_user.id)
-    plan = get_user_plan(user_id)
-
-    if plan == 'FREE':
-        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: stripe auth v1 ♻️
-
-✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
-ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
-
-✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
-✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
-        return
-
-    if active_checks_stxt.get(user_id, 0) >= 2:
-        bot.reply_to(message, "⚠️ You already have 2 active /stxt checks running.")
-        return
-
-    try:
-        file_info = bot.get_file(message.reply_to_message.document.file_id)
-        downloaded_file = bot.download_file(file_info.file_path)
-        input_text = downloaded_file.decode('utf-8', errors='ignore')
-
-        cards = []
-        for cc in input_text.split('\n'):
-            try:
-                x = re.findall(r'\d+', cc)
-                if len(x) >= 4:
-                    ccn, mm, yy, cvv = x[0], x[1], x[2], x[3]
-                    if mm.startswith('2'): mm, yy = yy, mm
-                    if len(mm) >= 3: mm, yy, cvv = yy, cvv, mm
-                    if len(yy) == 4: yy = yy[-2:]
-                    formatted = f"{ccn}|{mm}|{yy}|{cvv}"
-                    if is_valid_cc_format(formatted):
-                        cards.append(formatted)
-            except:
-                continue
-
-        cards = cards[:10000]
-
-        if not cards:
-            bot.reply_to(message, "⚠️ Unable to read the file.")
-            return
-
-        active_checks_stxt[user_id] = active_checks_stxt.get(user_id, 0) + 1
-
-        msg = bot.reply_to(message, f"𝘾𝙝𝙚𝙘𝙠𝙞𝙣𝙜 𝙔𝙤𝙪𝙧 {len(cards)}  𝘾𝙖𝙧𝙙𝙨...⌛", parse_mode="HTML")
-
-        stop_key = f"{user_id}_{msg.message_id}"
-        stopuser_stxt[stop_key] = {'status': 'start'}
-
-        threading.Thread(target=process_cards_stxt, args=(message, msg.message_id, cards, user_id)).start()
-
-    except Exception:
-        bot.reply_to(message, "⚠️ Unable to read the file.")
-
-
-def process_cards_stxt(message, message_id, cards, user_id):
-    approved, declined, otp_cards = 0, 0, 0
-    total = len(cards)
-    checked_cards = set()
-    start_all = time.time()
-
-    try:
-        for cc in cards:
-            if stopuser_stxt.get(user_id, {}).get('status') == 'stop':
-                elapsed = time.time() - start_all
-                elapsed_formatted = time.strftime("%H:%M:%S", time.gmtime(elapsed))
-                bot.edit_message_text(
-                    chat_id=message.chat.id,
-                    message_id=message_id,
-                    text=f"𝐆𝐚𝐭𝐞𝐰𝐚𝐲 - stripe auth play ♻️\n\n"
-                         f"- 𝐓𝐨𝐭𝐚𝐥 Found 𝐈𝐧𝐩𝐮𝐭 -  {total}\n"
-                         f"𝐓𝐨𝐭𝐚𝐥 𝐂𝐡𝐞𝐜𝐤𝐞𝐝 - {len(checked_cards)}\n"
-                         f"• 𝘼𝙋𝙋𝙍𝙊𝙑𝙀𝘿 ✅ ➜ {approved}\n"
-                         f"• 𝘿𝙀𝘾𝙇𝙄𝙉𝙀𝘿 ❌ ➜{declined}\n"
-                         f"• 3D Card 🏴‍☠️ ➜{otp_cards}\n"
-                         f"Time: {elapsed_formatted}\n"
-                         f"𝙎𝙏𝘼𝙏𝙐𝙎 ➜ Stop 🔴 All ✅\n",
-                    parse_mode="HTML"        
-                )
-                return
-
-            cc = cc.strip()
-            if not cc or cc in checked_cards:
-                continue
-
-            start_time = time.time()
-            try:
-                checker = random.choice(CHECKERS_STXT)
-                result = str(checker(cc))
-            except Exception:
-                result = "Error"
-            execution_time = time.time() - start_time
-
-            bin_info = get_bin_info_from_csv(cc[:6]) or {}
-            brand = bin_info.get('brand', 'Unknown')
-            card_type = bin_info.get('type', 'Unknown')
-            country = bin_info.get('country', 'Unknown')
-            country_flag = bin_info.get('flag', '🏳️')
-            bank = bin_info.get('bank', 'Unknown')
-            level = bin_info.get('level', 'Unknown')
-
-            if any(x in result.lower() for x in ["funds", "invalid postal", "avs", "added", "duplicate", "approved", "purchase"]):
-                approved += 1
-                msg = f'''<b>Approved ✅
-
-𝗖𝗮𝗿𝗱: <code>{cc}</code>
-𝐆𝐚𝐭𝐞𝐰𝐚𝐲: /stxt Gateway
-𝐑𝐞𝐬𝗽𝗼𝗻𝐬𝗲: {result}
-
-𝗜𝗻𝗳𝗼: <code>{cc[:6]} - {card_type} - {brand} - {level}</code>
-𝐈𝐬𝐬𝐮𝐞𝐫: {bank}
-𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
-
-𝗧𝗶𝗺𝗲: {execution_time:.2f} seconds
-</b>'''
-                bot.send_message(message.chat.id, msg, parse_mode="HTML")
-
-            elif any(x in result.lower() for x in ["3d_required", "otp", "action_required","3d","risk"]):
-                otp_cards += 1
-            else:
-                declined += 1
-
-            keyboard = InlineKeyboardMarkup(row_width=1)
-            keyboard.add(
-                InlineKeyboardButton(f"Status ➜ {result}", callback_data="noop"),
-                InlineKeyboardButton(f"Approved ✅ ➜ {approved}", callback_data="noop"),
-                InlineKeyboardButton(f"Declined ❌ ➜ {declined}", callback_data="noop"),
-                InlineKeyboardButton(f"3D Card 🏴‍☠️ ➜ {otp_cards}", callback_data="noop"),
-                InlineKeyboardButton(f"Total ♻ ➜ {len(checked_cards)}/{total}", callback_data="noop"),
-                InlineKeyboardButton("Stop", callback_data=f"stopstxt_{user_id}")
-            )
-
-            bot.edit_message_text(
-                chat_id=message.chat.id,
-                message_id=message_id,
-                text=f"Checking Card <code>{cc}</code>\nGate ➜ <b>stripe auth play </b>",
-                reply_markup=keyboard,
-                parse_mode="HTML"
-            )
-
-            time.sleep(4)
-            checked_cards.add(cc)
-
-        elapsed = time.time() - start_all
-        elapsed_formatted = time.strftime("%H:%M:%S", time.gmtime(elapsed))
-
-        bot.edit_message_text(
-            chat_id=message.chat.id,
-            message_id=message_id,
-            text=f"𝐆𝐚𝐭𝐞𝐰𝐚𝐲 - stripe auth play ♻️\n\n"
-                 f"- 𝐓𝐨𝐭𝐚𝐥 𝐂𝐂 𝐈𝐧𝐩𝐮𝐭 -  {total}\n"
-                 f"• 𝘼𝙋𝙋𝙍𝙊𝙑𝙀𝘿 ✅ ➜   {approved}\n"
-                 f"• 𝘿𝙀𝘾𝙇𝙄𝙉𝙀𝘿 ❌ ➜  {declined}\n"
-                 f"• 3D Card 🏴‍☠️ ➜  {otp_cards}\n"
-                 f"Time: {elapsed_formatted}\n"
-                 f"𝐒𝐭𝐚𝐭𝐮𝐬 - Checked All ✅\n",
-                 
-            parse_mode="HTML"
-        )        
-
-    finally:
-        active_checks_stxt[user_id] = max(0, active_checks_stxt.get(user_id, 1) - 1)
-        stopuser_stxt.pop(user_id, None)
-
-
-@bot.callback_query_handler(func=lambda call: call.data.startswith('stopstxt_'))
-def stop_stxt(call):
-    user_id = call.data.split('_')[1]
-    if call.from_user.id == int(user_id):
-        if user_id not in stopuser_stxt:
-            stopuser_stxt[user_id] = {}
-        stopuser_stxt[user_id]['status'] = 'stop'
-        bot.answer_callback_query(call.id, "Stopping your check...")
-    else:
-        bot.answer_callback_query(call.id, "❌ You can't stop someone else's  check.")
-
-
-
 
 
 print("Bot is running...")

