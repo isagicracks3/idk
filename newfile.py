@@ -1553,17 +1553,30 @@ def list_vip_users(message):
         print("VIP list error:", e)
         bot.reply_to(message, "<b>❗ Failed to get VIP user list.</b>", parse_mode="HTML")            
     
-    
-    
-    
 import json, threading, random, string
 from datetime import datetime, timedelta
+from telebot import TeleBot
 
-admins = [5995041264] 
+
+
+admins = [5995041264]
+DATA_FILE = "data.json"
+
+# --- Utility Functions ---
+def load_data():
+    try:
+        with open(DATA_FILE, 'r') as file:
+            return json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+def save_data(data):
+    with open(DATA_FILE, 'w') as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
 
 # --- Redeem Command ---
 @bot.message_handler(func=lambda message: message.text.lower().startswith('.redeem') or message.text.lower().startswith('/redeem'))
-def respond_to_vbv(message):
+def redeem_key(message):
     def my_function():
         try:
             parts = message.text.split(' ')
@@ -1572,15 +1585,13 @@ def respond_to_vbv(message):
                 return
 
             key = parts[1]
+            data = load_data()
 
-            with open('data.json', 'r') as file:
-                json_data = json.load(file)
-
-            if key not in json_data:
+            if key not in data:
                 bot.reply_to(message, "<b>❗ Invalid or already redeemed key.</b>", parse_mode="HTML")
                 return
 
-            key_data = json_data[key]
+            key_data = data[key]
             plan = key_data['plan']
             key_time_str = key_data['time']
             key_expiry = datetime.strptime(key_time_str, "%Y-%m-%d %H:%M")
@@ -1588,40 +1599,30 @@ def respond_to_vbv(message):
             user_id_str = str(message.from_user.id)
             now = datetime.now()
 
-            # Get current user data or initialize
-            user_data = json_data.get(user_id_str, {"plan": "free", "timer": None})
+            user_data = data.get(user_id_str, {"plan": "free", "timer": None})
 
-            # Parse existing VIP time if exists
             existing_timer_str = user_data.get('timer')
             try:
                 if existing_timer_str and isinstance(existing_timer_str, str) and existing_timer_str.lower() != 'none':
                     existing_timer = datetime.strptime(existing_timer_str, "%Y-%m-%d %H:%M")
                     if existing_timer > now:
-                        # Add remaining VIP time to new expiry
                         key_expiry += (existing_timer - now)
             except Exception as e:
                 print("Timer parse error:", e)
 
-            # Update user to VIP
-            json_data[user_id_str] = {
+            data[user_id_str] = {
                 "plan": plan,
                 "timer": key_expiry.strftime("%Y-%m-%d %H:%M")
             }
 
-            # Remove used key
-            del json_data[key]
+            del data[key]
+            save_data(data)
 
-            # Save changes
-            with open('data.json', 'w') as file:
-                json.dump(json_data, file, ensure_ascii=False, indent=4)
-
-            # Send success to user
             msg = f'''<b>✅ Key Redeemed Successfully!  
 Plan: {plan}  
 Expires: {key_expiry.strftime("%Y-%m-%d %H:%M")}</b>'''
             bot.reply_to(message, msg, parse_mode="HTML")
 
-            # Notify admin(s)
             username = f"@{message.from_user.username}" if message.from_user.username else "No Username"
             admin_msg = f'''🚀 <b>Key Redeemed</b>  
 User: {username} (ID: {message.from_user.id})  
@@ -1643,7 +1644,7 @@ Expires: {key_expiry.strftime("%Y-%m-%d %H:%M")}'''
 
 # --- Key Generation Command ---
 @bot.message_handler(commands=["code"])
-def start(message):
+def generate_key(message):
     def my_function():
         try:
             if message.from_user.id not in admins:
@@ -1664,19 +1665,9 @@ def start(message):
             characters = string.ascii_uppercase + string.digits
             key = 'MassCʜᴇᴄᴋᴇʀ-' + '-'.join(''.join(random.choices(characters, k=4)) for _ in range(3))
 
-            # Load existing data
-            with open('data.json', 'r') as f:
-                data = json.load(f)
-
-            # Add new key
-            data[key] = {
-                "plan": plan,
-                "time": expire_time_str
-            }
-
-            # Save
-            with open('data.json', 'w') as f:
-                json.dump(data, f, ensure_ascii=False, indent=4)
+            data = load_data()
+            data[key] = {"plan": plan, "time": expire_time_str}
+            save_data(data)
 
             msg = f'''<b>╠═══════════════════════════╣  
 𝗡𝗘𝗪 𝗞𝗘𝗬 𝗖𝗥𝗘𝗔𝗧𝗘𝗗 🚀  
@@ -1691,6 +1682,13 @@ def start(message):
         except Exception as e:
             print('ERROR:', e)
             bot.reply_to(message, f'<b>❗ An error occurred: {e}</b>', parse_mode="HTML")
+
+    threading.Thread(target=my_function).start()
+
+
+
+    
+    
 
 import threading
 import json
