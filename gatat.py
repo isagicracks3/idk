@@ -342,6 +342,6 @@ nojinic550%7C1756647173%7C66PfxMe6NuCdNB09YqbELMFO8SQkSZB7Nt5H0uaj7QC%7Ca92a4bbb
     else:
         return "1000:Approved"                                                 
                                                                                                                                                                                                          
-print(Gele("5403752236900278|03|2029|890"))        
+#print(Gele("5403752236900278|03|2029|890"))        
                                                                                                                                                                                           
     
