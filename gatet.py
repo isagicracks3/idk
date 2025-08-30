@@ -328,5 +328,5 @@ def Fele(ccx):
     else:
         return "1000:Approved"                                  
         
-print(Fele("4021676185536012|06|2026|5146"))        
+#print(Fele("4021676185536012|06|2026|5146"))        
                                                                                                                                                                                                                                                                                                                
