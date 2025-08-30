@@ -1943,4 +1943,5 @@ def respond_to_cmds(message):
 
 
 print("Bot is running...")
+bot.remove_webhook()
 bot.infinity_polling()
