@@ -1556,142 +1556,8 @@ def list_vip_users(message):
     
     
     
-import json, threading, random, string
-from datetime import datetime, timedelta
-
-admins = [5995041264] 
-
-# --- Redeem Command ---
-@bot.message_handler(func=lambda message: message.text.lower().startswith('.redeem') or message.text.lower().startswith('/redeem'))
-def respond_to_vbv(message):
-    def my_function():
-        try:
-            parts = message.text.split(' ')
-            if len(parts) < 2:
-                bot.reply_to(message, "<b>❗ Please provide a key: /redeem [KEY]</b>", parse_mode="HTML")
-                return
-
-            key = parts[1]
-
-            with open('data.json', 'r') as file:
-                json_data = json.load(file)
-
-            if key not in json_data:
-                bot.reply_to(message, "<b>❗ Invalid or already redeemed key.</b>", parse_mode="HTML")
-                return
-
-            key_data = json_data[key]
-            plan = key_data['plan']
-            key_time_str = key_data['time']
-            key_expiry = datetime.strptime(key_time_str, "%Y-%m-%d %H:%M")
-
-            user_id_str = str(message.from_user.id)
-            now = datetime.now()
-
-            # Get current user data or initialize
-            user_data = json_data.get(user_id_str, {"plan": "free", "timer": None})
-
-            # Parse existing VIP time if exists
-            existing_timer_str = user_data.get('timer')
-            try:
-                if existing_timer_str and isinstance(existing_timer_str, str) and existing_timer_str.lower() != 'none':
-                    existing_timer = datetime.strptime(existing_timer_str, "%Y-%m-%d %H:%M")
-                    if existing_timer > now:
-                        # Add remaining VIP time to new expiry
-                        key_expiry += (existing_timer - now)
-            except Exception as e:
-                print("Timer parse error:", e)
-
-            # Update user to VIP
-            json_data[user_id_str] = {
-                "plan": plan,
-                "timer": key_expiry.strftime("%Y-%m-%d %H:%M")
-            }
-
-            # Remove used key
-            del json_data[key]
-
-            # Save changes
-            with open('data.json', 'w') as file:
-                json.dump(json_data, file, ensure_ascii=False, indent=4)
-
-            # Send success to user
-            msg = f'''<b>✅ Key Redeemed Successfully!  
-Plan: {plan}  
-Expires: {key_expiry.strftime("%Y-%m-%d %H:%M")}</b>'''
-            bot.reply_to(message, msg, parse_mode="HTML")
-
-            # Notify admin(s)
-            username = f"@{message.from_user.username}" if message.from_user.username else "No Username"
-            admin_msg = f'''🚀 <b>Key Redeemed</b>  
-User: {username} (ID: {message.from_user.id})  
-Plan: {plan}  
-Expires: {key_expiry.strftime("%Y-%m-%d %H:%M")}'''
-
-            for admin_id in admins:
-                try:
-                    bot.send_message(admin_id, admin_msg, parse_mode="HTML")
-                except Exception as e:
-                    print(f"Failed to send admin message to {admin_id}: {e}")
-
-        except Exception as e:
-            print('ERROR:', e)
-            bot.reply_to(message, '<b>❗ An error occurred while redeeming the key.</b>', parse_mode="HTML")
-
-    threading.Thread(target=my_function).start()
-
-
-# --- Key Generation Command ---
-@bot.message_handler(commands=["code"])
-def start(message):
-    def my_function():
-        try:
-            if message.from_user.id not in admins:
-                bot.reply_to(message, "<b>❗ You are not authorized to generate keys.</b>", parse_mode="HTML")
-                return
-
-            parts = message.text.split(' ')
-            if len(parts) < 2:
-                bot.reply_to(message, "<b>❗ Please provide duration in hours. Example: /code 10</b>", parse_mode="HTML")
-                return
-
-            hours = float(parts[1])
-            now = datetime.now()
-            expire_time = now + timedelta(hours=hours)
-            expire_time_str = expire_time.strftime("%Y-%m-%d %H:%M")
-
-            plan = "VIP"
-            characters = string.ascii_uppercase + string.digits
-            key = 'MassCʜᴇᴄᴋᴇʀ-' + '-'.join(''.join(random.choices(characters, k=4)) for _ in range(3))
-
-            # Load existing data
-            with open('data.json', 'r') as f:
-                data = json.load(f)
-
-            # Add new key
-            data[key] = {
-                "plan": plan,
-                "time": expire_time_str
-            }
-
-            # Save
-            with open('data.json', 'w') as f:
-                json.dump(data, f, ensure_ascii=False, indent=4)
-
-            msg = f'''<b>╠═══════════════════════════╣  
-𝗡𝗘𝗪 𝗞𝗘𝗬 𝗖𝗥𝗘𝗔𝗧𝗘𝗗 🚀  
-
-𝗣𝗟𝗔𝗡 ➜  {plan}  
-𝗘𝗫𝗣𝗜𝗥𝗘𝗦 𝗜𝗡 ➜  {expire_time_str}  
-𝗞𝗘𝗬 ➜  <code>{key}</code>  
-𝗨𝗦𝗘 /redeem [𝗞𝗘𝗬]  
-╠════════════════════════════╣</b>'''
-            bot.reply_to(message, msg, parse_mode="HTML")
-
-        except Exception as e:
-            print('ERROR:', e)
-            bot.reply_to(message, f'<b>❗ An error occurred: {e}</b>', parse_mode="HTML")
-
+                       
+            
 import threading
 import json
 import time
@@ -1939,7 +1805,142 @@ def respond_to_cmds(message):
     threading.Thread(target=process_cmds_command, args=(message, msg)).start()
 
 
- 
+ import json, threading, random, string
+from datetime import datetime, timedelta
+
+admins = [8009385011] 
+
+# --- Redeem Command ---
+@bot.message_handler(func=lambda message: message.text.lower().startswith('.redeem') or message.text.lower().startswith('/redeem'))
+def respond_to_vbv(message):
+    def my_function():
+        try:
+            parts = message.text.split(' ')
+            if len(parts) < 2:
+                bot.reply_to(message, "<b>❗ Please provide a key: /redeem [KEY]</b>", parse_mode="HTML")
+                return
+
+            key = parts[1]
+
+            with open('data.json', 'r') as file:
+                json_data = json.load(file)
+
+            if key not in json_data:
+                bot.reply_to(message, "<b>❗ Invalid or already redeemed key.</b>", parse_mode="HTML")
+                return
+
+            key_data = json_data[key]
+            plan = key_data['plan']
+            key_time_str = key_data['time']
+            key_expiry = datetime.strptime(key_time_str, "%Y-%m-%d %H:%M")
+
+            user_id_str = str(message.from_user.id)
+            now = datetime.now()
+
+            # Get current user data or initialize
+            user_data = json_data.get(user_id_str, {"plan": "free", "timer": None})
+
+            # Parse existing VIP time if exists
+            existing_timer_str = user_data.get('timer')
+            try:
+                if existing_timer_str and isinstance(existing_timer_str, str) and existing_timer_str.lower() != 'none':
+                    existing_timer = datetime.strptime(existing_timer_str, "%Y-%m-%d %H:%M")
+                    if existing_timer > now:
+                        # Add remaining VIP time to new expiry
+                        key_expiry += (existing_timer - now)
+            except Exception as e:
+                print("Timer parse error:", e)
+
+            # Update user to VIP
+            json_data[user_id_str] = {
+                "plan": plan,
+                "timer": key_expiry.strftime("%Y-%m-%d %H:%M")
+            }
+
+            # Remove used key
+            del json_data[key]
+
+            # Save changes
+            with open('data.json', 'w') as file:
+                json.dump(json_data, file, ensure_ascii=False, indent=4)
+
+            # Send success to user
+            msg = f'''<b>✅ Key Redeemed Successfully!  
+Plan: {plan}  
+Expires: {key_expiry.strftime("%Y-%m-%d %H:%M")}</b>'''
+            bot.reply_to(message, msg, parse_mode="HTML")
+
+            # Notify admin(s)
+            username = f"@{message.from_user.username}" if message.from_user.username else "No Username"
+            admin_msg = f'''🚀 <b>Key Redeemed</b>  
+User: {username} (ID: {message.from_user.id})  
+Plan: {plan}  
+Expires: {key_expiry.strftime("%Y-%m-%d %H:%M")}'''
+
+            for admin_id in admins:
+                try:
+                    bot.send_message(admin_id, admin_msg, parse_mode="HTML")
+                except Exception as e:
+                    print(f"Failed to send admin message to {admin_id}: {e}")
+
+        except Exception as e:
+            print('ERROR:', e)
+            bot.reply_to(message, '<b>❗ An error occurred while redeeming the key.</b>', parse_mode="HTML")
+
+    threading.Thread(target=my_function).start()
+
+
+# --- Key Generation Command ---
+@bot.message_handler(commands=["code"])
+def start(message):
+    def my_function():
+        try:
+            if message.from_user.id not in admins:
+                bot.reply_to(message, "<b>❗ You are not authorized to generate keys.</b>", parse_mode="HTML")
+                return
+
+            parts = message.text.split(' ')
+            if len(parts) < 2:
+                bot.reply_to(message, "<b>❗ Please provide duration in hours. Example: /code 10</b>", parse_mode="HTML")
+                return
+
+            hours = float(parts[1])
+            now = datetime.now()
+            expire_time = now + timedelta(hours=hours)
+            expire_time_str = expire_time.strftime("%Y-%m-%d %H:%M")
+
+            plan = "VIP"
+            characters = string.ascii_uppercase + string.digits
+            key = 'MassCʜᴇᴄᴋᴇʀ-' + '-'.join(''.join(random.choices(characters, k=4)) for _ in range(3))
+
+            # Load existing data
+            with open('data.json', 'r') as f:
+                data = json.load(f)
+
+            # Add new key
+            data[key] = {
+                "plan": plan,
+                "time": expire_time_str
+            }
+
+            # Save
+            with open('data.json', 'w') as f:
+                json.dump(data, f, ensure_ascii=False, indent=4)
+
+            msg = f'''<b>╠═══════════════════════════╣  
+𝗡𝗘𝗪 𝗞𝗘𝗬 𝗖𝗥𝗘𝗔𝗧𝗘𝗗 🚀  
+
+𝗣𝗟𝗔𝗡 ➜  {plan}  
+𝗘𝗫𝗣𝗜𝗥𝗘𝗦 𝗜𝗡 ➜  {expire_time_str}  
+𝗞𝗘𝗬 ➜  <code>{key}</code>  
+𝗨𝗦𝗘 /redeem [𝗞𝗘𝗬]  
+╠════════════════════════════╣</b>'''
+            bot.reply_to(message, msg, parse_mode="HTML")
+
+        except Exception as e:
+            print('ERROR:', e)
+            bot.reply_to(message, f'<b>❗ An error occurred: {e}</b>', parse_mode="HTML")
+
 
 
 print("Bot is running...")
