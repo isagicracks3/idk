@@ -12,3 +12,4 @@ lxml
 certifi
 urllib3
 aiohttp
+user_agent
