@@ -1192,7 +1192,7 @@ from telebot import TeleBot
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 import csv, re, time, threading, asyncio, os, json, random
 from datetime import datetime, timedelta
-GATE_FUNCTIONS = [Tele, Fele, Gele]  # Add these globally or at top of file if not already
+GATE_FUNCTIONS = [st, st, st]  # Add these globally or at top of file if not already
 
 # --- BIN Blacklist System ---
 BLACKLIST_FILE = 'blacklistmass.txt'
