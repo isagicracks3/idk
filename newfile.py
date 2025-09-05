@@ -1056,7 +1056,7 @@ def format_cc_input(text):
 
 # --- Worker Function for CC Check ---
 def process_sh_cmds(message, processing_sh_id, cc):
-    gate = 'Shopify charge $0.98'
+    gate = 'Shopify charge $0.50'
     start_time = time.time()
 
     try:
@@ -1157,7 +1157,7 @@ def process_cmds_command(message, processing_msg):
 
     cmds_last_used[user_id] = current_time
 
-    result = ["↯ Shopify charge $0.98 ♻️\n"]
+    result = ["↯ Shopify charge $0.50 ♻️\n"]
     start = time.time()
     for cc in cards:
         result.append(process_card_cmds(cc))
