@@ -1187,7 +1187,252 @@ def respond_to_cmds(message):
     threading.Thread(target=process_cmds_command, args=(message, msg)).start()
 
 
+# --- Load BIN Info from CSV ---
+CSV_FILE = 'bins_all.csv'
+
+def expand_bank_name(bank_name):
+    words = bank_name.split()
+    expanded_words = [BANK_NAME_FIXES.get(word, word) for word in words]  # Assuming BANK_NAME_FIXES is defined
+    return " ".join(expanded_words)
+
+def get_bin_info_from_csv(fbin):
+    if not os.path.exists(CSV_FILE):
+        return None
+    
+    try:
+        with open(CSV_FILE, mode='r', encoding='utf-8') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                if row[0] == fbin:
+                    return {
+                        "bin": row[0],
+                        "country": row[1],
+                        "flag": row[2],
+                        "brand": row[3],
+                        "type": row[4],
+                        "level": row[5],
+                        "bank": expand_bank_name(row[6])
+                    }
+    except Exception as e:
+        print(f"Error reading CSV: {e}")
+        return None
+    return None
+
+def is_valid_cc_format(line):
+    pattern = r'^\d{15,16}\|\d{2}\|\d{2,4}\|\d{3}$'
+    return bool(re.match(pattern, line.strip()))
+
  
+# ========== /stxt Fully Independent ==========
+active_checks_stxt = {}
+stopuser_stxt = {}
+CHECKERS_STXT = [st]  # Random checkers for /stxt
+
+# --- /stxt Command Handler ---
+@bot.message_handler(commands=['stxt'])
+@bot.message_handler(regexp=r'^\.stxt')
+def stxt_cmd(message):
+    user_id = message.from_user.id
+    plan = get_user_plan(user_id)
+
+    if plan == 'FREE':
+        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: stripe auth v1 ♻️
+
+✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
+ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
+
+✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
+✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
+        return
+
+    if not (message.reply_to_message and message.reply_to_message.document):
+        bot.reply_to(message,
+            "ɢᴀᴛᴇ ɴᴀᴍᴇ: sᴛʀɪᴘᴇ ᴀᴜᴛʜ ♻️\n\n"
+            "ᴍᴇssᴀɢᴇ: ɴᴏ ᴄᴄ ғᴏᴜɴᴅ ᴏʀ ɪɴᴄᴏʀʀᴇᴄᴛ ғᴏʀᴍᴀᴛ ❌\n\n"
+            "ᴜsᴀɢᴇ: /stxt [ reply to fileLimited 1K ]"
+        )
+        return
+
+    handle_stxt_command(message)
+
+
+def handle_stxt_command(message):
+    user_id = str(message.from_user.id)
+    plan = get_user_plan(user_id)
+
+    if plan == 'FREE':
+        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: stripe auth v1 ♻️
+
+✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
+ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
+
+✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
+✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
+        return
+
+    if active_checks_stxt.get(user_id, 0) >= 2:
+        bot.reply_to(message, "⚠️ You already have 2 active /stxt checks running.")
+        return
+
+    try:
+        file_info = bot.get_file(message.reply_to_message.document.file_id)
+        downloaded_file = bot.download_file(file_info.file_path)
+        input_text = downloaded_file.decode('utf-8', errors='ignore')
+
+        cards = []
+        for cc in input_text.split('\n'):
+            try:
+                x = re.findall(r'\d+', cc)
+                if len(x) >= 4:
+                    ccn, mm, yy, cvv = x[0], x[1], x[2], x[3]
+                    if mm.startswith('2'): mm, yy = yy, mm
+                    if len(mm) >= 3: mm, yy, cvv = yy, cvv, mm
+                    if len(yy) == 4: yy = yy[-2:]
+                    formatted = f"{ccn}|{mm}|{yy}|{cvv}"
+                    if is_valid_cc_format(formatted):
+                        cards.append(formatted)
+            except:
+                continue
+
+        cards = cards[:10000]
+
+        if not cards:
+            bot.reply_to(message, "⚠️ Unable to read the file.")
+            return
+
+        active_checks_stxt[user_id] = active_checks_stxt.get(user_id, 0) + 1
+
+        msg = bot.reply_to(message, f"𝘾𝙝𝙚𝙘𝙠𝙞𝙣𝙜 𝙔𝙤𝙪𝙧 {len(cards)}  𝘾𝙖𝙧𝙙𝙨...⌛", parse_mode="HTML")
+
+        stop_key = f"{user_id}_{msg.message_id}"
+        stopuser_stxt[stop_key] = {'status': 'start'}
+
+        threading.Thread(target=process_cards_stxt, args=(message, msg.message_id, cards, user_id)).start()
+
+    except Exception:
+        bot.reply_to(message, "⚠️ Unable to read the file.")
+
+
+def process_cards_stxt(message, message_id, cards, user_id):
+    approved, declined, otp_cards = 0, 0, 0
+    total = len(cards)
+    checked_cards = set()
+    start_all = time.time()
+
+    try:
+        for cc in cards:
+            if stopuser_stxt.get(user_id, {}).get('status') == 'stop':
+                elapsed = time.time() - start_all
+                elapsed_formatted = time.strftime("%H:%M:%S", time.gmtime(elapsed))
+                bot.edit_message_text(
+                    chat_id=message.chat.id,
+                    message_id=message_id,
+                    text=f"𝐆𝐚𝐭𝐞𝐰𝐚𝐲 - stripe auth play ♻️\n\n"
+                         f"- 𝐓𝐨𝐭𝐚𝐥 Found 𝐈𝐧𝐩𝐮𝐭 -  {total}\n"
+                         f"𝐓𝐨𝐭𝐚𝐥 𝐂𝐡𝐞𝐜𝐤𝐞𝐝 - {len(checked_cards)}\n"
+                         f"• 𝘼𝙋𝙋𝙍𝙊𝙑𝙀𝘿 ✅ ➜ {approved}\n"
+                         f"• 𝘿𝙀𝘾𝙇𝙄𝙉𝙀𝘿 ❌ ➜{declined}\n"
+                         f"• 3D Card 🏴‍☠️ ➜{otp_cards}\n"
+                         f"Time: {elapsed_formatted}\n"
+                         f"𝙎𝙏𝘼𝙏𝙐𝙎 ➜ Stop 🔴 All ✅\n",
+                    parse_mode="HTML"        
+                )
+                return
+
+            cc = cc.strip()
+            if not cc or cc in checked_cards:
+                continue
+
+            start_time = time.time()
+            try:
+                checker = random.choice(CHECKERS_STXT)
+                result = str(checker(cc))
+            except Exception:
+                result = "Error"
+            execution_time = time.time() - start_time
+
+            bin_info = get_bin_info_from_csv(cc[:6]) or {}
+            brand = bin_info.get('brand', 'Unknown')
+            card_type = bin_info.get('type', 'Unknown')
+            country = bin_info.get('country', 'Unknown')
+            country_flag = bin_info.get('flag', '🏳️')
+            bank = bin_info.get('bank', 'Unknown')
+            level = bin_info.get('level', 'Unknown')
+
+            if any(x in result.lower() for x in ["funds", "invalid postal", "avs", "added", "duplicate", "approved", "purchase"]):
+                approved += 1
+                msg = f'''<b>Approved ✅
+
+𝗖𝗮𝗿𝗱: <code>{cc}</code>
+𝐆𝐚𝐭𝐞𝐰𝐚𝐲: /stxt Gateway
+𝐑𝐞𝐬𝗽𝗼𝗻𝐬𝗲: {result}
+
+𝗜𝗻𝗳𝗼: <code>{cc[:6]} - {card_type} - {brand} - {level}</code>
+𝐈𝐬𝐬𝐮𝐞𝐫: {bank}
+𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
+
+𝗧𝗶𝗺𝗲: {execution_time:.2f} seconds
+</b>'''
+                bot.send_message(message.chat.id, msg, parse_mode="HTML")
+
+            elif any(x in result.lower() for x in ["3d_required", "otp", "action_required","3d","risk"]):
+                otp_cards += 1
+            else:
+                declined += 1
+
+            keyboard = InlineKeyboardMarkup(row_width=1)
+            keyboard.add(
+                InlineKeyboardButton(f"Status ➜ {result}", callback_data="noop"),
+                InlineKeyboardButton(f"Approved ✅ ➜ {approved}", callback_data="noop"),
+                InlineKeyboardButton(f"Declined ❌ ➜ {declined}", callback_data="noop"),
+                InlineKeyboardButton(f"3D Card 🏴‍☠️ ➜ {otp_cards}", callback_data="noop"),
+                InlineKeyboardButton(f"Total ♻ ➜ {len(checked_cards)}/{total}", callback_data="noop"),
+                InlineKeyboardButton("Stop", callback_data=f"stopstxt_{user_id}")
+            )
+
+            bot.edit_message_text(
+                chat_id=message.chat.id,
+                message_id=message_id,
+                text=f"Checking Card <code>{cc}</code>\nGate ➜ <b>stripe auth play </b>",
+                reply_markup=keyboard,
+                parse_mode="HTML"
+            )
+
+            time.sleep(4)
+            checked_cards.add(cc)
+
+        elapsed = time.time() - start_all
+        elapsed_formatted = time.strftime("%H:%M:%S", time.gmtime(elapsed))
+
+        bot.edit_message_text(
+            chat_id=message.chat.id,
+            message_id=message_id,
+            text=f"𝐆𝐚𝐭𝐞𝐰𝐚𝐲 - stripe auth play ♻️\n\n"
+                 f"- 𝐓𝐨𝐭𝐚𝐥 𝐂𝐂 𝐈𝐧𝐩𝐮𝐭 -  {total}\n"
+                 f"• 𝘼𝙋𝙋𝙍𝙊𝙑𝙀𝘿 ✅ ➜   {approved}\n"
+                 f"• 𝘿𝙀𝘾𝙇𝙄𝙉𝙀𝘿 ❌ ➜  {declined}\n"
+                 f"• 3D Card 🏴‍☠️ ➜  {otp_cards}\n"
+                 f"Time: {elapsed_formatted}\n"
+                 f"𝐒𝐭𝐚𝐭𝐮𝐬 - Checked All ✅\n",
+                 
+            parse_mode="HTML"
+        )        
+
+    finally:
+        active_checks_stxt[user_id] = max(0, active_checks_stxt.get(user_id, 1) - 1)
+        stopuser_stxt.pop(user_id, None)
+
+
+@bot.callback_query_handler(func=lambda call: call.data.startswith('stopstxt_'))
+def stop_stxt(call):
+    user_id = call.data.split('_')[1]
+    if call.from_user.id == int(user_id):
+        if user_id not in stopuser_stxt:
+            stopuser_stxt[user_id] = {}
+        stopuser_stxt[user_id]['status'] = 'stop'
+        bot.answer_callback_query(call.id, "Stopping your check...")
+    else:
+        bot.answer_callback_query(call.id, "❌ You can't stop someone else's  check.")
 
 
 print("Bot is running...")
