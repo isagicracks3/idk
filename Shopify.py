@@ -538,8 +538,8 @@ def vbv(ccx):
     "ThankYou",
     "Thank you",
     "thank_you",
-    "purchaseOrder",
-    "checkoutTotal",
+ 
+    
     "receipt_id",
     "sessionToken", 
     "success",
