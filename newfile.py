@@ -1164,7 +1164,7 @@ def process_cmds_command(message, processing_msg):
         bot.edit_message_text(
             "ɢᴀᴛᴇ ɴᴀᴍᴇ: Shopify charge $0.98 ♻️\n\n"
             "ᴍᴇssᴀɢᴇ: ɴᴏ ᴄᴄ ғᴏᴜɴᴅ ᴏʀ ɪɴᴄᴏʀʀᴇᴄᴛ ғᴏʀᴍᴀᴛ ❌\n\n"
-            "ᴜsᴀɢᴇ: /cmds ᴄᴄ|ᴍᴇs|ᴀɴᴏ|ᴄᴠᴠ",
+            "ᴜsᴀɢᴇ: /msh  ᴄᴄ|ᴍᴇs|ᴀɴᴏ|ᴄᴠᴠ",
             chat_id=message.chat.id,
             message_id=processing_msg.message_id
         )
