@@ -32,7 +32,7 @@ from reg import reg
 
 from stripe import st 
 from Shopify import vbv
-from ppc import ppc
+
 
 
 # chk = Tele
@@ -690,7 +690,7 @@ def process_au_command(message, processing_msg_id, cc):
     start_time = time.time()
 
     try:
-        last = asyncio.run(st(cc))
+        last = str(st(cc)) 
     except Exception:
         last = 'Error'
 
