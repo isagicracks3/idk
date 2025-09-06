@@ -690,7 +690,7 @@ def process_au_command(message, processing_msg_id, cc):
     start_time = time.time()
 
     try:
-        last = asyncio.run(ppc(cc))
+        last = asyncio.run(st(cc))
     except Exception:
         last = 'Error'
 
