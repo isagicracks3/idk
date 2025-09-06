@@ -1158,7 +1158,7 @@ def process_cmds_command(message, processing_msg):
     user_id = message.from_user.id
     text = message.reply_to_message.text if message.reply_to_message else message.text[5:]
     cards = [validate_cc(i.strip()) for i in text.strip().split('\n') if i.strip()]
-    cards = [c for c in cards if c][:14]
+    cards = [c for c in cards if c][:7]
 
     if not cards:
         bot.edit_message_text(
@@ -1171,7 +1171,7 @@ def process_cmds_command(message, processing_msg):
         return
 
     current_time = time.time()
-    if user_id in cmds_last_used and (current_time - cmds_last_used[user_id]) < 50:
+    if user_id in cmds_last_used and (current_time - cmds_last_used[user_id]) < 100:
         wait = int(50 - (current_time - cmds_last_used[user_id]))
         bot.edit_message_text(f"⏳ Please wait {wait}s before using .cmds again.", chat_id=message.chat.id, message_id=processing_msg.message_id)
         return
