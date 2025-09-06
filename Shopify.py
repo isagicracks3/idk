@@ -10,6 +10,24 @@ def vbv(ccx):
 
     session = requests.Session()
 
+
+    names = [
+    "adarsh", "rahul", "sneha", "priya", "amit",
+    "neha", "rohit", "ananya", "vikas", "tanvi",
+    "deepak", "isha", "manish", "kavya", "arjun"
+]
+
+# Pick a random name
+    name = random.choice(names)
+
+# Generate 4 random digits
+    digits = random.randint(1000, 9999)
+
+# Create the email
+    email = f"{name}{digits}@gmail.com"
+
+    print("Random Email:", email)
+
     proxies = [
     
     "http://NFNmXMmY2PEtCktkfKzwhb4C:SAMA_698940@ca-mon.pvdata.host:8080"
@@ -24,7 +42,10 @@ def vbv(ccx):
     })
 
     user_agents = "Mozilla/5.0 (Linux; Android 12; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.196 Mobile Safari/537.36"
-    mail = "adarsh73738288@gmail.com"
+
+    
+
+    mail = email
 
 
     headers = {
