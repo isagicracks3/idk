@@ -994,74 +994,75 @@ def get_country_name(code, fallback_country_name):
 
 
 
-@bot.message_handler(func=lambda message: message.text.lower().startswith('.sh') or message.text.lower().startswith('/sh'))
-def respond_to_vbv(message):
+
+# --- Command Handler ---
+@bot.message_handler(func=lambda message: message.text.lower().startswith('.msh') or message.text.lower().startswith('/msh'))
+def respond_to_msh(message):
     user_id = message.from_user.id
     plan = get_user_plan(user_id)
 
     if plan == 'FREE':
-        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Shopify charge $0.98 ♻️
+        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Shopify Mass ♻️
 
-✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
-ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
+✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
 
-✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
+✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
 ✧ ᴀᴅᴍɪɴ: @Watchindiandog</b>''', parse_mode="HTML")
         return
 
-    # --- Extract and Format CC ---
+    # --- Extract multiple cards ---
     try:
         raw_input = message.reply_to_message.text if message.reply_to_message else message.text
-        cc = format_cc_input(raw_input)  # ✅ Updated: Format input properly
+        card_list = extract_multiple_ccs(raw_input)
     except:
-        cc = 'None'
+        card_list = []
 
-    if cc == 'None':
-        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Shopify charge $0.98 ♻️
+    if not card_list:
+        bot.reply_to(message, '''<b>❌ Invalid or no cards found.
 
-ᴍᴇssᴀɢᴇ: ɴᴏ ᴄᴄ ғᴏᴜɴᴅ ɪɴ ʏᴏᴜʀ ɪɴᴘᴜᴛ ᴏʀ ɪɴᴄᴏʀʀᴇᴄᴛ ғᴏʀᴍᴀᴛ ❌
-
-ᴜsᴀɢᴇ: /sh ᴄᴄ|ᴍᴍ|ʏʏ|ᴄᴠᴠ</b>''', parse_mode="HTML")
+Usage:
+Send 1 to 7 CCs like:
+<code>/msh
+4111111111111111|12|25|123
+5454545454545454|11|24|321
+</code></b>''', parse_mode="HTML")
         return
 
-    # --- Rate Limit Check ---
-    current_tme = datetime.now()
-    last_sh = command_sh.get(user_id, None)
-
-    if last_sh and (current_tme - last_sh).seconds < 45:
-        remaining_time = 45 - (current_tme - last_sh).seconds
-        bot.reply_to(message, f"<b>Try again after {remaining_time} seconds.</b>", parse_mode="HTML")
+    if len(card_list) > 7:
+        bot.reply_to(message, f"<b>❌ You can only send up to 7 cards. You sent {len(card_list)}.</b>", parse_mode="HTML")
         return
 
-    command_sh[user_id] = current_tme
-    processing_sh = bot.reply_to(message, "𝘾𝙝𝙚𝙘𝙠𝙞𝙣𝙜 𝙔𝙤𝙪𝙧 𝘾𝙖𝙧𝙙𝙨...⌛").message_id
-    threading.Thread(target=process_sh_cmds, args=(message, processing_sh, cc)).start()
+    bot.reply_to(message, f"<b>✅ Processing {len(card_list)} cards...⌛</b>", parse_mode="HTML")
+
+    # Process each card in a separate thread
+    for cc in card_list:
+        threading.Thread(target=process_single_sh_card, args=(message, cc)).start()
 
 
-# --- Function to Format Input ---
-def format_cc_input(text):
+# --- Extract Multiple Cards ---
+def extract_multiple_ccs(text):
     import re
-    match = re.search(r'(\d{13,16})\D+(\d{1,2})\D+(\d{2,4})\D+(\d{3,4})', text)
-    if not match:
-        return 'None'
-    
-    cc, mm, yy, cvv = match.groups()
+    matches = re.findall(r'(\d{13,16})\D+(\d{1,2})\D+(\d{2,4})\D+(\d{3,4})', text)
+    cc_list = []
 
-    mm = mm.zfill(2)  # 8 -> 08
-    if len(yy) == 4:
-        yy = yy[2:]  # 2026 -> 26
+    for match in matches:
+        cc, mm, yy, cvv = match
+        mm = mm.zfill(2)
+        if len(yy) == 4:
+            yy = yy[2:]
+        cc_list.append(f"{cc}|{mm}|{yy}|{cvv}")
 
-    return f"{cc}|{mm}|{yy}|{cvv}"
+    return cc_list[:7]  # Return up to 7 cards
 
 
-# --- Worker Function for CC Check ---
-def process_sh_cmds(message, processing_sh_id, cc):
+# --- Process One Card ---
+def process_single_sh_card(message, cc):
     gate = 'Shopify charge $0.50'
     start_time = time.time()
 
     try:
-        last = str(vbv(cc))  # 🔁 Assumes vbv() is defined
-    except Exception as e:
+        last = str(vbv(cc))  # Make sure vbv() function is defined
+    except Exception:
         last = 'Error'
 
     # --- BIN Info ---
@@ -1070,7 +1071,7 @@ def process_sh_cmds(message, processing_sh_id, cc):
         brand = bin_info.get('brand', 'Unknown')
         card_type = bin_info.get('type', 'Unknown')
         country = get_country_name(bin_info.get('country', 'Unknown'), 'Unknown')
-        country_flag = bin_info.get('flag', 'Unknown')
+        country_flag = bin_info.get('flag', '🏳️')
         bank = bin_info.get('bank', 'Unknown')
         level = bin_info.get('level', 'Unknown')
     else:
@@ -1078,114 +1079,44 @@ def process_sh_cmds(message, processing_sh_id, cc):
 
     execution_time = time.time() - start_time
 
-    # --- Response messages ---
-    msg = f'''<b>𝘾𝙃𝘼𝙍𝙂𝙀𝘿 💎
+    # --- Success Message ---
+    msg = f'''<b>✅ 𝘾𝙃𝘼𝙍𝙂𝙀𝘿 💎
 
 𝗖𝗮𝗿𝗱: <code>{cc}</code>
-𝐆𝐚𝐭𝐞𝐰𝐚𝐲: {gate}
-𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: {last}
+𝗚𝗮𝘁𝗲𝘄𝗮𝘆: {gate}
+𝗥𝗲𝘀𝗽𝗼𝗻𝘀𝗲: {last}
 
-𝗜𝗻𝗳𝗼: <code>{cc[:6]} - {card_type} - {brand} - {level}</code>
-𝐈𝐬𝐬𝐮𝐞𝐫: {bank}
-𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
+𝗕𝗜𝗡: <code>{cc[:6]} - {card_type} - {brand} - {level}</code>
+𝗕𝗮𝗻𝗸: {bank}
+𝗖𝗼𝘂𝗻𝘁𝗿𝘆: <code>{country} {country_flag}</code>
 
-𝗧𝗶𝗺𝗲: {execution_time:.2f} 𝐬𝐞𝐜𝐨𝐧𝐝𝐬
+⏱️ 𝗧𝗶𝗺𝗲: {execution_time:.2f} seconds
 </b>'''
 
-    msgd = f'''<b>𝘿𝙚𝙘𝙡𝙞𝙣𝙚𝙙 ❌
+    # --- Declined Message ---
+    msgd = f'''<b>❌ 𝘿𝙀𝘾𝙇𝙄𝙉𝙀𝘿
 
 𝗖𝗮𝗿𝗱: <code>{cc}</code>
-𝐆𝐚𝐭𝐞𝐰𝐚𝐲: {gate}
-𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: {last}
+𝗚𝗮𝘁𝗲𝘄𝗮𝘆: {gate}
+𝗥𝗲𝘀𝗽𝗼𝗻𝘀𝗲: {last}
 
-𝗜𝗻𝗳𝗼: <code>{cc[:6]} - {card_type} - {brand} - {level}</code>
-𝐈𝐬𝐬𝐮𝐞𝐫: {bank}
-𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
+𝗕𝗜𝗡: <code>{cc[:6]} - {card_type} - {brand} - {level}</code>
+𝗕𝗮𝗻𝗸: {bank}
+𝗖𝗼𝘂𝗻𝘁𝗿𝘆: <code>{country} {country_flag}</code>
 
-𝗧𝗶𝗺𝗲: {execution_time:.2f} 𝐬𝐞𝐜𝐨𝐧𝐝𝐬
+⏱️ 𝗧𝗶𝗺𝗲: {execution_time:.2f} seconds
 </b>'''
 
-    if any(x in last.lower() for x in ['funds', 'invalid postal', 'avs', 'added', 'duplicate', 'approved', 'allowed', 'purchase','charge','confirm']):
-        bot.edit_message_text(chat_id=message.chat.id, message_id=processing_sh_id, text=msg, parse_mode="HTML")
+    # --- Result Decision ---
+    approved_keywords = [
+        'funds', 'invalid postal', 'avs', 'added', 'duplicate',
+        'you', 'allowed', 'purchase', 'charge', 'confirm'
+    ]
+
+    if any(word in last.lower() for word in approved_keywords):
+        bot.send_message(chat_id=message.chat.id, text=msg, parse_mode="HTML")
     else:
-        bot.edit_message_text(chat_id=message.chat.id, message_id=processing_sh_id, text=msgd, parse_mode="HTML")
-
-import time
-import threading
-import asyncio
-# Load the user’s plan from data.json (optional, can be removed if not needed)
-def get_user_plan(user_id):
-    with open('data.json', 'r') as file:
-        json_data = json.load(file)
-    return json_data.get(str(user_id), {}).get("plan", "FREE")
-
-
-# Rate limiter dictionary
-cmds_last_used = {}
-
-def process_card_cmds(cc):
-    brand, card_type, country, flag, bank = get_card_info(cc)
-    try:
-        result = str(vbv(cc)) 
-    except:
-        result = "Error"
-
-    status = "𝐀𝐩𝐩𝐫𝐨𝐯𝐞𝐝 ✅" if any(i in result.lower() for i in ["approved", "funds", "added", "purchase", "duplicate", " avs"]) else "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌"
-    return f"Card↯ <code>{cc}</code>\nStatus - {status}\nResult -⤿ {result} ⤾\n"
-
-def process_cmds_command(message, processing_msg):
-    user_id = message.from_user.id
-    text = message.reply_to_message.text if message.reply_to_message else message.text[5:]
-    cards = [validate_cc(i.strip()) for i in text.strip().split('\n') if i.strip()]
-    cards = [c for c in cards if c][:14]
-
-    if not cards:
-        bot.edit_message_text(
-            "ɢᴀᴛᴇ ɴᴀᴍᴇ: Shopify charge $0.98 ♻️\n\n"
-            "ᴍᴇssᴀɢᴇ: ɴᴏ ᴄᴄ ғᴏᴜɴᴅ ᴏʀ ɪɴᴄᴏʀʀᴇᴄᴛ ғᴏʀᴍᴀᴛ ❌\n\n"
-            "ᴜsᴀɢᴇ: /cmds ᴄᴄ|ᴍᴇs|ᴀɴᴏ|ᴄᴠᴠ",
-            chat_id=message.chat.id,
-            message_id=processing_msg.message_id
-        )
-        return
-
-    current_time = time.time()
-    if user_id in cmds_last_used and (current_time - cmds_last_used[user_id]) < 50:
-        wait = int(50 - (current_time - cmds_last_used[user_id]))
-        bot.edit_message_text(f"⏳ Please wait {wait}s before using .cmds again.", chat_id=message.chat.id, message_id=processing_msg.message_id)
-        return
-
-    cmds_last_used[user_id] = current_time
-
-    result = ["↯ Shopify charge $0.50 ♻️\n"]
-    start = time.time()
-    for cc in cards:
-        result.append(process_card_cmds(cc))
-        time.sleep(1)  # Delay of 1 second per card
-
-    elapsed = time.time() - start
-    result.append(f"- 𝗧𝗶𝗺𝗲 - {elapsed:.2f}s")
-
-    bot.edit_message_text("\n".join(result), chat_id=message.chat.id, message_id=processing_msg.message_id, parse_mode="HTML")
-
-@bot.message_handler(func=lambda m: m.text.lower().startswith(('.msh', '/msh')))
-def respond_to_cmds(message):
-    user_id = message.from_user.id
-    plan = get_user_plan(user_id)
-
-    if plan == 'FREE':
-        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Shopify charge $0.98 ♻️
-
-✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
-ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
-
-✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
-✧ ᴀᴅᴍɪɴ: @Watchindiandog</b>''', parse_mode="HTML")
-        return
-
-    msg = bot.reply_to(message, "- 𝐆𝐚𝐭𝐞𝐰𝐚𝐲 -  Shopify charge $0.98 ♻️\n- 𝐒𝐭𝐚𝐭𝐮𝐬 - Processing...⌛️", parse_mode="HTML")
-    threading.Thread(target=process_cmds_command, args=(message, msg)).start()
-
+        bot.send_message(chat_id=message.chat.id, text=msgd, parse_mode="HTML")
 
 
 from telebot import TeleBot
