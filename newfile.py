@@ -12,7 +12,7 @@ import asyncio
 #======== Api Import @OnlyXFanbot ==≠==
 
 
-API_TOKEN = "7651121702:AAF3-co3frgs1I5q1Q4eAzv8XXHkEVHql94"
+API_TOKEN = "7567332983:AAEl1bMw5oYT0DeLtSOWbjcP55R_emYbVgM"
 
 bot = telebot.TeleBot(API_TOKEN)
 
