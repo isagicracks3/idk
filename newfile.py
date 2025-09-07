@@ -12,7 +12,7 @@ import asyncio
 #======== Api Import @OnlyXFanbot ==≠==
 
 
-API_TOKEN = "8338517861:AAGRxLSUYn2ajOFSfhIMDe-OZwIS036weys"
+API_TOKEN = "7651121702:AAF3-co3frgs1I5q1Q4eAzv8XXHkEVHql94"
 
 bot = telebot.TeleBot(API_TOKEN)
 
@@ -29,22 +29,43 @@ REQUIRED_CHANNEL = -1002311823274
 #============ Api Import ==≠=====≠==
 
 from reg import reg
-
+from gate import Tele   #===|
+from gatet import Fele   #====|  Mutiple 
+from gatat import Gele #===|
 from stripe import st 
 from Shopify import vbv
 from ppc import ppc
 
 
 # chk = Tele
-# b3txt = multiple
+# b3txt = multiple (not implement)
 # cchk = 
 # au = ppc
 # mass = 
-# ustxt = st
+# ustxt = st (not implement)
 # sh = vbv
 # msh = vbv
 
 
+# start
+# help
+# cmds
+# ping
+# id
+# fl
+# gen
+# bin
+# mbin
+# chk
+# au
+# b3txt
+# stxt
+# nikal
+# user vip
+# redeem
+# code
+# sh
+# msh
 
 DATA_FILE = "data.json"
 
@@ -83,51 +104,32 @@ def start(message):
             }
             save_data(data)
 
-        # Retrieve user's current plan
-        plan = data[user_id].get("plan", "FREE")
+        # Now, same message for all users (FREE or VIP)
+        bot.reply_to(message, """✦━━━[ ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ʀᴀᴠᴀɴ ᴄʜᴇᴄᴋᴇʀ  ]━━━✦
 
-        if plan == "FREE":
-            bot.reply_to(message, """✦━━━[ ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴄᴄ ᴄʜᴇᴄᴋᴇʀ ʙᴏᴛ ]━━━✦
+⟡ ʙᴏᴛ sᴛᴀᴛᴜs 𝟸𝟶𝟶 ᴏᴋ ʟɪᴠᴇ  
+⟡ ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ  
+<a href="https://t.me/hrefcm/111">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴀᴜᴛʜᴏʀɪᴢᴇᴅ &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
 
-⟡ ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ
-⟡ ᴜꜱᴇ /cmds ᴛᴏ ᴄʜᴇᴄᴋ all Gate
-⟡ ꜰᴏʀ ᴍᴀꜱꜱ ᴄʜᴇᴄᴋ, Upload file
-⟡ 𝟷 ᴅᴀʏ - $𝟹 / 𝟸𝟽𝟶 Rs ⭐️
-⟡ ᴘᴀʏᴍᴇɴᴛ ᴍᴇᴛʜᴏᴅ ᴜsᴅᴛ 
-⟡ ᴅᴍ ᴛᴏ ʙᴜʏ @Watchindiandog
+⟡ ᴜꜱᴇ /cmds ᴛᴏ ᴄʜᴇᴄᴋ all Gate  
+⟡ ғᴏʀ ʜᴇʟᴘ ᴠɪsɪᴛ /help
+⟡ ᴘᴀʏᴍᴇɴᴛ ᴍᴇᴛʜᴏᴅ ᴜsᴅᴛ  
+⟡ ᴅᴍ ᴛᴏ ʙᴜʏ @MKNXW  
 
-ʙᴏᴛ ᴘᴏᴡᴇʀᴇᴅ ʙʏ @Watchindiandog""")
-
-        else:
-            bot.reply_to(
-    message,
-    f'''<b> ʜᴇʟʟᴏ, {name}  !
-ʏᴏᴜ ᴀʀᴇ ᴇʟɪɢɪʙʟᴇ ᴛᴏ ᴜsᴇ ᴛʜɪs ғᴇᴀᴛᴜʀᴇ.
-
-ᴛʜɪs ʙᴏᴛ ɪs ᴅᴇsɪɢɴᴇᴅ ғᴏʀ ᴍᴀss ᴜsᴇ ʙᴜᴛ ʜᴀs ʟɪᴍɪᴛᴇᴅ ᴀᴄᴄᴇss ғᴏʀ sᴇʟᴇᴄᴛᴇᴅ ɪɴᴅɪᴠɪᴅᴜᴀʟs.
-
-⚠ ɴᴏᴛᴇ: ᴛʜɪs ɪs sᴛʀɪᴄᴛʟʏ ғᴏʀ  ᴄᴀʀᴅᴇʀ ᴘᴜʀᴘᴏsᴇs, ᴅᴜᴍᴘs, ᴏʀ ᴘᴇʀsᴏɴᴀʟ ᴄʜᴇᴄᴋs.
-❌ ɴᴏᴛ ɪɴᴛᴇɴᴅᴇᴅ ғᴏʀ ɢᴇɴᴇʀᴀʟ ᴜsᴇʀs ᴏʀ ʙᴇɢɪɴɴᴇʀs.
-
-🔹 ᴄʟɪᴄᴋ /cmds ᴛᴏ ᴠɪᴇᴡ ᴀᴠᴀɪʟᴀʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs
-🔹 sᴇɴᴅ ʏᴏᴜʀ ғɪʟᴇ, ᴀɴᴅ ɪ ᴡɪʟʟ ᴄʜᴇᴄᴋ ɪᴛ ғᴏʀ ʏᴏᴜ </b>''',
-    parse_mode="HTML"
-)
+ʙᴏᴛ ᴘᴏᴡᴇʀᴇᴅ ʙʏ @MKNXW""", parse_mode="HTML")
 
     # Run in thread to avoid blocking
     threading.Thread(target=handle_start).start()
 
 
 
-
-
 # --- /help command ---
 @bot.message_handler(commands=['help'])
 def help_command(message):
-    help_msg = '''<b>⚙️ Bot Commands</b>
+    help_msg = '''<b>⚙️ ʙᴏᴛ ᴄᴏᴍᴍᴀɴᴅs</b>
 
-🆔 /id – View account info  
-🏓 /ping – Check bot latency'''
+🆔 /id – ᴠɪᴇᴡ ᴀᴄᴄᴏᴜɴᴛ ɪɴғᴏ  
+🏓 /ping – ᴄʜᴇᴄᴋ ʙᴏᴛ ʟᴀᴛᴇɴᴄʏ'''
     bot.reply_to(message, help_msg, parse_mode='HTML')
     
 
@@ -136,23 +138,25 @@ def send_command_list(message):
     msg = '''<b>📋 Available Commands:</b>
 
 🔍 <b>Check Tools:</b>
-
-• <code>/au</code> – Stripe Auth  
-• <code>/mass</code> – Mass Stripe  
-
-• <code>/sh</code> – Shopify charge $0.98  
-• <code>/msh</code> – Mass charge Checker  
+• <code>/chk</code> – B3 ᴀᴜᴛʜ ᴄʜᴇᴄᴋᴇʀ
+• <code>/cchk</code> – ᴍᴀss ᴀᴜᴛʜ ᴄʜᴇᴄᴋᴇʀ
+• <code>/b3txt</code> – [sᴏᴏɴ]
+• <code>/au</code> – sᴛʀɪᴘᴇ ᴀᴜᴛʜ
+• <code>/mass</code> – ᴍᴀss sᴛʀɪᴘᴇ
+• <code>/ustxt</code> – [sᴏᴏɴ]
+• <code>/sh</code> – sʜᴏᴘɪғʏ ᴄʜᴀʀɢᴇ $0.98  
+• <code>/msh</code> – ᴍᴀss ᴄʜᴀʀɢᴇ ᴄʜᴇᴄᴋᴇʀ 
 
 ⚙️ <b>Generators:</b>
-• <code>/gen</code> – Generator  
+• <code>/gen</code> – ɢᴇɴᴇʀᴀᴛᴏʀ  
 
 💳 <b>BIN Tools:</b>
-• <code>/fl</code> – Filter CC  
-• <code>/bin</code> – Lookhub BIN  
-• <code>/mbin</code> – More BIN Tools  
+• <code>/fl</code> – ғɪʟᴛᴇʀ ᴄᴄ
+• <code>/bin</code> – ʟᴏᴏᴋʜᴜʙ ʙɪɴ
+• <code>/mbin</code> – ᴍᴏʀᴇ ʙɪɴ ᴛᴏᴏʟs
 
 🆔 <b>User Tools:</b>
-• <code>/id</code> – Show Your Telegram ID  
+• <code>/id</code> – sʜᴏᴡ ʏᴏᴜʀ ᴛᴇʟᴇɢʀᴀᴍ ɪᴅ
 '''
     bot.reply_to(message, msg, parse_mode='HTML')
 
@@ -181,9 +185,93 @@ ID: <code>{user.id}</code>
 Name: {user.first_name}
 Username: @{user.username if user.username else "N/A"}
 Plan: <b>{plan}</b>
-System: 0.1 auth"""
+System: SK V1 logic"""
     
     bot.reply_to(message, id_info, parse_mode='HTML')
+
+import telebot
+import re
+import os
+
+
+# Handler for both /fl and .fl commands
+@bot.message_handler(commands=['fl'])  # Handles /fl
+@bot.message_handler(regexp=r'^\.fl')  # Handles .fl
+def filter_cards(message):
+    try:
+        # Get the message text or replied message text
+        if message.reply_to_message and message.reply_to_message.text:
+            input_text = message.reply_to_message.text
+        else:
+            # Remove command prefix (/fl or .fl) from the text
+            input_text = message.text[3:] if message.text.startswith('/fl') else message.text[3:]
+
+        # Handle file attachments if present
+        if message.reply_to_message and message.reply_to_message.document:
+            file_info = bot.get_file(message.reply_to_message.document.file_id)
+            downloaded_file = bot.download_file(file_info.file_path)
+            input_text = downloaded_file.decode('utf-8')
+
+        # Process the input text
+        if input_text:
+            all_cards = input_text.split('\n')
+        else:
+            all_cards = []
+
+        cards = ""
+        for cc in all_cards:
+            try:
+                # Extract numbers using regex
+                x = re.findall(r'\d+', cc)
+                if len(x) >= 4:  # Ensure we have all required fields
+                    ccn = x[0]    # Card number
+                    mm = x[1]     # Month
+                    yy = x[2]     # Year
+                    cvv = x[3]    # CVV
+
+                    # Fix common format issues
+                    if mm.startswith('2'):  # If month starts with 2, swap with year
+                        mm, yy = yy, mm
+                    if len(mm) >= 3:       # If month is too long, rearrange
+                        mm, yy, cvv = yy, cvv, mm
+
+                    # Validate card number length
+                    if 15 <= len(ccn) <= 16:
+                        cards += f"{ccn}|{mm}|{yy}|{cvv}\n"
+            except:
+                continue
+
+        # Send response based on results
+        if cards:
+            card_count = len(cards.split('\n')) - 1  # Subtract 1 for empty last line
+            if card_count >= 32:
+                # Save to file and send as document
+                filename = 'Filtered_Cards.txt'
+                with open(filename, 'w') as file:
+                    file.write(cards)
+                with open(filename, 'rb') as file:
+                    bot.reply_to(message, f"Filtered {card_count} cards", parse_mode='HTML')
+                    bot.send_document(message.chat.id, file, reply_to_message_id=message.message_id)
+                os.remove(filename)
+            else:
+                # Send as text message
+                bot.reply_to(
+                    message,
+                    f"<code>{cards}</code>",
+                    parse_mode='HTML'
+                )
+        else:
+            bot.reply_to(
+                message,
+                "<b>Filter Failed ⚠️\n\nNo Valid Cards Found in the Input.</b>",
+                parse_mode='HTML'
+            )
+
+    except Exception as e:
+        bot.reply_to(
+            message,
+            f"Error occurred: {str(e)}"
+        )
 
 
 
@@ -267,17 +355,7 @@ def generate_valid_card(bin_input):
 @bot.message_handler(func=lambda message: message.text.lower().startswith('/gen') or message.text.lower().startswith('.gen'))
 def handle_gen(message):
     user_id = str(message.from_user.id)
-    plan = get_user_plan(user_id)
-
-    if plan == 'FREE':
-        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Card generator Tools ♻️
-
-✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
-ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
-
-✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
-✧ ᴀᴅᴍɪɴ: @Watchindiandog</b>''', parse_mode="HTML")
-        return
+    
     gen_input = message.text.split()[1:]  # Get input after command
 
     if not gen_input:
@@ -465,17 +543,7 @@ def format_mass_bin_response(bin_info, fbin):
 @bot.message_handler(commands=['bin', '.bin'])
 def cmd_bin(message):
     user_id = str(message.from_user.id)
-    plan = get_user_plan(user_id)
-
-    if plan == 'FREE':
-        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Bin Lookhub Api Tools ♻️
-
-✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
-ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
-
-✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
-✧ ᴀᴅᴍɪɴ: @Watchindiandog</b>''', parse_mode="HTML")
-        return
+    
     try:
         parts = message.text.split()
         
@@ -523,17 +591,7 @@ def process_bin_queue(queue, results, lock):
 @bot.message_handler(commands=['mbin', '.mbin'])
 def cmd_mbin(message):
     user_id = str(message.from_user.id)
-    plan = get_user_plan(user_id)
-
-    if plan == 'FREE':
-        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Bin Lookhub Api Tools ♻️
-
-✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
-ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
-
-✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
-✧ ᴀᴅᴍɪɴ: @Watchindiandog</b>''', parse_mode="HTML")
-        return
+    
     try:
         parts = message.text.split()
         
@@ -622,6 +680,215 @@ command_usage = {}
 CSV_FILE = 'bins_all.csv'
 
 
+# ======== BLACKLIST SYSTEM ==========
+
+BLACKLIST_FILE = "blacklist.txt"
+blacklisted_bins = {}
+decline_tracker = defaultdict(lambda: deque())
+risk_tracker = defaultdict(int)
+
+
+def load_blacklist():
+    global blacklisted_bins
+    if os.path.exists(BLACKLIST_FILE):
+        with open(BLACKLIST_FILE, "r") as f:
+            for line in f:
+                parts = line.strip().split("|")
+                if len(parts) == 2:
+                    bin_num, timestamp = parts
+                    blacklisted_bins[bin_num] = float(timestamp)
+
+
+def save_blacklist():
+    with open(BLACKLIST_FILE, "w") as f:
+        for bin_num, timestamp in blacklisted_bins.items():
+            f.write(f"{bin_num}|{timestamp}\n")
+
+
+def add_to_blacklist(bin_num):
+    expire_time = time.time() + 48 * 3600  # 48 hrs
+    blacklisted_bins[bin_num] = expire_time
+    save_blacklist()
+
+
+def is_blacklisted(bin_num):
+    if bin_num in blacklisted_bins:
+        if time.time() < blacklisted_bins[bin_num]:
+            return True
+        else:
+            # expired, remove
+            del blacklisted_bins[bin_num]
+            save_blacklist()
+            return False
+    return False
+
+
+def track_decline(bin_num):
+    now = dt.datetime.now()
+    dq = decline_tracker[bin_num]
+    dq.append(now)
+    while dq and (now - dq[0]).seconds > 1200:  # last 20 mins
+        dq.popleft()
+    if len(dq) >= 14:
+        add_to_blacklist(bin_num)
+
+
+def track_risk(bin_num):
+    risk_tracker[bin_num] += 1
+    if risk_tracker[bin_num] >= 4:
+        add_to_blacklist(bin_num)
+        risk_tracker[bin_num] = 0
+
+# Load saved blacklist at startup
+load_blacklist()
+
+# =========== BIN INFO ==============
+
+def expand_bank_name(bank_name):
+    words = bank_name.split()
+    expanded_words = [BANK_NAME_FIXES.get(word, word) for word in words]
+    return " ".join(expanded_words)
+
+def get_bin_info_from_csv(fbin):
+    if not os.path.exists(CSV_FILE):
+        return None
+    try:
+        with open(CSV_FILE, mode='r', encoding='utf-8') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                if row[0] == fbin:
+                    return {
+                        "bin": row[0],
+                        "country": row[1],
+                        "flag": row[2],
+                        "brand": row[3],
+                        "type": row[4],
+                        "level": row[5],
+                        "bank": expand_bank_name(row[6])
+                    }
+    except Exception as e:
+        print(f"Error reading CSV: {e}")
+        return None
+    return None
+
+def get_country_name(code, fallback_country_name):
+    try:
+        country = pycountry.countries.get(alpha_2=code)
+        return country.name if country else fallback_country_name
+    except Exception as e:
+        print(f"Error getting country name: {e}")
+        return fallback_country_name
+
+
+# ===================== HANDLER =====================
+
+@bot.message_handler(func=lambda message: message.text.lower().startswith('.chk') or message.text.lower().startswith('/chk'))
+def respond_to_vbv(message):
+    user_id = message.from_user.id
+    
+
+    # --- Extract CC ---
+    try:
+        cc = message.reply_to_message.text if message.reply_to_message else message.text
+        cc = str(reg(cc))  # 🔁 Assumes reg() is defined
+    except:
+        cc = 'None'
+
+    if cc == 'None':
+        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Braintree ᴀᴜᴛʜ ♻️
+
+ᴍᴇssᴀɢᴇ: ɴᴏ ᴄᴄ ғᴏᴜɴᴅ ɪɴ ʏᴏᴜʀ ɪɴᴘᴜᴛ ᴏʀ ɪɴᴄᴏʀʀᴇᴄᴛ ғᴏʀᴍᴀᴛ ❌
+
+ᴜsᴀɢᴇ: /chk ᴄᴄ|ᴍᴇs|ᴀɴᴏ|ᴄᴠᴠ</b>''', parse_mode="HTML")
+        return
+
+    # --- Rate Limit Check ---
+    current_time = datetime.now()
+    last_usage = command_usage.get(user_id, None)
+
+    if last_usage and (current_time - last_usage).seconds < 40:
+        remaining_time = 40 - (current_time - last_usage).seconds
+        bot.reply_to(message, f"<b>Try again after {remaining_time} seconds.</b>", parse_mode="HTML")
+        return
+
+    command_usage[user_id] = current_time
+    processing_msg = bot.reply_to(message, "𝘾𝙝𝙚𝙘𝙠𝙞𝙣𝙜 𝙔𝙤𝙪𝙧 𝘾𝙖𝙧𝙙𝙨...⌛").message_id
+    threading.Thread(target=process_chk_command, args=(message, processing_msg, cc)).start()
+
+
+# ===================== WORKER =====================
+
+def process_chk_command(message, processing_msg_id, cc):
+    gate = 'Braintree ᴀᴜᴛʜ'
+    start_time = time.time()
+    bin_num = cc[:6]
+
+    # --- Blacklist check ---
+    if is_blacklisted(bin_num):
+        bot.edit_message_text(
+            chat_id=message.chat.id,
+            message_id=processing_msg_id,
+            text=f"❌ Message Sorry But This Bin({bin_num}) is on my blacklist!",
+            parse_mode="HTML"
+        )
+        return
+
+    try:
+        last = str(Tele(cc))  # 🔁 Assumes Tele() is defined
+    except Exception as e:
+        last = 'Error'
+
+    # --- BIN Info ---
+    bin_info = get_bin_info_from_csv(bin_num)
+    if bin_info:
+        brand = bin_info.get('brand', 'Unknown')
+        card_type = bin_info.get('type', 'Unknown')
+        country = get_country_name(bin_info.get('country', 'Unknown'), 'Unknown')
+        country_flag = bin_info.get('flag', 'Unknown')
+        bank = bin_info.get('bank', 'Unknown')
+        level = bin_info.get('level', 'Unknown')
+    else:
+        brand = card_type = country = country_flag = bank = level = 'Unknown'
+
+    execution_time = time.time() - start_time
+
+    # --- Response messages ---
+    msg = f'''<b>𝐀𝐩𝐩𝐫𝐨𝐯𝐞𝐝 ✅
+
+𝗖𝗮𝗿𝗱: <code>{cc}</code>
+𝐆𝐚𝐭𝐞𝐰𝐚𝐲: {gate}
+𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: {last}
+
+𝗜𝗻𝗳𝗼: <code>{bin_num} - {card_type} - {brand} - {level}</code>
+𝐈𝐬𝐬𝐮𝐞𝐫: {bank}
+𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
+
+𝗧𝗶𝗺𝗲: {execution_time:.2f} 𝐬𝐞𝐜𝐨𝐧𝐝𝐬
+</b>'''
+
+    msgd = f'''<b>𝘿𝙚𝙘𝙡𝙞𝙣𝙚𝙙 ❌
+
+𝗖𝗮𝗿𝗱: <code>{cc}</code>
+𝐆𝐚𝐭𝐞𝐰𝐚𝐲: {gate}
+𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: {last}
+
+𝗜𝗻𝗳𝗼: <code>{bin_num} - {card_type} - {brand} - {level}</code>
+𝐈𝐬𝐬𝐮𝐞𝐫: {bank}
+𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
+
+𝗧𝗶𝗺𝗲: {execution_time:.2f} 𝐬𝐞𝐜𝐨𝐧𝐝𝐬
+</b>'''
+
+    # --- Track decline & risk ---
+    if "risk_threshold" in last.lower():
+        track_risk(bin_num)
+
+    if any(x in last.lower() for x in ['funds', 'invalid postal', 'avs', 'added', 'duplicate', 'approved', 'allowed', 'purchase']):
+        bot.edit_message_text(chat_id=message.chat.id, message_id=processing_msg_id, text=msg, parse_mode="HTML")
+    else:
+        track_decline(bin_num)
+        bot.edit_message_text(chat_id=message.chat.id, message_id=processing_msg_id, text=msgd, parse_mode="HTML")
+
 
 # --- .au Command ---
 
@@ -641,17 +908,7 @@ def check_au_rate_limit(user_id, cooldown):
 @bot.message_handler(func=lambda message: message.text.lower().startswith(('.au', '/au')))
 def respond_to_au(message):
     user_id = message.from_user.id
-    plan = get_user_plan(user_id)
-
-    if plan == 'FREE':
-        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: sᴛʀɪᴘᴇ ᴀᴜᴛʜ ♻️
-
-✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
-ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
-
-✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
-✧ ᴀᴅᴍɪɴ: @Watchindiandog</b>''', parse_mode="HTML")
-        return
+    
 
     # --- Extract CC ---
     try:
@@ -690,7 +947,7 @@ def process_au_command(message, processing_msg_id, cc):
     start_time = time.time()
 
     try:
-        last = str(st(cc)) 
+        last = asyncio.run(ppc(cc))
     except Exception:
         last = 'Error'
 
@@ -739,482 +996,11 @@ def process_au_command(message, processing_msg_id, cc):
         bot.edit_message_text(chat_id=message.chat.id, message_id=processing_msg_id, text=msgd, parse_mode="HTML")
 
 
-owners = ['5995041264', '8416135389','']  # Add your admin user IDs as strings
-
-@bot.message_handler(commands=['nikal'])
-def remove_user_plan(message):
-    if str(message.from_user.id) not in owners:
-        bot.reply_to(message, "⛔ You are not authorized to use this command.", parse_mode="HTML")
-        return
-
-    try:
-        parts = message.text.split()
-        if len(parts) != 2:
-            bot.reply_to(message, "<b>❗ Usage: /remove [USER_ID]</b>", parse_mode="HTML")
-            return
-
-        user_id = parts[1]
-
-        with open('data.json', 'r') as file:
-            data = json.load(file)
-
-        if user_id not in data:
-            bot.reply_to(message, "<b>❌ User ID not found.</b>", parse_mode="HTML")
-            return
-
-        del data[user_id]
-
-        with open('data.json', 'w') as file:
-            json.dump(data, file, ensure_ascii=False, indent=4)
-
-        bot.reply_to(message, f"<b>✅ Removed user {user_id} successfully.</b>", parse_mode="HTML")
-
-    except Exception as e:
-        print("Remove error:", e)
-        bot.reply_to(message, "<b>❗ Error while removing user.</b>", parse_mode="HTML")
-        
-        
-@bot.message_handler(commands=['user_vip'])
-def list_vip_users(message):
-    if str(message.from_user.id) not in owners:
-        bot.reply_to(message, "⛔ You are not authorized to use this command.", parse_mode="HTML")
-        return
-
-    try:
-        with open('data.json', 'r') as file:
-            data = json.load(file)
-
-        vip_users = []
-        for user_id, info in data.items():
-            if isinstance(info, dict):
-                plan = info.get('plan', 'free')
-                if plan.lower() != 'free':
-                    expires = info.get('timer', 'N/A')
-                    vip_users.append(f"👤 <code>{user_id}</code> - Plan: <b>{plan}</b>, Expires: <i>{expires}</i>")
-
-        if not vip_users:
-            bot.reply_to(message, "<b>📭 No VIP users found.</b>", parse_mode="HTML")
-            return
-
-        msg = "<b>💎 VIP Users:</b>\n\n" + "\n".join(vip_users)
-        bot.reply_to(message, msg, parse_mode="HTML")
-
-    except Exception as e:
-        print("VIP list error:", e)
-        bot.reply_to(message, "<b>❗ Failed to get VIP user list.</b>", parse_mode="HTML")            
-    
-    
-    
-    
-import json, threading, random, string
-from datetime import datetime, timedelta
-from telebot import TeleBot
-
-
-
-admins = [5995041264,8416135389]
-DATA_FILE = "data.json"
-
-# --- Utility Functions ---
-def load_data():
-    try:
-        with open(DATA_FILE, 'r') as file:
-            return json.load(file)
-    except (FileNotFoundError, json.JSONDecodeError):
-        return {}
-
-def save_data(data):
-    with open(DATA_FILE, 'w') as file:
-        json.dump(data, file, ensure_ascii=False, indent=4)
-
-# --- Redeem Command ---
-@bot.message_handler(func=lambda message: message.text.lower().startswith('.redeem') or message.text.lower().startswith('/redeem'))
-def redeem_key(message):
-    def my_function():
-        try:
-            parts = message.text.split(' ')
-            if len(parts) < 2:
-                bot.reply_to(message, "<b>❗ Please provide a key: /redeem [KEY]</b>", parse_mode="HTML")
-                return
-
-            key = parts[1]
-            data = load_data()
-
-            if key not in data:
-                bot.reply_to(message, "<b>❗ Invalid or already redeemed key.</b>", parse_mode="HTML")
-                return
-
-            key_data = data[key]
-            plan = key_data['plan']
-            key_time_str = key_data['time']
-            key_expiry = datetime.strptime(key_time_str, "%Y-%m-%d %H:%M")
-
-            user_id_str = str(message.from_user.id)
-            now = datetime.now()
-
-            user_data = data.get(user_id_str, {"plan": "free", "timer": None})
-
-            existing_timer_str = user_data.get('timer')
-            try:
-                if existing_timer_str and isinstance(existing_timer_str, str) and existing_timer_str.lower() != 'none':
-                    existing_timer = datetime.strptime(existing_timer_str, "%Y-%m-%d %H:%M")
-                    if existing_timer > now:
-                        key_expiry += (existing_timer - now)
-            except Exception as e:
-                print("Timer parse error:", e)
-
-            data[user_id_str] = {
-                "plan": plan,
-                "timer": key_expiry.strftime("%Y-%m-%d %H:%M")
-            }
-
-            del data[key]
-            save_data(data)
-
-            msg = f'''<b>✅ Key Redeemed Successfully!  
-Plan: {plan}  
-Expires: {key_expiry.strftime("%Y-%m-%d %H:%M")}</b>'''
-            bot.reply_to(message, msg, parse_mode="HTML")
-
-            username = f"@{message.from_user.username}" if message.from_user.username else "No Username"
-            admin_msg = f'''🚀 <b>Key Redeemed</b>  
-User: {username} (ID: {message.from_user.id})  
-Plan: {plan}  
-Expires: {key_expiry.strftime("%Y-%m-%d %H:%M")}'''
-
-            for admin_id in admins:
-                try:
-                    bot.send_message(admin_id, admin_msg, parse_mode="HTML")
-                except Exception as e:
-                    print(f"Failed to send admin message to {admin_id}: {e}")
-
-        except Exception as e:
-            print('ERROR:', e)
-            bot.reply_to(message, '<b>❗ An error occurred while redeeming the key.</b>', parse_mode="HTML")
-
-    threading.Thread(target=my_function).start()
-
-
-# --- Key Generation Command ---
-@bot.message_handler(commands=["code"])
-def generate_key(message):
-    def my_function():
-        try:
-            if message.from_user.id not in admins:
-                bot.reply_to(message, "<b>❗ You are not authorized to generate keys.</b>", parse_mode="HTML")
-                return
-
-            parts = message.text.split(' ')
-            if len(parts) < 2:
-                bot.reply_to(message, "<b>❗ Please provide duration in hours. Example: /code 10</b>", parse_mode="HTML")
-                return
-
-            hours = float(parts[1])
-            now = datetime.now()
-            expire_time = now + timedelta(hours=hours)
-            expire_time_str = expire_time.strftime("%Y-%m-%d %H:%M")
-
-            plan = "VIP"
-            characters = string.ascii_uppercase + string.digits
-            key = 'INDIA-' + '-'.join(''.join(random.choices(characters, k=4)) for _ in range(3))
-
-            data = load_data()
-            data[key] = {"plan": plan, "time": expire_time_str}
-            save_data(data)
-
-            msg = f'''<b>╠═══════════════════════════╣  
-𝗡𝗘𝗪 𝗞𝗘𝗬 𝗖𝗥𝗘𝗔𝗧𝗘𝗗 🚀  
-
-𝗣𝗟𝗔𝗡 ➜  {plan}  
-𝗘𝗫𝗣𝗜𝗥𝗘𝗦 𝗜𝗡 ➜  {expire_time_str}  
-𝗞𝗘𝗬 ➜  <code>{key}</code>  
-𝗨𝗦𝗘 /redeem [𝗞𝗘𝗬]  
-╠════════════════════════════╣</b>'''
-            bot.reply_to(message, msg, parse_mode="HTML")
-
-        except Exception as e:
-            print('ERROR:', e)
-            bot.reply_to(message, f'<b>❗ An error occurred: {e}</b>', parse_mode="HTML")
-
-    threading.Thread(target=my_function).start()
-
-
-
-import threading
-import json
-import time
-import requests
-import telebot, types
-import os
-import csv
-import pycountry
-
-
-# Dictionary to store user command usage timestamps
-command_sh = {}
-
-
-CSV_FILE = 'bins_all.csv'
-
-def expand_bank_name(bank_name):
-    words = bank_name.split()
-    expanded_words = [BANK_NAME_FIXES.get(word, word) for word in words]  # Assuming BANK_NAME_FIXES is defined
-    return " ".join(expanded_words)
-
-def get_bin_info_from_csv(fbin):
-    if not os.path.exists(CSV_FILE):
-        return None  # CSV file not found
-    
-    try:
-        with open(CSV_FILE, mode='r', encoding='utf-8') as file:
-            reader = csv.reader(file)
-            for row in reader:
-                if row[0] == fbin:
-                    return {
-                        "bin": row[0],
-                        "country": row[1],
-                        "flag": row[2],
-                        "brand": row[3],
-                        "type": row[4],
-                        "level": row[5],
-                        "bank": expand_bank_name(row[6])  # Expand issuer name
-                    }
-    except Exception as e:
-        print(f"Error reading CSV: {e}")
-        return None
-    return None  # BIN not found
-
-def get_country_name(code, fallback_country_name):
-    try:
-        country = pycountry.countries.get(alpha_2=code)
-        return country.name if country else fallback_country_name
-    except Exception as e:
-        print(f"Error getting country name: {e}")
-        return fallback_country_name
-
-
-
-@bot.message_handler(func=lambda message: message.text.lower().startswith('.sh') or message.text.lower().startswith('/sh'))
-def respond_to_vbv(message):
-    user_id = message.from_user.id
-    plan = get_user_plan(user_id)
-
-    if plan == 'FREE':
-        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Shopify charge $0.98 ♻️
-
-✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
-ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
-
-✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
-✧ ᴀᴅᴍɪɴ: @Watchindiandog</b>''', parse_mode="HTML")
-        return
-
-    # --- Extract and Format CC ---
-    try:
-        raw_input = message.reply_to_message.text if message.reply_to_message else message.text
-        cc = format_cc_input(raw_input)  # ✅ Updated: Format input properly
-    except:
-        cc = 'None'
-
-    if cc == 'None':
-        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Shopify charge $0.98 ♻️
-
-ᴍᴇssᴀɢᴇ: ɴᴏ ᴄᴄ ғᴏᴜɴᴅ ɪɴ ʏᴏᴜʀ ɪɴᴘᴜᴛ ᴏʀ ɪɴᴄᴏʀʀᴇᴄᴛ ғᴏʀᴍᴀᴛ ❌
-
-ᴜsᴀɢᴇ: /sh ᴄᴄ|ᴍᴍ|ʏʏ|ᴄᴠᴠ</b>''', parse_mode="HTML")
-        return
-
-    # --- Rate Limit Check ---
-    current_tme = datetime.now()
-    last_sh = command_sh.get(user_id, None)
-
-    if last_sh and (current_tme - last_sh).seconds < 45:
-        remaining_time = 45 - (current_tme - last_sh).seconds
-        bot.reply_to(message, f"<b>Try again after {remaining_time} seconds.</b>", parse_mode="HTML")
-        return
-
-    command_sh[user_id] = current_tme
-    processing_sh = bot.reply_to(message, "𝘾𝙝𝙚𝙘𝙠𝙞𝙣𝙜 𝙔𝙤𝙪𝙧 𝘾𝙖𝙧𝙙𝙨...⌛").message_id
-    threading.Thread(target=process_sh_cmds, args=(message, processing_sh, cc)).start()
-
-
-# --- Function to Format Input ---
-def format_cc_input(text):
-    import re
-    match = re.search(r'(\d{13,16})\D+(\d{1,2})\D+(\d{2,4})\D+(\d{3,4})', text)
-    if not match:
-        return 'None'
-    
-    cc, mm, yy, cvv = match.groups()
-
-    mm = mm.zfill(2)  # 8 -> 08
-    if len(yy) == 4:
-        yy = yy[2:]  # 2026 -> 26
-
-    return f"{cc}|{mm}|{yy}|{cvv}"
-
-
-# --- Worker Function for CC Check ---
-def process_sh_cmds(message, processing_sh_id, cc):
-    gate = 'Shopify charge $0.50'
-    start_time = time.time()
-
-    try:
-        last = str(vbv(cc))  # 🔁 Assumes vbv() is defined
-    except Exception as e:
-        last = 'Error'
-
-    # --- BIN Info ---
-    bin_info = get_bin_info_from_csv(cc[:6])
-    if bin_info:
-        brand = bin_info.get('brand', 'Unknown')
-        card_type = bin_info.get('type', 'Unknown')
-        country = get_country_name(bin_info.get('country', 'Unknown'), 'Unknown')
-        country_flag = bin_info.get('flag', 'Unknown')
-        bank = bin_info.get('bank', 'Unknown')
-        level = bin_info.get('level', 'Unknown')
-    else:
-        brand = card_type = country = country_flag = bank = level = 'Unknown'
-
-    execution_time = time.time() - start_time
-
-    # --- Response messages ---
-    msg = f'''<b>𝘾𝙃𝘼𝙍𝙂𝙀𝘿 💎
-
-𝗖𝗮𝗿𝗱: <code>{cc}</code>
-𝐆𝐚𝐭𝐞𝐰𝐚𝐲: {gate}
-𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: {last}
-
-𝗜𝗻𝗳𝗼: <code>{cc[:6]} - {card_type} - {brand} - {level}</code>
-𝐈𝐬𝐬𝐮𝐞𝐫: {bank}
-𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
-
-𝗧𝗶𝗺𝗲: {execution_time:.2f} 𝐬𝐞𝐜𝐨𝐧𝐝𝐬
-</b>'''
-
-    msgd = f'''<b>𝘿𝙚𝙘𝙡𝙞𝙣𝙚𝙙 ❌
-
-𝗖𝗮𝗿𝗱: <code>{cc}</code>
-𝐆𝐚𝐭𝐞𝐰𝐚𝐲: {gate}
-𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: {last}
-
-𝗜𝗻𝗳𝗼: <code>{cc[:6]} - {card_type} - {brand} - {level}</code>
-𝐈𝐬𝐬𝐮𝐞𝐫: {bank}
-𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
-
-𝗧𝗶𝗺𝗲: {execution_time:.2f} 𝐬𝐞𝐜𝐨𝐧𝐝𝐬
-</b>'''
-
-    if any(x in last.lower() for x in ['funds', 'invalid postal', 'avs', 'added', 'duplicate', 'approved', 'allowed', 'purchase','charge','confirm']):
-        bot.edit_message_text(chat_id=message.chat.id, message_id=processing_sh_id, text=msg, parse_mode="HTML")
-    else:
-        bot.edit_message_text(chat_id=message.chat.id, message_id=processing_sh_id, text=msgd, parse_mode="HTML")
-
-def validate_cc(cc_line):
-    try:
-        cc_valid = reg(cc_line)
-        return cc_valid if cc_valid != "None" else None
-    except:
-        return None
- 
-# --- BIN Info ---
-def get_card_info(cc):
-    try:
-        data = requests.get(f"https://bins.antipublic.cc/bins/{cc[:6]}").json()
-        brand = data.get("brand", "Unknown")
-        card_type = data.get("type", "Unknown")
-        country = data.get("country_name", "Unknown")
-        country_flag = data.get("country_flag", "🏳️")
-        bank = data.get("bank", "Unknown")
-    except:
-        brand = card_type = country = country_flag = bank = "Unknown"
-    return brand, card_type, country, country_flag, bank
-        
-                      
-import time
-import threading
-import asyncio
-# Load the user’s plan from data.json (optional, can be removed if not needed)
-def get_user_plan(user_id):
-    with open('data.json', 'r') as file:
-        json_data = json.load(file)
-    return json_data.get(str(user_id), {}).get("plan", "FREE")
-
-
-# Rate limiter dictionary
-cmds_last_used = {}
-
-def process_card_cmds(cc):
-    brand, card_type, country, flag, bank = get_card_info(cc)
-    try:
-        result = str(vbv(cc)) 
-    except:
-        result = "Error"
-
-    status = "𝐀𝐩𝐩𝐫𝐨𝐯𝐞𝐝 ✅" if any(i in result.lower() for i in ["approved", "funds", "added", "purchase", "duplicate", " avs"]) else "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌"
-    return f"Card↯ <code>{cc}</code>\nStatus - {status}\nResult -⤿ {result} ⤾\n"
-
-def process_cmds_command(message, processing_msg):
-    user_id = message.from_user.id
-    text = message.reply_to_message.text if message.reply_to_message else message.text[5:]
-    cards = [validate_cc(i.strip()) for i in text.strip().split('\n') if i.strip()]
-    cards = [c for c in cards if c][:7]
-
-    if not cards:
-        bot.edit_message_text(
-            "ɢᴀᴛᴇ ɴᴀᴍᴇ: Shopify charge $0.98 ♻️\n\n"
-            "ᴍᴇssᴀɢᴇ: ɴᴏ ᴄᴄ ғᴏᴜɴᴅ ᴏʀ ɪɴᴄᴏʀʀᴇᴄᴛ ғᴏʀᴍᴀᴛ ❌\n\n"
-            "ᴜsᴀɢᴇ: /msh  ᴄᴄ|ᴍᴇs|ᴀɴᴏ|ᴄᴠᴠ",
-            chat_id=message.chat.id,
-            message_id=processing_msg.message_id
-        )
-        return
-
-    current_time = time.time()
-    if user_id in cmds_last_used and (current_time - cmds_last_used[user_id]) < 100:
-        wait = int(50 - (current_time - cmds_last_used[user_id]))
-        bot.edit_message_text(f"⏳ Please wait {wait}s before using .cmds again.", chat_id=message.chat.id, message_id=processing_msg.message_id)
-        return
-
-    cmds_last_used[user_id] = current_time
-
-    result = ["↯ Shopify charge $0.98 ♻️\n"]
-    start = time.time()
-    for cc in cards:
-        result.append(process_card_cmds(cc))
-        time.sleep(1)  # Delay of 1 second per card
-
-    elapsed = time.time() - start
-    result.append(f"- 𝗧𝗶𝗺𝗲 - {elapsed:.2f}s")
-
-    bot.edit_message_text("\n".join(result), chat_id=message.chat.id, message_id=processing_msg.message_id, parse_mode="HTML")
-
-@bot.message_handler(func=lambda m: m.text.lower().startswith(('.msh', '/msh')))
-def respond_to_cmds(message):
-    user_id = message.from_user.id
-    plan = get_user_plan(user_id)
-
-    if plan == 'FREE':
-        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Shopify charge $0.98 ♻️
-
-✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
-ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
-
-✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
-✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
-        return
-
-    msg = bot.reply_to(message, "- 𝐆𝐚𝐭𝐞𝐰𝐚𝐲 -  Shopify charge $0.98 ♻️\n- 𝐒𝐭𝐚𝐭𝐮𝐬 - Processing...⌛️", parse_mode="HTML")
-    threading.Thread(target=process_cmds_command, args=(message, msg)).start()
-
-
- 
-
 from telebot import TeleBot
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 import csv, re, time, threading, asyncio, os, json, random
 from datetime import datetime, timedelta
-GATE_FUNCTIONS = [st, st, st]  # Add these globally or at top of file if not already
+GATE_FUNCTIONS = [Tele, Fele, Gele]  # Add these globally or at top of file if not already
 
 # --- BIN Blacklist System ---
 BLACKLIST_FILE = 'blacklistmass.txt'
@@ -1305,19 +1091,20 @@ active_checks = {}
 stopuser = {}
 
 # --- Main Handler ---
-@bot.message_handler(commands=['b377txt'])
-@bot.message_handler(regexp=r'^\.b377txt')
+@bot.message_handler(commands=['b3txt'])
+@bot.message_handler(regexp=r'^\.b3txt')
 def ustxt_cmd(message):
     user_id = message.from_user.id
     plan = get_user_plan(user_id)
 
     if plan == 'FREE':
-        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Braintree auth charge 0.01$ ♻️
+        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Txt base Braintree auth charge 0.01$ ♻️
 
-✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
-ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
+✧ ᴍᴇssᴀɢᴇ: sᴏᴏɴ ᴛʜɪs ɢᴀᴛᴇ ᴏɴ 
+ʀᴇᴀsᴏɴ ɴᴇᴇᴅ sᴏᴍᴇ ʜǫ sɪᴛᴇ + sᴏᴍᴇ ʟᴏɢɪᴄ
+ᴛʜᴀɴᴋs ғᴏʀ ᴄᴏᴏᴘᴇʀᴀᴛɪᴏɴ
 
-✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
+✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ғᴜʀᴛʜᴇʀ ǫᴜᴇʀʏ
 ✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
         return
 
@@ -1539,12 +1326,13 @@ def stxt_cmd(message):
     plan = get_user_plan(user_id)
 
     if plan == 'FREE':
-        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: stripe auth v1 ♻️
+        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Txt base stripe auth charge 0.01$ ♻️
 
-✧ ᴍᴇssᴀɢᴇ: ᴏɴʟʏ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ
-ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ ❌
+✧ ᴍᴇssᴀɢᴇ: sᴏᴏɴ ᴛʜɪs ɢᴀᴛᴇ ᴏɴ 
+ʀᴇᴀsᴏɴ ɴᴇᴇᴅ sᴏᴍᴇ ʜǫ sɪᴛᴇ + sᴏᴍᴇ ʟᴏɢɪᴄ
+ᴛʜᴀɴᴋs ғᴏʀ ᴄᴏᴏᴘᴇʀᴀᴛɪᴏɴ
 
-✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ ᴀᴜᴛʜᴏʀɪᴢᴀᴛɪᴏɴ
+✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ ғᴜʀᴛʜᴇʀ ǫᴜᴇʀʏ
 ✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
         return
 
@@ -1736,6 +1524,649 @@ def stop_stxt(call):
         bot.answer_callback_query(call.id, "Stopping your check...")
     else:
         bot.answer_callback_query(call.id, "❌ You can't stop someone else's  check.")
+
+owners = ['5995041264', '8009385011','']  # Add your admin user IDs as strings
+
+@bot.message_handler(commands=['nikal'])
+def remove_user_plan(message):
+    if str(message.from_user.id) not in owners:
+        bot.reply_to(message, "⛔ You are not authorized to use this command.", parse_mode="HTML")
+        return
+
+    try:
+        parts = message.text.split()
+        if len(parts) != 2:
+            bot.reply_to(message, "<b>❗ Usage: /remove [USER_ID]</b>", parse_mode="HTML")
+            return
+
+        user_id = parts[1]
+
+        with open('data.json', 'r') as file:
+            data = json.load(file)
+
+        if user_id not in data:
+            bot.reply_to(message, "<b>❌ User ID not found.</b>", parse_mode="HTML")
+            return
+
+        del data[user_id]
+
+        with open('data.json', 'w') as file:
+            json.dump(data, file, ensure_ascii=False, indent=4)
+
+        bot.reply_to(message, f"<b>✅ Removed user {user_id} successfully.</b>", parse_mode="HTML")
+
+    except Exception as e:
+        print("Remove error:", e)
+        bot.reply_to(message, "<b>❗ Error while removing user.</b>", parse_mode="HTML")
+        
+        
+@bot.message_handler(commands=['user_vip'])
+def list_vip_users(message):
+    if str(message.from_user.id) not in owners:
+        bot.reply_to(message, "⛔ You are not authorized to use this command.", parse_mode="HTML")
+        return
+
+    try:
+        with open('data.json', 'r') as file:
+            data = json.load(file)
+
+        vip_users = []
+        for user_id, info in data.items():
+            if isinstance(info, dict):
+                plan = info.get('plan', 'free')
+                if plan.lower() != 'free':
+                    expires = info.get('timer', 'N/A')
+                    vip_users.append(f"👤 <code>{user_id}</code> - Plan: <b>{plan}</b>, Expires: <i>{expires}</i>")
+
+        if not vip_users:
+            bot.reply_to(message, "<b>📭 No VIP users found.</b>", parse_mode="HTML")
+            return
+
+        msg = "<b>💎 VIP Users:</b>\n\n" + "\n".join(vip_users)
+        bot.reply_to(message, msg, parse_mode="HTML")
+
+    except Exception as e:
+        print("VIP list error:", e)
+        bot.reply_to(message, "<b>❗ Failed to get VIP user list.</b>", parse_mode="HTML")            
+    
+    
+    
+    
+import json, threading, random, string
+from datetime import datetime, timedelta
+from telebot import TeleBot
+
+
+
+admins = [5995041264,8009385011]
+DATA_FILE = "data.json"
+
+# --- Utility Functions ---
+def load_data():
+    try:
+        with open(DATA_FILE, 'r') as file:
+            return json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+def save_data(data):
+    with open(DATA_FILE, 'w') as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
+
+# --- Redeem Command ---
+@bot.message_handler(func=lambda message: message.text.lower().startswith('.redeem') or message.text.lower().startswith('/redeem'))
+def redeem_key(message):
+    def my_function():
+        try:
+            parts = message.text.split(' ')
+            if len(parts) < 2:
+                bot.reply_to(message, "<b>❗ Please provide a key: /redeem [KEY]</b>", parse_mode="HTML")
+                return
+
+            key = parts[1]
+            data = load_data()
+
+            if key not in data:
+                bot.reply_to(message, "<b>❗ Invalid or already redeemed key.</b>", parse_mode="HTML")
+                return
+
+            key_data = data[key]
+            plan = key_data['plan']
+            key_time_str = key_data['time']
+            key_expiry = datetime.strptime(key_time_str, "%Y-%m-%d %H:%M")
+
+            user_id_str = str(message.from_user.id)
+            now = datetime.now()
+
+            user_data = data.get(user_id_str, {"plan": "free", "timer": None})
+
+            existing_timer_str = user_data.get('timer')
+            try:
+                if existing_timer_str and isinstance(existing_timer_str, str) and existing_timer_str.lower() != 'none':
+                    existing_timer = datetime.strptime(existing_timer_str, "%Y-%m-%d %H:%M")
+                    if existing_timer > now:
+                        key_expiry += (existing_timer - now)
+            except Exception as e:
+                print("Timer parse error:", e)
+
+            data[user_id_str] = {
+                "plan": plan,
+                "timer": key_expiry.strftime("%Y-%m-%d %H:%M")
+            }
+
+            del data[key]
+            save_data(data)
+
+            msg = f'''<b>✅ Key Redeemed Successfully!  
+Plan: {plan}  
+Expires: {key_expiry.strftime("%Y-%m-%d %H:%M")}</b>'''
+            bot.reply_to(message, msg, parse_mode="HTML")
+
+            username = f"@{message.from_user.username}" if message.from_user.username else "No Username"
+            admin_msg = f'''🚀 <b>Key Redeemed</b>  
+User: {username} (ID: {message.from_user.id})  
+Plan: {plan}  
+Expires: {key_expiry.strftime("%Y-%m-%d %H:%M")}'''
+
+            for admin_id in admins:
+                try:
+                    bot.send_message(admin_id, admin_msg, parse_mode="HTML")
+                except Exception as e:
+                    print(f"Failed to send admin message to {admin_id}: {e}")
+
+        except Exception as e:
+            print('ERROR:', e)
+            bot.reply_to(message, '<b>❗ An error occurred while redeeming the key.</b>', parse_mode="HTML")
+
+    threading.Thread(target=my_function).start()
+
+
+# --- Key Generation Command ---
+@bot.message_handler(commands=["code"])
+def generate_key(message):
+    def my_function():
+        try:
+            if message.from_user.id not in admins:
+                bot.reply_to(message, "<b>❗ You are not authorized to generate keys.</b>", parse_mode="HTML")
+                return
+
+            parts = message.text.split(' ')
+            if len(parts) < 2:
+                bot.reply_to(message, "<b>❗ Please provide duration in hours. Example: /code 10</b>", parse_mode="HTML")
+                return
+
+            hours = float(parts[1])
+            now = datetime.now()
+            expire_time = now + timedelta(hours=hours)
+            expire_time_str = expire_time.strftime("%Y-%m-%d %H:%M")
+
+            plan = "VIP"
+            characters = string.ascii_uppercase + string.digits
+            key = 'MassCʜᴇᴄᴋᴇʀ-' + '-'.join(''.join(random.choices(characters, k=4)) for _ in range(3))
+
+            data = load_data()
+            data[key] = {"plan": plan, "time": expire_time_str}
+            save_data(data)
+
+            msg = f'''<b>╠═══════════════════════════╣  
+𝗡𝗘𝗪 𝗞𝗘𝗬 𝗖𝗥𝗘𝗔𝗧𝗘𝗗 🚀  
+
+𝗣𝗟𝗔𝗡 ➜  {plan}  
+𝗘𝗫𝗣𝗜𝗥𝗘𝗦 𝗜𝗡 ➜  {expire_time_str}  
+𝗞𝗘𝗬 ➜  <code>{key}</code>  
+𝗨𝗦𝗘 /redeem [𝗞𝗘𝗬]  
+╠════════════════════════════╣</b>'''
+            bot.reply_to(message, msg, parse_mode="HTML")
+
+        except Exception as e:
+            print('ERROR:', e)
+            bot.reply_to(message, f'<b>❗ An error occurred: {e}</b>', parse_mode="HTML")
+
+    threading.Thread(target=my_function).start()
+
+from datetime import datetime  
+import threading  
+import time  
+import requests  
+import json  
+import os  
+from collections import defaultdict, deque  
+import datetime as dt  
+
+# ============ GATE FUNCTIONS ============  
+GATE_FUNCTIONS = [Tele, Fele, Gele]  
+gate_index = 0  # ← added here  
+
+# ============ Rate Limit Tracking ============  
+cchk_last_used = {}  
+mass_last_used = {}  
+
+# ============ BLACKLIST SYSTEM ============  
+BLACKLIST_FILE = "blacklist.txt"  
+blacklisted_bins = {}  
+decline_tracker = defaultdict(lambda: deque())  
+risk_tracker = defaultdict(int)  
+
+def load_blacklist():  
+    global blacklisted_bins  
+    if os.path.exists(BLACKLIST_FILE):  
+        with open(BLACKLIST_FILE, "r") as f:  
+            for line in f:  
+                parts = line.strip().split("|")  
+                if len(parts) == 2:  
+                    bin_num, timestamp = parts  
+                    blacklisted_bins[bin_num] = float(timestamp)  
+
+def save_blacklist():  
+    with open(BLACKLIST_FILE, "w") as f:  
+        for bin_num, timestamp in blacklisted_bins.items():  
+            f.write(f"{bin_num}|{timestamp}\n")  
+
+def add_to_blacklist(bin_num):  
+    expire_time = time.time() + 48 * 3600  # 48 hrs  
+    blacklisted_bins[bin_num] = expire_time  
+    save_blacklist()  
+
+def is_blacklisted(bin_num):  
+    if bin_num in blacklisted_bins:  
+        if time.time() < blacklisted_bins[bin_num]:  
+            return True  
+        else:  
+            del blacklisted_bins[bin_num]  # expired  
+            save_blacklist()  
+            return False  
+    return False  
+
+def track_decline(bin_num):  
+    now = dt.datetime.now()  
+    dq = decline_tracker[bin_num]  
+    dq.append(now)  
+    while dq and (now - dq[0]).seconds > 1200:  # last 20 mins  
+        dq.popleft()  
+    if len(dq) >= 14:  
+        add_to_blacklist(bin_num)  
+
+def track_risk(bin_num):  
+    risk_tracker[bin_num] += 1  
+    if risk_tracker[bin_num] >= 4:  
+        add_to_blacklist(bin_num)  
+        risk_tracker[bin_num] = 0  
+
+# Load blacklist on startup  
+load_blacklist()  
+
+# ============ Validate CC ============  
+def validate_cc(cc_line):  
+    try:  
+        cc_valid = reg(cc_line)  
+        return cc_valid if cc_valid != "None" else None  
+    except:  
+        return None  
+
+# ============ BIN Info ============  
+def get_card_info(cc):  
+    try:  
+        data = requests.get(f"https://bins.antipublic.cc/bins/{cc[:6]}").json()  
+        brand = data.get("brand", "Unknown")  
+        card_type = data.get("type", "Unknown")  
+        country = data.get("country_name", "Unknown")  
+        country_flag = data.get("country_flag", "🏳️")  
+        bank = data.get("bank", "Unknown")  
+    except:  
+        brand = card_type = country = country_flag = bank = "Unknown"  
+    return brand, card_type, country, country_flag, bank  
+
+# ============ CCHK Command Handler ============  
+def process_card_cchk(cc):  
+    global gate_index  # ← added  
+    brand, card_type, country, flag, bank = get_card_info(cc)  
+
+    bin_num = cc[:6]  
+    if is_blacklisted(bin_num):  
+        return f"❌ Message Sorry But This Bin({bin_num}) is on my blacklist!\n"  
+
+    try:  
+        current_gate = GATE_FUNCTIONS[gate_index % len(GATE_FUNCTIONS)]  
+        gate_index += 1  # ← added  
+        result = str(current_gate(cc))  
+    except:  
+        result = "Error"  
+
+    # Track risk  
+    if "risk_threshold" in result.lower():  
+        track_risk(bin_num)  
+
+    status = "𝐀𝐩𝐩𝐫𝐨𝐯𝐞𝐝 ✅" if any(i in result.lower() for i in ["approved", "funds", "added", "purchase", "duplicate", " avs"]) else "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌"  
+
+    # Track decline if failed  
+    if status == "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌":  
+        track_decline(bin_num)  
+
+    return f"Card↯ <code>{cc}</code>\nStatus - {status}\nResult -⤿ {result} ⤾\n"  
+
+def process_cchk_command(message, processing_msg):  
+    user_id = message.from_user.id  
+    text = message.reply_to_message.text if message.reply_to_message else message.text[5:]  
+    cards = [validate_cc(i.strip()) for i in text.strip().split('\n') if i.strip()]  
+    cards = [c for c in cards if c][:5]  
+
+    if not cards:  
+        bot.edit_message_text(  
+            "ɢᴀᴛᴇ ɴᴀᴍᴇ: Mass Braintree ᴀᴜᴛʜ ♻️\n\n"  
+            "ᴍᴇssᴀɢᴇ: ɴᴏ ᴄᴄ ғᴏᴜɴᴅ ᴏʀ ɪɴᴄᴏʀʀᴇᴄᴛ ғᴏʀᴍᴀᴛ ❌\n\n"  
+            "ᴜsᴀɢᴇ: /cchk ᴄᴄ|ᴍᴇs|ᴀɴᴏ|ᴄᴠᴠ",  
+            chat_id=message.chat.id,  
+            message_id=processing_msg.message_id  
+        )  
+        return  
+
+    current_time = time.time()  
+    if user_id in cchk_last_used and (current_time - cchk_last_used[user_id]) < 100:  
+        wait = int(100 - (current_time - cchk_last_used[user_id]))  
+        bot.edit_message_text(f"⏳ Please wait {wait}s before using .cchk again.", chat_id=message.chat.id, message_id=processing_msg.message_id)  
+        return  
+
+    cchk_last_used[user_id] = current_time  
+
+    result = ["↯ Braintree ᴀᴜᴛʜ ♻️\n"]  
+    start = time.time()  
+    for cc in cards:  
+        result.append(process_card_cchk(cc))  
+    elapsed = time.time() - start  
+    result.append(f"- 𝗧𝗶𝗺𝗲 - {elapsed:.2f}s")  
+
+    bot.edit_message_text("\n".join(result), chat_id=message.chat.id, message_id=processing_msg.message_id, parse_mode="HTML")  
+
+@bot.message_handler(func=lambda m: m.text.lower().startswith(('.cchk', '/cchk')))  
+def respond_to_cchk(message):  
+    user_id = message.from_user.id  
+    
+          
+
+    msg = bot.reply_to(message, "- 𝐆𝐚𝐭𝐞𝐰𝐚𝐲 -  Braintree ᴀᴜᴛʜ ♻️\n- 𝐒𝐭𝐚𝐭𝐮𝐬 - Processing...⌛️", parse_mode="HTML")  
+    threading.Thread(target=process_cchk_command, args=(message, msg)).start()
+# ===============================
+#    . M A S S    C O M M A N D
+# ===============================
+def process_card_mass(cc):
+    brand, card_type, country, flag, bank = get_card_info(cc)
+    try:
+        result = str(asyncio.run(ppc(cc)))
+    except:
+        result = "Error"
+
+    status = "𝐀𝐩𝐩𝐫𝐨𝐯𝐞𝐝 ✅" if any(i in result.lower() for i in ["approved", "funds", "added", "purchase", "duplicate", " avs"]) else "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌"
+    return f"Card↯ <code>{cc}</code>\nStatus - {status}\nResult -⤿ {result} ⤾\n"
+
+def process_mass_command(message, processing_msg):
+    user_id = message.from_user.id
+    text = message.reply_to_message.text if message.reply_to_message else message.text[5:]
+    cards = [validate_cc(i.strip()) for i in text.strip().split('\n') if i.strip()]
+    cards = [c for c in cards if c][:10]
+
+    if not cards:
+        bot.edit_message_text(
+    "ɢᴀᴛᴇ ɴᴀᴍᴇ: Mass stripe ᴀᴜᴛʜ ♻️\n\n"
+    "ᴍᴇssᴀɢᴇ: ɴᴏ ᴄᴄ ғᴏᴜɴᴅ ᴏʀ ɪɴᴄᴏʀʀᴇᴄᴛ ғᴏʀᴍᴀᴛ ❌\n\n"
+    "ᴜsᴀɢᴇ: /mass ᴄᴄ|ᴍᴇs|ᴀɴᴏ|ᴄᴠᴠ",
+    chat_id=message.chat.id,
+    message_id=processing_msg.message_id
+)
+        return  # no rate limit applied here
+
+    current_time = time.time()
+    if user_id in mass_last_used and (current_time - mass_last_used[user_id]) < 80:
+        wait = int(80 - (current_time - mass_last_used[user_id]))
+        bot.edit_message_text(f"⏳ Please wait {wait}s before using .mass again.", chat_id=message.chat.id, message_id=processing_msg.message_id)
+        return
+
+    mass_last_used[user_id] = current_time
+
+    result = ["↯ Stripe ᴀᴜᴛʜ ♻️\n"]
+    start = time.time()
+    for cc in cards:
+        result.append(process_card_mass(cc))
+    elapsed = time.time() - start
+    result.append(f"- 𝗧𝗶𝗺𝗲 - {elapsed:.2f}s")
+
+    bot.edit_message_text("\n".join(result), chat_id=message.chat.id, message_id=processing_msg.message_id, parse_mode="HTML")
+
+@bot.message_handler(func=lambda m: m.text.lower().startswith(('.mass', '/mass')))
+def respond_to_mass(message):
+    user_id = message.from_user.id
+    
+    msg = bot.reply_to(message, "- 𝐆𝐚𝐭𝐞𝐰𝐚𝐲 -  Stripe ᴀᴜᴛʜ ♻️\n- 𝐒𝐭𝐚𝐭𝐮𝐬 - Processing...⌛️", parse_mode="HTML")
+    threading.Thread(target=process_mass_command, args=(message, msg)).start()
+
+
+import threading
+import json
+import time
+import requests
+import telebot, types
+import os
+import csv
+import pycountry
+
+
+# Dictionary to store user command usage timestamps
+command_sh = {}
+
+
+CSV_FILE = 'bins_all.csv'
+
+def expand_bank_name(bank_name):
+    words = bank_name.split()
+    expanded_words = [BANK_NAME_FIXES.get(word, word) for word in words]  # Assuming BANK_NAME_FIXES is defined
+    return " ".join(expanded_words)
+
+def get_bin_info_from_csv(fbin):
+    if not os.path.exists(CSV_FILE):
+        return None  # CSV file not found
+    
+    try:
+        with open(CSV_FILE, mode='r', encoding='utf-8') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                if row[0] == fbin:
+                    return {
+                        "bin": row[0],
+                        "country": row[1],
+                        "flag": row[2],
+                        "brand": row[3],
+                        "type": row[4],
+                        "level": row[5],
+                        "bank": expand_bank_name(row[6])  # Expand issuer name
+                    }
+    except Exception as e:
+        print(f"Error reading CSV: {e}")
+        return None
+    return None  # BIN not found
+
+def get_country_name(code, fallback_country_name):
+    try:
+        country = pycountry.countries.get(alpha_2=code)
+        return country.name if country else fallback_country_name
+    except Exception as e:
+        print(f"Error getting country name: {e}")
+        return fallback_country_name
+
+
+
+@bot.message_handler(func=lambda message: message.text.lower().startswith('.sh') or message.text.lower().startswith('/sh'))
+def respond_to_vbv(message):
+    user_id = message.from_user.id
+    
+
+    # --- Extract and Format CC ---
+    try:
+        raw_input = message.reply_to_message.text if message.reply_to_message else message.text
+        cc = format_cc_input(raw_input)  # ✅ Updated: Format input properly
+    except:
+        cc = 'None'
+
+    if cc == 'None':
+        bot.reply_to(message, '''<b>ɢᴀᴛᴇ ɴᴀᴍᴇ: Shopify charge $0.98 ♻️
+
+ᴍᴇssᴀɢᴇ: ɴᴏ ᴄᴄ ғᴏᴜɴᴅ ɪɴ ʏᴏᴜʀ ɪɴᴘᴜᴛ ᴏʀ ɪɴᴄᴏʀʀᴇᴄᴛ ғᴏʀᴍᴀᴛ ❌
+
+ᴜsᴀɢᴇ: /sh ᴄᴄ|ᴍᴍ|ʏʏ|ᴄᴠᴠ</b>''', parse_mode="HTML")
+        return
+
+    # --- Rate Limit Check ---
+    current_tme = datetime.now()
+    last_sh = command_sh.get(user_id, None)
+
+    if last_sh and (current_tme - last_sh).seconds < 45:
+        remaining_time = 45 - (current_tme - last_sh).seconds
+        bot.reply_to(message, f"<b>Try again after {remaining_time} seconds.</b>", parse_mode="HTML")
+        return
+
+    command_sh[user_id] = current_tme
+    processing_sh = bot.reply_to(message, "𝘾𝙝𝙚𝙘𝙠𝙞𝙣𝙜 𝙔𝙤𝙪𝙧 𝘾𝙖𝙧𝙙𝙨...⌛").message_id
+    threading.Thread(target=process_sh_cmds, args=(message, processing_sh, cc)).start()
+
+
+# --- Function to Format Input ---
+def format_cc_input(text):
+    import re
+    match = re.search(r'(\d{13,16})\D+(\d{1,2})\D+(\d{2,4})\D+(\d{3,4})', text)
+    if not match:
+        return 'None'
+    
+    cc, mm, yy, cvv = match.groups()
+
+    mm = mm.zfill(2)  # 8 -> 08
+    if len(yy) == 4:
+        yy = yy[2:]  # 2026 -> 26
+
+    return f"{cc}|{mm}|{yy}|{cvv}"
+
+
+# --- Worker Function for CC Check ---
+def process_sh_cmds(message, processing_sh_id, cc):
+    gate = 'Shopify charge $0.98'
+    start_time = time.time()
+
+    try:
+        last = str(vbv(cc))  # 🔁 Assumes vbv() is defined
+    except Exception as e:
+        last = 'Error'
+
+    # --- BIN Info ---
+    bin_info = get_bin_info_from_csv(cc[:6])
+    if bin_info:
+        brand = bin_info.get('brand', 'Unknown')
+        card_type = bin_info.get('type', 'Unknown')
+        country = get_country_name(bin_info.get('country', 'Unknown'), 'Unknown')
+        country_flag = bin_info.get('flag', 'Unknown')
+        bank = bin_info.get('bank', 'Unknown')
+        level = bin_info.get('level', 'Unknown')
+    else:
+        brand = card_type = country = country_flag = bank = level = 'Unknown'
+
+    execution_time = time.time() - start_time
+
+    # --- Response messages ---
+    msg = f'''<b>𝘾𝙃𝘼𝙍𝙂𝙀𝘿 💎
+
+𝗖𝗮𝗿𝗱: <code>{cc}</code>
+𝐆𝐚𝐭𝐞𝐰𝐚𝐲: {gate}
+𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: {last}
+
+𝗜𝗻𝗳𝗼: <code>{cc[:6]} - {card_type} - {brand} - {level}</code>
+𝐈𝐬𝐬𝐮𝐞𝐫: {bank}
+𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
+
+𝗧𝗶𝗺𝗲: {execution_time:.2f} 𝐬𝐞𝐜𝐨𝐧𝐝𝐬
+</b>'''
+
+    msgd = f'''<b>𝘿𝙚𝙘𝙡𝙞𝙣𝙚𝙙 ❌
+
+𝗖𝗮𝗿𝗱: <code>{cc}</code>
+𝐆𝐚𝐭𝐞𝐰𝐚𝐲: {gate}
+𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: {last}
+
+𝗜𝗻𝗳𝗼: <code>{cc[:6]} - {card_type} - {brand} - {level}</code>
+𝐈𝐬𝐬𝐮𝐞𝐫: {bank}
+𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
+
+𝗧𝗶𝗺𝗲: {execution_time:.2f} 𝐬𝐞𝐜𝐨𝐧𝐝𝐬
+</b>'''
+
+    if any(x in last.lower() for x in ['funds', 'invalid postal', 'avs', 'added', 'duplicate', 'approved', 'allowed', 'purchase','charge','confirm']):
+        bot.edit_message_text(chat_id=message.chat.id, message_id=processing_sh_id, text=msg, parse_mode="HTML")
+    else:
+        bot.edit_message_text(chat_id=message.chat.id, message_id=processing_sh_id, text=msgd, parse_mode="HTML")
+
+import time
+import threading
+import asyncio
+# Load the user’s plan from data.json (optional, can be removed if not needed)
+def get_user_plan(user_id):
+    with open('data.json', 'r') as file:
+        json_data = json.load(file)
+    return json_data.get(str(user_id), {}).get("plan", "FREE")
+
+
+# Rate limiter dictionary
+cmds_last_used = {}
+
+def process_card_cmds(cc):
+    brand, card_type, country, flag, bank = get_card_info(cc)
+    try:
+        result = str(vbv(cc)) 
+    except:
+        result = "Error"
+
+    status = "𝐀𝐩𝐩𝐫𝐨𝐯𝐞𝐝 ✅" if any(i in result.lower() for i in ["approved", "funds", "added", "purchase", "duplicate", " avs"]) else "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌"
+    return f"Card↯ <code>{cc}</code>\nStatus - {status}\nResult -⤿ {result} ⤾\n"
+
+def process_cmds_command(message, processing_msg):
+    user_id = message.from_user.id
+    text = message.reply_to_message.text if message.reply_to_message else message.text[5:]
+    cards = [validate_cc(i.strip()) for i in text.strip().split('\n') if i.strip()]
+    cards = [c for c in cards if c][:14]
+
+    if not cards:
+        bot.edit_message_text(
+            "ɢᴀᴛᴇ ɴᴀᴍᴇ: Shopify charge $0.98 ♻️\n\n"
+            "ᴍᴇssᴀɢᴇ: ɴᴏ ᴄᴄ ғᴏᴜɴᴅ ᴏʀ ɪɴᴄᴏʀʀᴇᴄᴛ ғᴏʀᴍᴀᴛ ❌\n\n"
+            "ᴜsᴀɢᴇ: /msh ᴄᴄ|ᴍᴇs|ᴀɴᴏ|ᴄᴠᴠ",
+            chat_id=message.chat.id,
+            message_id=processing_msg.message_id
+        )
+        return
+
+    current_time = time.time()
+    if user_id in cmds_last_used and (current_time - cmds_last_used[user_id]) < 50:
+        wait = int(50 - (current_time - cmds_last_used[user_id]))
+        bot.edit_message_text(f"⏳ Please wait {wait}s before using .cmds again.", chat_id=message.chat.id, message_id=processing_msg.message_id)
+        return
+
+    cmds_last_used[user_id] = current_time
+
+    result = ["↯ Shopify charge $0.98 ♻️\n"]
+    start = time.time()
+    for cc in cards:
+        result.append(process_card_cmds(cc))
+        time.sleep(1)  # Delay of 1 second per card
+
+    elapsed = time.time() - start
+    result.append(f"- 𝗧𝗶𝗺𝗲 - {elapsed:.2f}s")
+
+    bot.edit_message_text("\n".join(result), chat_id=message.chat.id, message_id=processing_msg.message_id, parse_mode="HTML")
+
+@bot.message_handler(func=lambda m: m.text.lower().startswith(('.msh', '/msh')))
+def respond_to_cmds(message):
+    user_id = message.from_user.id
+    
+
+    msg = bot.reply_to(message, "- 𝐆𝐚𝐭𝐞𝐰𝐚𝐲 -  Shopify charge $0.98 ♻️\n- 𝐒𝐭𝐚𝐭𝐮𝐬 - Processing...⌛️", parse_mode="HTML")
+    threading.Thread(target=process_cmds_command, args=(message, msg)).start()
+
+
+ 
 
 
 print("Bot is running...")

