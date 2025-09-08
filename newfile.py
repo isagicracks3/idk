@@ -785,7 +785,23 @@ def get_country_name(code, fallback_country_name):
 @bot.message_handler(func=lambda message: message.text.lower().startswith('.chk') or message.text.lower().startswith('/chk'))
 def respond_to_vbv(message):
     user_id = message.from_user.id
-    
+    # --- Check user membership ---
+    try:
+        member = bot.get_chat_member(REQUIRED_CHANNEL, user_id)
+        if member.status not in ["member", "administrator", "creator"]:
+            raise Exception("Not a member")
+    except:
+        msg = '''<b>🤖 Bot Status: Active ✅
+
+🔴 ɪᴍᴘᴏʀᴛᴀɴᴛ ɴᴏᴛᴇ :
+
+🚨 To use this bot and stay updated — make sure to join our channel!
+<a href="https://t.me/hrefcm/111">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴀᴜᴛʜᴏʀɪᴢᴇᴅ &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
+
+🆘 Need help?
+Use /help anytime for support.</b>'''
+        bot.reply_to(message, msg, parse_mode='HTML')
+        return
 
     # --- Extract CC ---
     try:
@@ -908,7 +924,23 @@ def check_au_rate_limit(user_id, cooldown):
 @bot.message_handler(func=lambda message: message.text.lower().startswith(('.au', '/au')))
 def respond_to_au(message):
     user_id = message.from_user.id
-    
+    # --- Check user membership ---
+    try:
+        member = bot.get_chat_member(REQUIRED_CHANNEL, user_id)
+        if member.status not in ["member", "administrator", "creator"]:
+            raise Exception("Not a member")
+    except:
+        msg = '''<b>🤖 Bot Status: Active ✅
+
+🔴 ɪᴍᴘᴏʀᴛᴀɴᴛ ɴᴏᴛᴇ :
+
+🚨 To use this bot and stay updated — make sure to join our channel!
+<a href="https://t.me/hrefcm/111">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴀᴜᴛʜᴏʀɪᴢᴇᴅ &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
+
+🆘 Need help?
+Use /help anytime for support.</b>'''
+        bot.reply_to(message, msg, parse_mode='HTML')
+        return   
 
     # --- Extract CC ---
     try:
@@ -1880,8 +1912,23 @@ def process_cchk_command(message, processing_msg):
 @bot.message_handler(func=lambda m: m.text.lower().startswith(('.cchk', '/cchk')))  
 def respond_to_cchk(message):  
     user_id = message.from_user.id  
-    
-          
+    # --- Check user membership ---
+    try:
+        member = bot.get_chat_member(REQUIRED_CHANNEL, user_id)
+        if member.status not in ["member", "administrator", "creator"]:
+            raise Exception("Not a member")
+    except:
+        msg = '''<b>🤖 Bot Status: Active ✅
+
+🔴 ɪᴍᴘᴏʀᴛᴀɴᴛ ɴᴏᴛᴇ :
+
+🚨 To use this bot and stay updated — make sure to join our channel!
+<a href="https://t.me/hrefcm/111">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴀᴜᴛʜᴏʀɪᴢᴇᴅ &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
+
+🆘 Need help?
+Use /help anytime for support.</b>'''
+        bot.reply_to(message, msg, parse_mode='HTML')
+        return          
 
     msg = bot.reply_to(message, "- 𝐆𝐚𝐭𝐞𝐰𝐚𝐲 -  Braintree ᴀᴜᴛʜ ♻️\n- 𝐒𝐭𝐚𝐭𝐮𝐬 - Processing...⌛️", parse_mode="HTML")  
     threading.Thread(target=process_cchk_command, args=(message, msg)).start()
@@ -1934,7 +1981,23 @@ def process_mass_command(message, processing_msg):
 @bot.message_handler(func=lambda m: m.text.lower().startswith(('.mass', '/mass')))
 def respond_to_mass(message):
     user_id = message.from_user.id
-    
+    # --- Check user membership ---
+    try:
+        member = bot.get_chat_member(REQUIRED_CHANNEL, user_id)
+        if member.status not in ["member", "administrator", "creator"]:
+            raise Exception("Not a member")
+    except:
+        msg = '''<b>🤖 Bot Status: Active ✅
+
+🔴 ɪᴍᴘᴏʀᴛᴀɴᴛ ɴᴏᴛᴇ :
+
+🚨 To use this bot and stay updated — make sure to join our channel!
+<a href="https://t.me/hrefcm/111">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴀᴜᴛʜᴏʀɪᴢᴇᴅ &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
+
+🆘 Need help?
+Use /help anytime for support.</b>'''
+        bot.reply_to(message, msg, parse_mode='HTML')
+        return    
     msg = bot.reply_to(message, "- 𝐆𝐚𝐭𝐞𝐰𝐚𝐲 -  Stripe ᴀᴜᴛʜ ♻️\n- 𝐒𝐭𝐚𝐭𝐮𝐬 - Processing...⌛️", parse_mode="HTML")
     threading.Thread(target=process_mass_command, args=(message, msg)).start()
 
@@ -1996,7 +2059,23 @@ def get_country_name(code, fallback_country_name):
 @bot.message_handler(func=lambda message: message.text.lower().startswith('.sh') or message.text.lower().startswith('/sh'))
 def respond_to_vbv(message):
     user_id = message.from_user.id
-    
+    # --- Check user membership ---
+    try:
+        member = bot.get_chat_member(REQUIRED_CHANNEL, user_id)
+        if member.status not in ["member", "administrator", "creator"]:
+            raise Exception("Not a member")
+    except:
+        msg = '''<b>🤖 Bot Status: Active ✅
+
+🔴 ɪᴍᴘᴏʀᴛᴀɴᴛ ɴᴏᴛᴇ :
+
+🚨 To use this bot and stay updated — make sure to join our channel!
+<a href="https://t.me/hrefcm/111">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴀᴜᴛʜᴏʀɪᴢᴇᴅ &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
+
+🆘 Need help?
+Use /help anytime for support.</b>'''
+        bot.reply_to(message, msg, parse_mode='HTML')
+        return    
 
     # --- Extract and Format CC ---
     try:
@@ -2160,7 +2239,23 @@ def process_cmds_command(message, processing_msg):
 @bot.message_handler(func=lambda m: m.text.lower().startswith(('.msh', '/msh')))
 def respond_to_cmds(message):
     user_id = message.from_user.id
-    
+    # --- Check user membership ---
+    try:
+        member = bot.get_chat_member(REQUIRED_CHANNEL, user_id)
+        if member.status not in ["member", "administrator", "creator"]:
+            raise Exception("Not a member")
+    except:
+        msg = '''<b>🤖 Bot Status: Active ✅
+
+🔴 ɪᴍᴘᴏʀᴛᴀɴᴛ ɴᴏᴛᴇ :
+
+🚨 To use this bot and stay updated — make sure to join our channel!
+<a href="https://t.me/hrefcm/111">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴀᴜᴛʜᴏʀɪᴢᴇᴅ &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
+
+🆘 Need help?
+Use /help anytime for support.</b>'''
+        bot.reply_to(message, msg, parse_mode='HTML')
+        return  
 
     msg = bot.reply_to(message, "- 𝐆𝐚𝐭𝐞𝐰𝐚𝐲 -  Shopify charge $0.98 ♻️\n- 𝐒𝐭𝐚𝐭𝐮𝐬 - Processing...⌛️", parse_mode="HTML")
     threading.Thread(target=process_cmds_command, args=(message, msg)).start()
