@@ -99,7 +99,7 @@ def pp(ccx):
         else:
           #  print("Message:", message)
             return message
-print(vbv("4258810718226890|02|2027|653"))        
+#print(vbv("4258810718226890|02|2027|653"))        
         
     
         
