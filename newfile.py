@@ -35,6 +35,7 @@ from gatat import Gele #===|
 from stripe import st 
 from Shopify import vbv
 from ppc import ppc
+from pp import pp
 
 
 # chk = Tele
@@ -979,7 +980,7 @@ def process_au_command(message, processing_msg_id, cc):
     start_time = time.time()
 
     try:
-        last = asyncio.run(ppc(cc))
+        last = str(pp(cc)) 
     except Exception:
         last = 'Error'
 
@@ -1938,7 +1939,7 @@ Use /help anytime for support.</b>'''
 def process_card_mass(cc):
     brand, card_type, country, flag, bank = get_card_info(cc)
     try:
-        result = str(asyncio.run(ppc(cc)))
+        result = str(pp(cc)) 
     except:
         result = "Error"
 
