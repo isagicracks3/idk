@@ -75,7 +75,7 @@ def sq(ccx):
     print("session id", session_id)
     print("payment", avt)
 
-
+    time.sleep(3)
     LOCATION_ID = '6JKR6RP4CBRJB'
     APPLICATION_ID = 'sq0idp-wGVapF8sNt9PLrdj5znuKA'
 
@@ -113,7 +113,7 @@ def sq(ccx):
     parm_pow_counter = pack5_calculate_Pow_Counter(powPrefix, sessionId, instanceId)
     print(parm_pow_counter)
 
-
+    time.sleep(1)
 
     cookies = {
     '_savt': '3e691435-a4c5-449b-9b15-ca748ce065b7',
