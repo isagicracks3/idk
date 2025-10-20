@@ -85,12 +85,25 @@ def au(ccx):
         return f"Site request failed: {e}"
 
     # Safely extract nested data
-    main_data = data_site.get('data') if isinstance(data_site, dict) else {}
+    try:
+        data_site = response_site.json()
+    except ValueError:
+        data_site = {}
+
+# Ensure data_site is a dict
+    if not isinstance(data_site, dict):
+        data_site = {}
+
+# Safely extract nested values
+    main_data = data_site.get('data', {}) if isinstance(data_site, dict) else {}
     if not isinstance(main_data, dict):
         main_data = {}
+
     status = main_data.get('status', '')
-    success = data_site.get('success', False)
-    message = main_data.get('error', {}).get('message', '')
+    success = data_site.get('success', False) if isinstance(data_site, dict) else False
+    error_obj = main_data.get('error') if isinstance(main_data, dict) else {}
+    message = error_obj.get('message', '') if isinstance(error_obj, dict) else ''
+
 
     # Determine final status
     if success and status == 'succeeded':
