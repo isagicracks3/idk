@@ -12,7 +12,7 @@ import asyncio
 #======== Api Import @OnlyXFanbot ==≠==
 
 #8061815204:AAE5tG35y-Ztsyq1aXHFByqTjs4OoXMHsUY
-API_TOKEN = "7567332983:AAEdMfS5Lg_H0pSJ6-9qNf-dBwHO5ggbmA0"
+API_TOKEN = "8164802838:AAG5Tbe4joFj0vh4m-4c7IuFGLHL82WhvBs"
 
 bot = telebot.TeleBot(API_TOKEN)
 
@@ -20,8 +20,8 @@ command_usage = {}
 BANK_NAME_FIXES = {}  
 
 # Channel ID for forwarding reports
-REPORT_CHANNEL_ID = -1001903160469
-REQUIRED_CHANNEL = -1002311823274 
+REPORT_CHANNEL_ID = -1002965791648
+REQUIRED_CHANNEL = -1002816749144 
 
 
 
@@ -109,15 +109,15 @@ def start(message):
         markup.add(
             InlineKeyboardButton("Gate", callback_data="gate"),
             InlineKeyboardButton("Tools", callback_data="tools"),
-            InlineKeyboardButton("Update", url="https://t.me/hrefcm/111"),
+            InlineKeyboardButton("Update", url="https://t.me/VOIDxCHECKER"),
             InlineKeyboardButton("Premium", callback_data="premium")
         )
 
-        bot.reply_to(message, """✦━━━[ ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ʀᴀᴠᴀɴ ᴄʜᴇᴄᴋᴇʀ  ]━━━✦
+        bot.reply_to(message, """✦━━━[ ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴠᴏɪᴅ ᴄʜᴇᴄᴋᴇʀ  ]━━━✦
 
 ⟡ ʙᴏᴛ sᴛᴀᴛᴜs 𝟸𝟶𝟶 ᴏᴋ ʟɪᴠᴇ  
 ⟡ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ ᴍᴇᴍʙᴇʀꜱ ᴏɴʟʏ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ  
-<a href="https://t.me/hrefcm/111">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴜᴘᴅᴀᴛᴇs &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
+<a href="https://t.me/VOIDxCHECKER">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴜᴘᴅᴀᴛᴇs &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
 
 ⟡ ғᴏʀ ʜᴇʟᴘ ᴠɪsɪᴛ /help
 ⟡ ᴛᴏ ʙᴜʏ /buy  
@@ -136,10 +136,10 @@ def start(message):
 def callback_handler(call):
     if call.data == "gate":
         text = """Check Our Features
-Main : @hrefcm
-Chat Group : @worstgenerationofgenzz
+Main : @backyXchannel
+Chat Group : @VOIDxCHECKER
 
-Note : Report Bugs To @Live_ShopX1Bot
+Note : Report Bugs To @Mikoriaaaaa
 Proxy : Live 💎
 
 Choose Your Gate Type :
@@ -303,7 +303,7 @@ Choose Your Gate Type :
 - Validity: 20 Days
 
 - To purchase, contact the provider only.
--  service providers @MKNXW
+-  service providers @Mikoriaaaaa
 """
         bot.send_message(call.message.chat.id, text, parse_mode="Markdown")
 
@@ -316,7 +316,7 @@ Choose Your Gate Type :
 @bot.message_handler(commands=['help'])
 def help_command(message):
     help_msg = '''<b>⚙️ ʙᴏᴛ ᴄᴏᴍᴍᴀɴᴅs</b>
-🆘 @MKNXW
+🆘 @Mikoriaaaaa
 🆔  ᴠɪᴇᴡ ᴀᴄᴄᴏᴜɴᴛ ɪɴғᴏ /id 
 🏓  ᴄʜᴇᴄᴋ ʙᴏᴛ ʟᴀᴛᴇɴᴄʏ /ping '''
     bot.reply_to(message, help_msg, parse_mode='HTML')
@@ -852,7 +852,7 @@ def cmd_mbin(message):
         bot.reply_to(message, f"⚠️ Error: {e}")
 
 
-owners = ['5995041264', '8009385011','']  # Add your admin user IDs as strings
+owners = ['8373617493', '7098912960','']  # Add your admin user IDs as strings
 
 @bot.message_handler(commands=['nikal'])
 def remove_user_plan(message):
@@ -925,7 +925,7 @@ from telebot import TeleBot
 
 
 
-admins = [5995041264,8009385011]
+admins = [8373617493,7098912960]
 DATA_FILE = "data.json"
 
 # --- Utility Functions ---
@@ -1121,7 +1121,7 @@ def respond_to_vbv(message):
 🔴 ɪᴍᴘᴏʀᴛᴀɴᴛ ɴᴏᴛᴇ :
 
 🚨 To use this bot and stay updated — make sure to join our channel!
-<a href="https://t.me/hrefcm/111">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴀᴜᴛʜᴏʀɪᴢᴇᴅ &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
+<a href="https://t.me/VOIDxCHECKER">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴀᴜᴛʜᴏʀɪᴢᴇᴅ &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
 
 🆘 Need help?
 Use /help anytime for support.</b>'''
@@ -1301,7 +1301,7 @@ def respond_to_cmds(message):
 🔴 ɪᴍᴘᴏʀᴛᴀɴᴛ ɴᴏᴛᴇ :
 
 🚨 To use this bot and stay updated — make sure to join our channel!
-<a href="https://t.me/hrefcm/111">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴀᴜᴛʜᴏʀɪᴢᴇᴅ &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
+<a href="https://t.me/VOIDxCHECKER">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴀᴜᴛʜᴏʀɪᴢᴇᴅ &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
 
 🆘 Need help?
 Use /help anytime for support.</b>'''
@@ -1322,7 +1322,7 @@ from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 import csv
 import pycountry
 
-REQUIRED_CHANNEL = -1002311823274
+REQUIRED_CHANNEL = -1002816749144
 CSV_FILE = 'bins_all.csv'
 BANK_NAME_FIXES = {}  # Assuming this is defined elsewhere
 GATE_FUNCTIONS = [Tele, Fele, Gele]  # Assuming these are defined
@@ -1438,7 +1438,7 @@ def ustxt_cmd(message):
 ✧ ᴍᴇssᴀɢᴇ: You do not have sufficient credit 
 
 ✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ credit top up
-✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
+✧ ᴀᴅᴍɪɴ: @Mikoriaaaaa</b>''', parse_mode="HTML")
         return
 
     if not (message.reply_to_message and message.reply_to_message.document):
@@ -1461,7 +1461,7 @@ def handle_ustxt_command(message):
 ✧ ᴍᴇssᴀɢᴇ: You do not have sufficient credit 
 
 ✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ credit top up
-✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
+✧ ᴀᴅᴍɪɴ: @Mikoriaaaaa</b>''', parse_mode="HTML")
         return
 
     if active_checks.get(user_id, 0) >= 2:
@@ -1650,7 +1650,7 @@ def stxt_cmd(message):
 ✧ ᴍᴇssᴀɢᴇ: You do not have sufficient credit 
 
 ✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ credit top up
-✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
+✧ ᴀᴅᴍɪɴ: @Mikoriaaaaa</b>''', parse_mode="HTML")
         return
 
     if not (message.reply_to_message and message.reply_to_message.document):
@@ -1673,7 +1673,7 @@ def handle_stxt_command(message):
 ✧ ᴍᴇssᴀɢᴇ: You do not have sufficient credit 
 
 ✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ credit top up
-✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
+✧ ᴀᴅᴍɪɴ: @Mikoriaaaaa</b>''', parse_mode="HTML")
         return
 
     if active_checks_stxt.get(user_id, 0) >= 2:
@@ -1850,7 +1850,7 @@ def ct_cmd(message):
 ✧ ᴍᴇssᴀɢᴇ: You do not have sufficient credit 
 
 ✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ credit top up
-✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
+✧ ᴀᴅᴍɪɴ: @Mikoriaaaaa</b>''', parse_mode="HTML")
         return
 
     if not (message.reply_to_message and message.reply_to_message.document):
@@ -1873,7 +1873,7 @@ def handle_ct_command(message):
 ✧ ᴍᴇssᴀɢᴇ: You do not have sufficient credit 
 
 ✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ credit top up
-✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
+✧ ᴀᴅᴍɪɴ: @Mikoriaaaaa</b>''', parse_mode="HTML")
         return
 
     if active_checks_ct.get(user_id, 0) >= 2:
@@ -2164,7 +2164,7 @@ def respond_to_vbv(message):
 ✧ ᴍᴇssᴀɢᴇ: You do not have sufficient credit 
 
 ✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ credit top up
-✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
+✧ ᴀᴅᴍɪɴ: @Mikoriaaaaa</b>''', parse_mode="HTML")
         return
 
     # --- Extract CC ---
@@ -2297,7 +2297,7 @@ def respond_to_au(message):
         msg = '''<b>🔴 ɪᴍᴘᴏʀᴛᴀɴᴛ ɴᴏᴛᴇ :
 
 🚨 To use this bot You Have To Join The Channels
-<a href="https://t.me/hrefcm/111">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴜᴘᴅᴀᴛᴇs &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
+<a href="https://t.me/VOIDxCHECKER">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴜᴘᴅᴀᴛᴇs &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
 </b>'''
         bot.reply_to(message, msg, parse_mode='HTML')
         return    
@@ -2414,7 +2414,7 @@ def respond_to_sq(message):
         msg = '''<b>🔴 ɪᴍᴘᴏʀᴛᴀɴᴛ ɴᴏᴛᴇ :
 
 🚨 To use this bot You Have To Join The Channels
-<a href="https://t.me/hrefcm/111">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴜᴘᴅᴀᴛᴇs &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
+<a href="https://t.me/VOIDxCHECKER">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴜᴘᴅᴀᴛᴇs &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
 </b>'''
         bot.reply_to(message, msg, parse_mode='HTML')
         return    
@@ -2531,7 +2531,7 @@ def respond_to_cr(message):
         msg = '''<b>🔴 ɪᴍᴘᴏʀᴛᴀɴᴛ ɴᴏᴛᴇ :
 
 🚨 To use this bot You Have To Join The Channels
-<a href="https://t.me/hrefcm/111">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴜᴘᴅᴀᴛᴇs &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
+<a href="https://t.me/VOIDxCHECKER">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴜᴘᴅᴀᴛᴇs &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
 </b>'''
         bot.reply_to(message, msg, parse_mode='HTML')
         return    
@@ -2648,7 +2648,7 @@ def respond_to_pp(message):
         msg = '''<b>🔴 ɪᴍᴘᴏʀᴛᴀɴᴛ ɴᴏᴛᴇ :
 
 🚨 To use this bot You Have To Join The Channels
-<a href="https://t.me/hrefcm/111">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴜᴘᴅᴀᴛᴇs &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
+<a href="https://t.me/VOIDxCHECKER">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴜᴘᴅᴀᴛᴇs &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
 </b>'''
         bot.reply_to(message, msg, parse_mode='HTML')
         return    
@@ -2765,7 +2765,7 @@ def respond_to_sh(message):
         msg = '''<b>🔴 ɪᴍᴘᴏʀᴛᴀɴᴛ ɴᴏᴛᴇ :
 
 🚨 To use this bot You Have To Join The Channels
-<a href="https://t.me/hrefcm/111">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴜᴘᴅᴀᴛᴇs &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
+<a href="https://t.me/VOIDxCHECKER">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴜᴘᴅᴀᴛᴇs &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
 </b>'''
         bot.reply_to(message, msg, parse_mode='HTML')
         return    
@@ -2882,7 +2882,7 @@ def respond_to_sk(message):
         msg = '''<b>🔴 ɪᴍᴘᴏʀᴛᴀɴᴛ ɴᴏᴛᴇ :
 
 🚨 To use this bot You Have To Join The Channels
-<a href="https://t.me/hrefcm/111">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴜᴘᴅᴀᴛᴇs &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
+<a href="https://t.me/VOIDxCHECKER">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴜᴘᴅᴀᴛᴇs &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
 </b>'''
         bot.reply_to(message, msg, parse_mode='HTML')
         return    
@@ -3147,7 +3147,7 @@ def respond_to_cchk(message):
 ✧ ᴍᴇssᴀɢᴇ: You do not have sufficient credit 
 
 ✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ credit top up
-✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
+✧ ᴀᴅᴍɪɴ: @Mikoriaaaaa</b>''', parse_mode="HTML")
         return
 
     msg = bot.reply_to(message, "- 𝐆𝐚𝐭𝐞𝐰𝐚𝐲 -  Braintree ᴀᴜᴛʜ ♻️\n- 𝐒𝐭𝐚𝐭𝐮𝐬 - Processing...⌛️", parse_mode="HTML")  
@@ -3210,7 +3210,7 @@ def respond_to_mass(message):
         msg = '''<b>🔴 ɪᴍᴘᴏʀᴛᴀɴᴛ ɴᴏᴛᴇ :
 
 🚨 To use this bot You Have To Join The Channels
-<a href="https://t.me/hrefcm/111">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴜᴘᴅᴀᴛᴇs &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
+<a href="https://t.me/VOIDxCHECKER">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; ᴜᴘᴅᴀᴛᴇs &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</a>  
 </b>'''
         bot.reply_to(message, msg, parse_mode='HTML')
         return    
@@ -3279,7 +3279,7 @@ def respond_to_msq(message):
 ✧ ᴍᴇssᴀɢᴇ: You do not have sufficient credit 
 
 ✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ credit top up
-✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
+✧ ᴀᴅᴍɪɴ: @Mikoriaaaaa</b>''', parse_mode="HTML")
         return
     msg = bot.reply_to(message, "- 𝐆𝐚𝐭𝐞𝐰𝐚𝐲 -  square ᴀᴜᴛʜ ♻️\n- 𝐒𝐭𝐚𝐭𝐮𝐬 - Processing...⌛️", parse_mode="HTML")
     threading.Thread(target=process_msq_command, args=(message, msg)).start()
@@ -3346,7 +3346,7 @@ def respond_to_mcr(message):
 ✧ ᴍᴇssᴀɢᴇ: You do not have sufficient credit 
 
 ✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ credit top up
-✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
+✧ ᴀᴅᴍɪɴ: @Mikoriaaaaa</b>''', parse_mode="HTML")
         return
     msg = bot.reply_to(message, "- 𝐆𝐚𝐭𝐞𝐰𝐚𝐲 -  mass stripe charge ♻️\n- 𝐒𝐭𝐚𝐭𝐮𝐬 - Processing...⌛️", parse_mode="HTML")
     threading.Thread(target=process_mcr_command, args=(message, msg)).start()
@@ -3413,7 +3413,7 @@ def respond_to_mpp(message):
 ✧ ᴍᴇssᴀɢᴇ: You do not have sufficient credit 
 
 ✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ credit top up
-✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
+✧ ᴀᴅᴍɪɴ: @Mikoriaaaaa</b>''', parse_mode="HTML")
         return
     msg = bot.reply_to(message, "- 𝐆𝐚𝐭𝐞𝐰𝐚𝐲 -  mass PayPal charge ♻️\n- 𝐒𝐭𝐚𝐭𝐮𝐬 - Processing...⌛️", parse_mode="HTML")
     threading.Thread(target=process_mpp_command, args=(message, msg)).start()
@@ -3480,7 +3480,7 @@ def respond_to_msh(message):
 ✧ ᴍᴇssᴀɢᴇ: You do not have sufficient credit 
 
 ✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ credit top up
-✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
+✧ ᴀᴅᴍɪɴ: @Mikoriaaaaa</b>''', parse_mode="HTML")
         return
     msg = bot.reply_to(message, "- 𝐆𝐚𝐭𝐞𝐰𝐚𝐲 -  mass Shopify charge ♻️\n- 𝐒𝐭𝐚𝐭𝐮𝐬 - Processing...⌛️", parse_mode="HTML")
     threading.Thread(target=process_msh_command, args=(message, msg)).start()
@@ -3549,7 +3549,7 @@ def respond_to_msk(message):
 ✧ ᴍᴇssᴀɢᴇ: You do not have sufficient credit 
 
 ✧ ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴀᴅᴍɪɴ: ꜰᴏʀ credit top up
-✧ ᴀᴅᴍɪɴ: @MKNXW</b>''', parse_mode="HTML")
+✧ ᴀᴅᴍɪɴ: @Mikoriaaaaa</b>''', parse_mode="HTML")
         return
     msg = bot.reply_to(message, "- 𝐆𝐚𝐭𝐞𝐰𝐚𝐲 -  mass mix charge ♻️\n- 𝐒𝐭𝐚𝐭𝐮𝐬 - Processing...⌛️", parse_mode="HTML")
     threading.Thread(target=process_msk_command, args=(message, msg)).start()
